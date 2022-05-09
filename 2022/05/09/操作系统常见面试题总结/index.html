@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="操作系统常见面试题总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统常见面试题总结">
+<meta property="og:url" content="http://example.com/2022/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="HENAN">
+<meta property="og:description" content="操作系统常见面试题总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-09T07:31:06.000Z">
+<meta property="article:modified_time" content="2022-05-09T07:39:26.240Z">
+<meta property="article:author" content="Maple">
+<meta property="article:tag" content="OS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>操作系统常见面试题总结 | HENAN</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="HENAN" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+		
+
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">HENAN</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fas fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fas fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fas fa-bookmark fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fas fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fas fa-user-circle fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Maple">
+      <meta itemprop="description" content="coding super">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HENAN">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          操作系统常见面试题总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-09 15:31:06 / 修改时间：15:39:26" itemprop="dateCreated datePublished" datetime="2022-05-09T15:31:06+08:00">2022-05-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/408/" itemprop="url" rel="index"><span itemprop="name">408</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>操作系统常见面试题总结</p>
+<span id="more"></span>
+
+<p><a name="aiUvF"></a></p>
+<h1 id="1-操作系统基础"><a href="#1-操作系统基础" class="headerlink" title="1. 操作系统基础"></a>1. 操作系统基础</h1><hr>
+<p><a name="cIAad"></a></p>
+<h2 id="1-1-什么是操作系统"><a href="#1-1-什么是操作系统" class="headerlink" title="1.1 什么是操作系统"></a>1.1 什么是操作系统</h2><hr>
+<ol>
+<li>操作系统（OS）是管理计算机硬件与软件资源的程序，是计算机的基石</li>
+<li>操作系统本质上是一个运行在计算机上的软件程序，用于管理计算机硬件和软件资源</li>
+<li>操作系统存在屏蔽了硬件层的复杂性</li>
+<li>操作系统的内核（Kernel）是操作系统的核心部分，它负责系统的内存管理，硬件设备管理，文件系统的管理以及应用程序的管理<br><a name="r6wnS"></a><h2 id="1-2-系统调用，什么是系统调用"><a href="#1-2-系统调用，什么是系统调用" class="headerlink" title="1.2 系统调用，什么是系统调用"></a>1.2 系统调用，什么是系统调用</h2></li>
+</ol>
+<hr>
+<p>介绍系统调用之前，先了解一下用户状态和系统状态<br>根据进程访问资源的特点，，我们可以将进程在系统上的运行分为两个级别：</p>
+<ol>
+<li>用户态（user mode）：用户态运行的进程可以直接读取用户程序的数据。</li>
+<li>系统态（Kernel mode）：可以简单的理解系统运行的进程或程序几乎可以访问你计算机的任何 资源，不受限制</li>
+</ol>
+<p>说了用户态和系统态之后，那什么是系统调用呢？<br>我们运行的程序基本都是运行在用户态，如果我们调用操作系统提供的系统态级别的子功能咋办呢？那就需要系统调用了！<br>也就是说在我们运行的用户程序中，范式与系统态级别的资源有关的操作（如文件管理、进程管理、内存管理等），都必须通过系统调用方式向操作系统提出服务请求，并由操作系统代为完成。<br>这些系统调用按功能大致分为如下几类：</p>
+<ul>
+<li>设备管理。完成设备的请求或释放，以及设备启动等功能；</li>
+<li>文件管理。完成文件的读、些、创建及删除等功能；</li>
+<li>进程控制。完成进程的创建、撤销、阻塞及唤醒等功能；</li>
+<li>进程通信。完成进程之间的消息传递或信号传递等功能；</li>
+<li>内存管理。完成内存的分配、回收以及获取作业占用内存区大小及地址等功能。<br><a name="w9bAb"></a><h1 id="2-进程和线程"><a href="#2-进程和线程" class="headerlink" title="2. 进程和线程"></a>2. 进程和线程</h1></li>
+</ul>
+<hr>
+<p><a name="Ug6TM"></a></p>
+<h2 id="2-1-进程和线程的区别"><a href="#2-1-进程和线程的区别" class="headerlink" title="2.1 进程和线程的区别"></a>2.1 进程和线程的区别</h2><hr>
+<p>一个进程可以有多个线程，多个线程共享进程的堆和方法区（JDK1.8之后的元空间）资源，但是每个线程都有自己的程序计数器、虚拟机栈、本地方法栈</p>
+<p><a name="Ljg1v"></a></p>
+<h2 id="2-2-进程有哪几种状态"><a href="#2-2-进程有哪几种状态" class="headerlink" title="2.2 进程有哪几种状态?"></a>2.2 进程有哪几种状态?</h2><hr>
+<p>一般把进程分为5种状态，这一点和线程很像</p>
+<ul>
+<li>创建状态（new）</li>
+<li>就绪状态（ready）</li>
+<li>运行状态（running）</li>
+<li>阻塞状态（waiting）</li>
+<li>结束状态（terminated）</li>
+</ul>
+<p><a name="KIphd"></a></p>
+<h2 id="2-3-进程间的通信方式"><a href="#2-3-进程间的通信方式" class="headerlink" title="2.3 进程间的通信方式"></a>2.3 进程间的通信方式</h2><hr>
+<ol>
+<li>管道&#x2F;匿名管道（Pipes）</li>
+<li>有名管道（Names Pipes） 先进先出</li>
+<li>信号（Signal）</li>
+<li>消息队列（Message Queuing）管道与消息队列都是先进先出，不同的是匿名管道存在文件中，有名管道存在于磁盘中，而消息队列存放在内核中。消息队列克服了信号承载信息量少、管道只能承载无格式字节流以及缓冲区大小受限等缺点</li>
+<li>信号量（Semaphores）</li>
+<li>共享内存（Shared memory）</li>
+<li>套接字（Sockets）</li>
+</ol>
+<p><a name="cZMbv"></a></p>
+<h2 id="2-4-线程间的同步的方式"><a href="#2-4-线程间的同步的方式" class="headerlink" title="2.4 线程间的同步的方式"></a>2.4 线程间的同步的方式</h2><hr>
+<p>线程同步是两个或多个共享关键资源的线程的并发执行。应该同步线程以避免关键的资源使用冲突。操作系统一般有下面三种线程同步方式：</p>
+<ol>
+<li>互斥量（Mutex） Java中的synchronized关键字和各种Lock都是这种机制</li>
+<li>信号量（Semaphore）</li>
+<li>事件（Event）</li>
+</ol>
+<p><a name="KXXDd"></a></p>
+<h2 id="2-5-进程的调度算法"><a href="#2-5-进程的调度算法" class="headerlink" title="2.5 进程的调度算法"></a><br>2.5 进程的调度算法</h2><hr>
+<p>为了确定首先执行哪个进程以及最后执行哪个进程以实现最大CPU利用率</p>
+<ol>
+<li>先到先服务（FCFS）</li>
+<li>短作业优先（SJF）</li>
+<li>时间片轮转（RR）</li>
+<li>多级反馈队列：既能使高优先级的作业得到响应又能使短作业（进程）迅速完成</li>
+<li>优先级调度，相同优先级使用FCFS<br><a name="xIvPr"></a><h2 id="2-6-什么是死锁"><a href="#2-6-什么是死锁" class="headerlink" title="2.6 什么是死锁"></a><br>2.6 什么是死锁</h2></li>
+</ol>
+<hr>
+<p>多个进程&#x2F;线程同时被阻塞，他们中的一个或全部都在等待某个资源被释放。由于进程&#x2F;线程被无限期地阻塞，因此程序不可能正常终止。<br><a name="zyRrv"></a></p>
+<h2 id="2-7产生死锁的四个条件"><a href="#2-7产生死锁的四个条件" class="headerlink" title="2.7产生死锁的四个条件"></a><br>2.7产生死锁的四个条件</h2><hr>
+<p>如果系统中以下四个条件<strong>同时成立</strong>，就能引起死锁：</p>
+<ul>
+<li>互斥：资源处于非共享模式</li>
+<li>占有并等待</li>
+<li>非抢占</li>
+<li>循环等待</li>
+</ul>
+<p>2.8 解决死锁的方法</p>
+<hr>
+<p>预防<br>避免<br>检测<br>解除<br><a name="KfQFN"></a></p>
+<h3 id="死锁的预防"><a href="#死锁的预防" class="headerlink" title="死锁的预防"></a>死锁的预防</h3><p>通过破坏死锁产生条件的第二条和第四条<br>1、<strong>静态分配策略</strong>：破坏占有并等待，在执行之前申请到他所需要的全部资源，并且知道他所要的资源都得到满足之后才开始执行；；<br>缺点：严重降低了资源利用率，可能造成一个进程占有了一些几乎不用的资源而使其他需要该资源的进程产生等待的情况。<br>2、<strong>层次分配策略</strong>：破坏循环等待，一个进程得某一次的一个资源后，只能再申请较高一层的资源，当一个进程要释放某层的一个资源时，必须先释放所占用的较高层的资源<br><strong>缺点：导致低效的进程运行和资源使用率</strong><br><a name="PLU3d"></a></p>
+<h3 id="死锁的避免"><a href="#死锁的避免" class="headerlink" title="死锁的避免"></a><br>死锁的避免</h3><p>我们将系统的状态分为安全状态和不安全状态；通过算法，其中最具代表性的避免死锁算法就是银行家算法，银行家算法用一句话表达就是：当一个进程申请使用资源的时候，银行家算法通过先试探分配给该进程资源，然后通过安全性算法判断分配后系统是否处于安全状态，若不安全则试探分配作废，让该进程继续等待，若能够进入安全状态，就真分配资源给该进程。<br>缺点：要不断检测每个进程对各类资源的占用和申请情况，以及做安全性检查，需要花费较多的时间。</p>
+<p><a name="Evn8Z"></a></p>
+<h3 id="死锁的检测"><a href="#死锁的检测" class="headerlink" title="死锁的检测"></a>死锁的检测</h3><p>定时地运行一个“死锁检测”程序，判断系统内是否出现死锁，如果检测到系统发生了死锁，再采取措施去解决它。<br>死锁检测步骤：</p>
+<ol>
+<li>如果进程-资源分配图中无环路，则此时系统没有发生死锁</li>
+<li>如果进程-资源分配图中有环路，且每个资源类仅有一个资源，则系统中已经发生了死锁。</li>
+<li>如果进程-资源分配图中有环路，且涉及到的资源类有多个资源，此时系统未必会发生死锁。如果能在进程-资源分配图中找出一个 <strong>既不阻塞又非独立的进程</strong> ，该进程能够在有限的时间内归还占有的资源，也就是把边给消除掉了，重复此过程，直到能在有限的时间内 <strong>消除所有的边</strong> ，则不会发生死锁，否则会发生死锁。(消除边的过程类似于 <strong>拓扑排序</strong>)</li>
+</ol>
+<p><a name="YgtY7"></a></p>
+<h3 id="死锁的解除"><a href="#死锁的解除" class="headerlink" title="死锁的解除"></a>死锁的解除</h3><p>当死锁检测程序检测到存在死锁发生时，采取死锁接触操作，让系统从死锁状态中恢复过来，常用的接触死锁方法有以下四种：</p>
+<ol>
+<li>立即结束所有进程的执行，重新启动操作系统</li>
+<li>撤销涉及死锁的进程，解除死锁后继续运行</li>
+<li>逐个撤销涉及死锁的进程，回收其资源直至死锁解除</li>
+<li>抢占资源<br><a name="s66jD"></a><h1 id="3-操作系统内存管理基础"><a href="#3-操作系统内存管理基础" class="headerlink" title="3. 操作系统内存管理基础"></a>3. 操作系统内存管理基础</h1><a name="M5iuG"></a><h2 id="3-1-操作系统的内存管理主要是做什么？"><a href="#3-1-操作系统的内存管理主要是做什么？" class="headerlink" title="3.1 操作系统的内存管理主要是做什么？"></a>3.1 操作系统的内存管理主要是做什么？</h2></li>
+</ol>
+<hr>
+<p>操作系统的内存管理主要负责内存的分配与回收（malloc函数：申请内存，free函数：释放内存），另外地址转换也就是将逻辑地址转换成相应的物理地址等功能也是操作系统内存管理做的事情<br><a name="CK7pF"></a></p>
+<h2 id="3-2-操作系统的内存管理机制了解吗？内存管理有哪几种方式"><a href="#3-2-操作系统的内存管理机制了解吗？内存管理有哪几种方式" class="headerlink" title="3.2 操作系统的内存管理机制了解吗？内存管理有哪几种方式?"></a>3.2 操作系统的内存管理机制了解吗？内存管理有哪几种方式?</h2><hr>
+<p>内存管理机制简单分为<strong>连续分配管理方式</strong>和<strong>非连续分配管理方式</strong>两种。连续分配管理方式指为一个用户程序分配一个连续的内存空间，常见的有<strong>块式管理</strong>。非连续分配管理方式指允许一个程序使用的内存分布在离散或者说不相邻的内存中，常见的如<strong>页式管理和段式管理</strong><br><strong>块式管理</strong>：如果程序运行需要内存的话，操作系统就分配给他一个内存块<br><strong>页式管理</strong>：把主内存分为大小相等且固定的一页一页的形式，页较小，相比块式管理的划分力度更小，提高内存利用率，减少了碎片。页式管理通过页表对应逻辑地址和物理地址<br><strong>段式管理</strong>：页式管理虽然提高了内存利用率，但是页式管理其中的页并无任何实际意义。 段式管理把主存分为一段段的，段是有实际意义的，每个段定义了一组逻辑信息，例如,有主程序段 MAIN、子程序段 X、数据段 D 及栈段 S 等。 段式管理通过段表对应逻辑地址和物理地址。<br><strong>段页式管理机制</strong> 。段页式管理机制结合了段式管理和页式管理的优点。简单来说段页式管理机制就是把主存先分成若干段，每个段又分成若干页，也就是说 <strong>段页式管理机制</strong> 中段与段之间以及段的内部的都是离散的。<br><a name="G5c7k"></a></p>
+<h2 id="3-3-快表和多级页表"><a href="#3-3-快表和多级页表" class="headerlink" title="3.3 快表和多级页表"></a>3.3 快表和多级页表</h2><hr>
+<p>在分页内存管理中，很重要的两点是：</p>
+<ol>
+<li>虚拟地址到物理地址的转换要快。</li>
+<li>解决虚拟地址空间大，页表也会很大的问题。<br><a name="tsZ5I"></a><h4 id="快表"><a href="#快表" class="headerlink" title="快表"></a>快表</h4>为了提高虚拟地址到物理地址的转换速度，操作系统在 <strong>页表方案</strong> 基础之上引入了 <strong>快表</strong> 来加速虚拟地址到物理地址的转换。我们可以把快表理解为一种特殊的高速缓冲存储器（Cache），其中的内容是页表的一部分或者全部内容。</li>
+</ol>
+<p>使用快表之后的地址转换流程是这样的：</p>
+<ol>
+<li>根据虚拟地址中的页号查快表；</li>
+<li>如果该页在快表中，直接从快表中读取相应的物理地址；</li>
+<li>如果该页不在快表中，就访问内存中的页表，再从页表中得到物理地址，同时将页表中的该映射表项添加到快表中；</li>
+<li>当快表填满后，又要登记新页时，就按照一定的淘汰策略淘汰掉快表中的一个页。</li>
+</ol>
+<p><a name="IpocE"></a></p>
+<h4 id="多级页表"><a href="#多级页表" class="headerlink" title="多级页表"></a>多级页表</h4><p>引入多级页表的主要目的是为了避免把全部页表一直放在内存中占用过多空间，特别是那些根本就不需要的页表就不需要保留在内存中。<br><a name="vPKeV"></a></p>
+<h2 id="3-4-分页机制和分段机制的共同点和区别"><a href="#3-4-分页机制和分段机制的共同点和区别" class="headerlink" title="3.4 分页机制和分段机制的共同点和区别"></a>3.4 分页机制和分段机制的共同点和区别</h2><hr>
+<ol>
+<li><strong>共同点</strong> ：<ul>
+<li>分页机制和分段机制都是为了提高内存利用率，减少内存碎片。</li>
+<li>页和段都是离散存储的，所以两者都是离散分配内存的方式。但是，每个页和段中的内存是连续的。</li>
+</ul>
+</li>
+<li><strong>区别</strong> ：<ul>
+<li>页的大小是固定的，由操作系统决定；而段的大小不固定，取决于我们当前运行的程序。</li>
+<li>分页仅仅是为了满足操作系统内存管理的需求，而段是逻辑信息的单位，在程序中可以体现为代码段，数据段，能够更好满足用户的需要<br><a name="cFFyB"></a><h2 id="3-5-逻辑-虚拟-地址和物理地址"><a href="#3-5-逻辑-虚拟-地址和物理地址" class="headerlink" title="3.5 逻辑(虚拟)地址和物理地址"></a>3.5 逻辑(虚拟)地址和物理地址</h2></li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>比如C语言中指针里存储的数值就可以理解为内存里的一个地址，这个地址也就是我们说的逻辑地址，逻辑地址由操作系统决定。物理地址指的是真实物理内存中地址，更具体一点来说就是内存地址寄存器中的地址。<br><a name="bW4Np"></a></p>
+<h2 id="3-6-CPU-寻址了解吗-为什么需要虚拟地址空间"><a href="#3-6-CPU-寻址了解吗-为什么需要虚拟地址空间" class="headerlink" title="3.6 CPU 寻址了解吗?为什么需要虚拟地址空间?"></a>3.6 CPU 寻址了解吗?为什么需要虚拟地址空间?</h2><hr>
+<p><strong>使用虚拟寻址，CPU 需要将虚拟地址翻译成物理地址，这样才能访问到真实的物理内存。</strong><br><strong>如果直接把物理地址暴露出来的话会带来严重问题，比如可能对操作系统造成伤害以及给同时运行多个程序造成困难。</strong></p>
+<p><a name="QJABV"></a></p>
+<h1 id="四-虚拟内存"><a href="#四-虚拟内存" class="headerlink" title="四 虚拟内存"></a>四 虚拟内存</h1><p><a name="FvuKs"></a></p>
+<h2 id="4-1-什么是虚拟内存-Virtual-Memory"><a href="#4-1-什么是虚拟内存-Virtual-Memory" class="headerlink" title="4.1 什么是虚拟内存(Virtual Memory)?"></a>4.1 什么是虚拟内存(Virtual Memory)?</h2><hr>
+<p>虚拟内存可以让程序拥有超过系统物理内存大小的可用内存空间。<br>虚拟内存为每个进程提供了一个一致的、私有的地址空间，他让每个进程产生了一种自己在独享主存的错觉<br><a name="nmTAh"></a></p>
+<h2 id="4-2-局部性原理"><a href="#4-2-局部性原理" class="headerlink" title="4.2 局部性原理"></a>4.2 局部性原理</h2><hr>
+<p>局部性原理表现在以下两个方面：<br><strong>时间局部性</strong><br><strong>空间局部性</strong><br><a name="WndKk"></a></p>
+<h2 id="4-3-虚拟存储器"><a href="#4-3-虚拟存储器" class="headerlink" title="4.3 虚拟存储器"></a>4.3 虚拟存储器</h2><hr>
+<p>基于局部性原理，在程序装入时，可以将程序的一部分装入内存，而将其它部分留在外存，就可以启动程序执行。当所访问的信息不在内存时，由操作系统将所需要的部分调入内存，然后继续执行程序。另一方面，操作系统将内存中暂时不使用的内容换到外存上，从而腾出空间存放将要调入内存的信息。这样，计算机好像为用户提供了一个比实际内存大得多的存储器——<strong>虚拟存储器</strong>。<br><a name="rC3eY"></a></p>
+<h2 id="4-4-虚拟内存的技术实现"><a href="#4-4-虚拟内存的技术实现" class="headerlink" title="4.4 虚拟内存的技术实现"></a>4.4 虚拟内存的技术实现</h2><hr>
+<p><strong>虚拟内存的实现需要建立在离散分配的内存管理方式的基础上虚拟内存的实现需要建立在离散分配的内存管理方式的基础上</strong><br>虚拟内存的实现有以下三种方式：<br><strong>请求分页存储管理</strong> <br>建立在分页管理之上，为了支持虚拟存储器功能而增加了请求调页功能和页面置换功能。<br><strong>请求分段存储管理</strong><br>建立在分段存储管理之上，增加了请求调段功能、分段置换功能。<br><strong>请求段页式存储管理</strong><br>这里多说一下？很多人容易搞混<strong>请求分页</strong>与<strong>分页存储管理</strong>，两者有何不同呢？<br>请求分页存储管理不要求将作业全部地址空间同时装入主存，可提供虚拟内存<br>分页存储管理却不能提供</p>
+<p>不管是上面那种实现方式，我们一般都需要：<br>一定容量的内存和外存<br>却也中断<br>虚拟地址空间</p>
+<p><a name="kvh16"></a></p>
+<h2 id="4-5-页面置换算法"><a href="#4-5-页面置换算法" class="headerlink" title="4.5 页面置换算法"></a>4.5 页面置换算法</h2><hr>
+<p>地址映射过程中，若在页面中发现所要访问的页面不在内存中，则发生缺页中断 。<br>发生缺页中断时，发现主存没有空闲页面，操作系统就必须在内存选择一个页面将其移出内存，一边为即将调入的页面让出空间。用来选择淘汰哪一页的规则叫做页面置换算法。<br><strong>最佳（Optimal，OPT）页面置换算法</strong>,该算法无法实现。一般作为衡量其他置换算法的方法。<br><strong>先进先出(first in first out，FIFO)页面置换算法</strong>，总是淘汰先进入内存的页面<br><strong>最近最久未使用（Least Recently Used,LRU）页面置换算法</strong>。赋予每个页面一个访问字段，用来记录一个页面自上次被访问以来所经历的时间T，总是淘汰T最大的<br>最少使用（Least Frequently Used）页面置换算法。选择在之前时期使用最少的页面作为淘汰页</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Maple 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Maple 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="1270109244@qq.com">
+            <span class="icon">
+              <i class="fa fa-envelope"></i>
+            </span>
+
+            <span class="label">E-Mail</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OS/" rel="tag"># OS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/07/first-blog/" rel="prev" title="first blog">
+      <i class="fa fa-chevron-left"></i> first blog
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">1. 操作系统基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 什么是操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%EF%BC%8C%E4%BB%80%E4%B9%88%E6%98%AF%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 系统调用，什么是系统调用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">2. 进程和线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 进程和线程的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E8%BF%9B%E7%A8%8B%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E7%8A%B6%E6%80%81"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 进程有哪几种状态?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 进程间的通信方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E7%BA%BF%E7%A8%8B%E9%97%B4%E7%9A%84%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 线程间的同步的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 进程的调度算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%BB%E9%94%81"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 什么是死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7%E4%BA%A7%E7%94%9F%E6%AD%BB%E9%94%81%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.7.</span> <span class="nav-text">2.7产生死锁的四个条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E9%A2%84%E9%98%B2"><span class="nav-number">2.7.1.</span> <span class="nav-text">死锁的预防</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E9%81%BF%E5%85%8D"><span class="nav-number">2.7.2.</span> <span class="nav-text">死锁的避免</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="nav-number">2.7.3.</span> <span class="nav-text">死锁的检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E8%A7%A3%E9%99%A4"><span class="nav-number">2.7.4.</span> <span class="nav-text">死锁的解除</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80"><span class="nav-number">3.</span> <span class="nav-text">3. 操作系统内存管理基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E4%B8%BB%E8%A6%81%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 操作系统的内存管理主要是做什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 操作系统的内存管理机制了解吗？内存管理有哪几种方式?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%BF%AB%E8%A1%A8%E5%92%8C%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 快表和多级页表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E8%A1%A8"><span class="nav-number">3.3.0.1.</span> <span class="nav-text">快表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8"><span class="nav-number">3.3.0.2.</span> <span class="nav-text">多级页表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E5%88%86%E9%A1%B5%E6%9C%BA%E5%88%B6%E5%92%8C%E5%88%86%E6%AE%B5%E6%9C%BA%E5%88%B6%E7%9A%84%E5%85%B1%E5%90%8C%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 分页机制和分段机制的共同点和区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E9%80%BB%E8%BE%91-%E8%99%9A%E6%8B%9F-%E5%9C%B0%E5%9D%80%E5%92%8C%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 逻辑(虚拟)地址和物理地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-CPU-%E5%AF%BB%E5%9D%80%E4%BA%86%E8%A7%A3%E5%90%97-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 CPU 寻址了解吗?为什么需要虚拟地址空间?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="nav-number">4.</span> <span class="nav-text">四 虚拟内存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98-Virtual-Memory"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 什么是虚拟内存(Virtual Memory)?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 局部性原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 虚拟存储器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 虚拟内存的技术实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 页面置换算法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Maple"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">Maple</p>
+  <div class="site-description" itemprop="description">coding super</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/MapleFv" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;MapleFv" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/1270109244@qq.com" title="E-Mail → 1270109244@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/maple05" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;maple05" rel="noopener" target="_blank"><i class="fab fa-codiepie fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/1270109244" title="QQ → 1270109244"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maple</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+  
+
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
