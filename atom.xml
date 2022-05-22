@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-05-22T11:12:09.149Z</updated>
+  <updated>2022-05-22T13:03:58.412Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JVM垃圾回收详解</title>
+    <link href="http://example.com/2022/05/22/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://example.com/2022/05/22/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E8%AF%A6%E8%A7%A3/</id>
+    <published>2022-05-22T12:58:09.000Z</published>
+    <updated>2022-05-22T13:03:58.412Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;👇👇👇👇👇&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JVM" scheme="http://example.com/categories/JVM/"/>
+    
+    
+    <category term="GC" scheme="http://example.com/tags/GC/"/>
+    
+  </entry>
   
   <entry>
     <title>如何将部署在GitHub的博客绑定指定域名</title>
