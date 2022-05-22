@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-05-22T11:10:05.163Z</updated>
+  <updated>2022-05-22T11:12:09.149Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,10 +21,10 @@
     <link href="http://example.com/2022/05/22/%E5%A6%82%E4%BD%95%E5%B0%86%E9%83%A8%E7%BD%B2%E5%9C%A8GitHub%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BB%91%E5%AE%9A%E6%8C%87%E5%AE%9A%E5%9F%9F%E5%90%8D/"/>
     <id>http://example.com/2022/05/22/%E5%A6%82%E4%BD%95%E5%B0%86%E9%83%A8%E7%BD%B2%E5%9C%A8GitHub%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BB%91%E5%AE%9A%E6%8C%87%E5%AE%9A%E5%9F%9F%E5%90%8D/</id>
     <published>2022-05-22T10:50:04.000Z</published>
-    <updated>2022-05-22T11:10:05.163Z</updated>
+    <updated>2022-05-22T11:12:09.149Z</updated>
     
     
-    <summary type="html">&lt;p&gt;前提：我已经将Hexo博客部署在了GitHub，HTTPS为：&lt;a href=&quot;https://github.com/MapleFv/MapleFv.github.io.git&quot;&gt;https://github.com/MapleFv/MapleFv.github.io.git&lt;/a&gt;&lt;br&gt;&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;前提：我已经将Hexo博客部署在了GitHub，HTTPS为：&lt;a href=&quot;https://github.com/MapleFv/MapleFv.github.io.git&quot;&gt;https://github.com/MapleFv/MapleFv.github.io.git&lt;/a&gt;&lt;/p&gt;</summary>
     
     
     
@@ -57,15 +57,15 @@
     <link href="http://example.com/2022/05/07/Win10%E4%B8%8BHexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B%EF%BC%8C%E5%8F%8A%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/"/>
     <id>http://example.com/2022/05/07/Win10%E4%B8%8BHexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B%EF%BC%8C%E5%8F%8A%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/</id>
     <published>2022-05-07T15:18:26.000Z</published>
-    <updated>2022-05-22T10:56:07.535Z</updated>
+    <updated>2022-05-22T11:13:12.881Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;Win10下Hexo博客搭建教程，及阿里云服务器部署实战&quot;&gt;&lt;a href=&quot;#Win10下Hexo博客搭建教程，及阿里云服务器部署实战&quot; class=&quot;headerlink&quot; title=&quot;Win10下Hexo博客搭建教程，及阿里云服务器部署实战&quot;&gt;&lt;/a&gt;Win10下Hexo博客搭建教程，及阿里云服务器部署实战&lt;/h2&gt;</summary>
+    <summary type="html">&lt;p&gt;Win10下Hexo博客搭建教程，及阿里云服务器部署实战&lt;/p&gt;</summary>
     
     
     
     
-    <category term="blog" scheme="http://example.com/tags/blog/"/>
+    <category term="blogs" scheme="http://example.com/tags/blogs/"/>
     
   </entry>
   
