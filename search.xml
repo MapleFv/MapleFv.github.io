@@ -35,9 +35,9 @@
   <entry>
     <title>如何将部署在GitHub的博客绑定指定域名</title>
     <url>/2022/05/22/%E5%A6%82%E4%BD%95%E5%B0%86%E9%83%A8%E7%BD%B2%E5%9C%A8GitHub%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BB%91%E5%AE%9A%E6%8C%87%E5%AE%9A%E5%9F%9F%E5%90%8D/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>前提：我已经将Hexo博客部署在了GitHub，HTTPS为：<a href="https://github.com/MapleFv/MapleFv.github.io.git">https://github.com/MapleFv/MapleFv.github.io.git</a><br></p>
+<span id="more"></span>
 
-<p>前提：我已经将Hexo博客部署在了GitHub，HTTPS为：<a href="https://github.com/MapleFv/MapleFv.github.io.git">https://github.com/MapleFv/MapleFv.github.io.git</a><br></p>
 <p><a href="https://imgtg.com/image/hZOVa"><img src="https://i.imgtg.com/2022/05/22/hZOVa.png" alt="hZOVa.png"></a><a name="YEdIs"></a></p>
 <h1 id="1-申请域名"><a href="#1-申请域名" class="headerlink" title="1. 申请域名"></a>1. 申请域名</h1><blockquote>
 <p>我用的聚名网，网站地址<a href="https://www.juming.com/">https://www.juming.com/</a><br>这里注册、登录、实名认证…乱起八糟的全部省略，切记一定要<strong>绑定邮箱</strong>，后续通知都是发到邮箱里</p>
