@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-48x48-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-32x32-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="🍋 🍋 🍋 🍋 🍋">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理论&amp;算法&amp;协议">
+<meta property="og:url" content="http://example.com/2022/05/24/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95&%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="Hello,China">
+<meta property="og:description" content="🍋 🍋 🍋 🍋 🍋">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653009549775-afd92c94-bd01-4ff6-80cf-12eeb81eacf2.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=242&id=ua48ecf63&margin=%5Bobject%20Object%5D&originHeight=366&originWidth=650&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uc049e7ac-ab71-4d94-a4c4-0642a5bf559&title=&width=429">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653009535653-19f062a2-0699-4b91-8d0d-d37e84916ef7.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=310&id=u5cc5e081&margin=%5Bobject%20Object%5D&originHeight=461&originWidth=612&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=udbc8a978-d11e-4345-9ea9-097ad5bdf38&title=&width=411">
+<meta property="og:image" content="https://i.imgtg.com/2022/05/24/hRuiD.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653011800770-9cfd4c90-9e6c-44a2-ae5f-d71faea548d1.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=299&id=u575cb7d9&margin=%5Bobject%20Object%5D&originHeight=652&originWidth=1102&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf3a7c486-531b-42e6-8bba-99584288318&title=&width=506">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653012346940-febbf284-c392-4c64-a61e-3ea337f9a50b.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=187&id=u923b72a5&margin=%5Bobject%20Object%5D&originHeight=236&originWidth=576&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u1e107231-1238-487d-9fc2-6172d881baf&title=&width=457">
+<meta property="article:published_time" content="2022-05-24T01:13:06.000Z">
+<meta property="article:modified_time" content="2022-05-24T08:25:10.230Z">
+<meta property="article:author" content="Maple">
+<meta property="article:tag" content="分布式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653009549775-afd92c94-bd01-4ff6-80cf-12eeb81eacf2.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=242&id=ua48ecf63&margin=%5Bobject%20Object%5D&originHeight=366&originWidth=650&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uc049e7ac-ab71-4d94-a4c4-0642a5bf559&title=&width=429">
+
+<link rel="canonical" href="http://example.com/2022/05/24/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95&%E5%8D%8F%E8%AE%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>理论&算法&协议 | Hello,China</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hello,China" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+		
+
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hello,China</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fas fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fas fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fas fa-bookmark fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fas fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fas fa-user-circle fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/24/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95&%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Maple">
+      <meta itemprop="description" content="coding super">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello,China">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          理论&算法&协议
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-24 09:13:06 / 修改时间：16:25:10" itemprop="dateCreated datePublished" datetime="2022-05-24T09:13:06+08:00">2022-05-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">分布式</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>🍋 🍋 🍋 🍋 🍋</p>
+<span id="more"></span>
+
+<h1 id="1-CAP-amp-BASE理论"><a href="#1-CAP-amp-BASE理论" class="headerlink" title="1 CAP &amp; BASE理论"></a>1 CAP &amp; BASE理论</h1><h2 id="1-1-CAP"><a href="#1-1-CAP" class="headerlink" title="1.1 CAP"></a>1.1 CAP</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653009549775-afd92c94-bd01-4ff6-80cf-12eeb81eacf2.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=242&id=ua48ecf63&margin=%5Bobject%20Object%5D&originHeight=366&originWidth=650&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uc049e7ac-ab71-4d94-a4c4-0642a5bf559&title=&width=429"></p>
+<ul>
+<li><strong>一致性（Consistency）</strong> : 所有节点访问同一份最新的数据副本</li>
+<li><strong>可用性（Availability）</strong>: 非故障的节点在合理的时间内返回合理的响应（不是错误或者超时的响应）。</li>
+<li><strong>分区容错性（Partition tolerance）</strong> : 分布式系统出现网络分区的时候，仍然能够对外提供服务。</li>
+</ul>
+<p><strong>什么是网络分区？</strong></p>
+<blockquote>
+<p>分布式系统中，多个节点之前的网络本来是连通的，但是因为某些故障（比如部分节点网络出了问题）某些节点之间不连通了，整个网络就分成了几块区域，这就叫网络分区。</p>
+</blockquote>
+<h2 id="1-2-BASE-理论"><a href="#1-2-BASE-理论" class="headerlink" title="1.2 BASE 理论"></a>1.2 BASE 理论</h2><p><strong>BASE</strong> 是 <strong>Basically Available（基本可用）</strong> 、<strong>Soft-state（软状态）</strong> 和 <strong>Eventually Consistent（最终一致性）</strong> 三个短语的缩写。<br><strong>BASE 理论本质上是对 CAP 的延伸和补充，更具体地说，是对 CAP 中 AP 方案的一个补充。</strong></p>
+<blockquote>
+<p>如果系统没有发生“分区”的话，节点间的网络连接通信正常的话，也就不存在 P 了。这个时候，我们就可以同时保证 C 和 A 了。因此，如果系统发生“分区”，我们要考虑选择 CP 还是 AP。如果系统没有发生“分区”的话，我们要思考如何保证 CA 。</p>
+</blockquote>
+<p>因此，AP 方案只是在系统发生分区的时候放弃一致性，而不是永远放弃一致性。在分区故障恢复后，系统应该达到最终一致性。这一点其实就是 BASE 理论延伸的地方。</p>
+<h3 id="1-2-1-BASE-理论三要素"><a href="#1-2-1-BASE-理论三要素" class="headerlink" title="1.2.1 BASE 理论三要素"></a>1.2.1 BASE 理论三要素</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653009535653-19f062a2-0699-4b91-8d0d-d37e84916ef7.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=310&id=u5cc5e081&margin=%5Bobject%20Object%5D&originHeight=461&originWidth=612&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=udbc8a978-d11e-4345-9ea9-097ad5bdf38&title=&width=411"></p>
+<h4 id="1-基本可用"><a href="#1-基本可用" class="headerlink" title="1. 基本可用"></a>1. 基本可用</h4><p>基本可用是指分布式系统在出现不可预知故障的时候，允许损失部分可用性。但是，这绝不等价于系统不可用。<br><strong>什么叫允许损失部分可用性呢？</strong></p>
+<ul>
+<li><strong>响应时间上的损失</strong>: 正常情况下，处理用户请求需要 0.5s 返回结果，但是由于系统出现故障，处理用户请求的时间变为 3 s。</li>
+<li><strong>系统功能上的损失</strong>：正常情况下，用户可以使用系统的全部功能，但是由于系统访问量突然剧增，系统的部分非核心功能无法使用。<h4 id="2-软状态"><a href="#2-软状态" class="headerlink" title="2. 软状态"></a>2. 软状态</h4>软状态指允许系统中的数据存在中间状态（<strong>CAP 理论中的数据不一致</strong>），并认为该中间状态的存在不会影响系统的整体可用性，即允许系统在不同节点的数据副本之间进行数据同步的过程存在延时。<h4 id=""><a href="#" class="headerlink" title=""></a></h4></li>
+</ul>
+<ol start="3">
+<li>最终一致性<br>最终一致性强调的是系统中所有的数据副本，在经过一段时间的同步后，最终能够达到一个一致的状态。因此，最终一致性的本质是需要系统保证最终数据能够达到一致，而不需要实时保证系统数据的强一致性。<blockquote>
+<p>分布式一致性的 3 种级别：</p>
+<ol>
+<li>强一致性 ：系统写入了什么，读出来的就是什么。</li>
+<li>弱一致性 ：不一定可以读取到最新写入的值，也不保证多少时间之后读取到的数据是最新的，只是会尽量保证某个时刻达到数据一致的状态。</li>
+<li>最终一致性 ：弱一致性的升级版，系统会保证在一定时间内达到数据一致的状态。</li>
+</ol>
+</blockquote>
+<p>业界比较推崇是最终一致性级别，但是某些对数据一致要求十分严格的场景比如银行转账还是要保证强一致性。</p>
+</li>
+</ol>
+<p>那实现最终一致性的具体方式是什么呢? </p>
+<blockquote>
+<ul>
+<li><strong>读时修复</strong> : 在读取数据时，检测数据的不一致，进行修复。比如 Cassandra 的 Read Repair 实现，具体来说，在向 Cassandra 系统查询数据的时候，如果检测到不同节点 的副本数据不一致，系统就自动修复数据。</li>
+<li><strong>写时修复</strong> : 在写入数据，检测数据的不一致时，进行修复。比如 Cassandra 的 Hinted Handoff 实现。具体来说，Cassandra 集群的节点之间远程写数据的时候，如果写失败 就将数据缓存下来，然后定时重传，修复数据的不一致性。</li>
+<li><strong>异步修复</strong> : 这个是最常用的方式，通过定时对账检测副本数据的一致性，并修复。</li>
+</ul>
+</blockquote>
+<p>比较推荐 <strong>写时修复</strong>，这种方式对性能消耗比较低。</p>
+<h3 id="1-2-2-总结"><a href="#1-2-2-总结" class="headerlink" title="1.2.2 总结"></a>1.2.2 总结</h3><p><strong>ACID 是数据库事务完整性的理论，CAP 是分布式系统设计理论，BASE 是 CAP 理论中 AP 方案的延伸。</strong></p>
+<h1 id="2-Paxos-算法"><a href="#2-Paxos-算法" class="headerlink" title="2 Paxos 算法"></a>2 Paxos 算法</h1><h2 id="2-1-一致性（Consistency）与共识（Consensus）"><a href="#2-1-一致性（Consistency）与共识（Consensus）" class="headerlink" title="2.1 一致性（Consistency）与共识（Consensus）"></a>2.1 一致性（Consistency）与共识（Consensus）</h2><p>很多人会误把 Paxos 看作是一致性算法，这其实是一个非常大的误区。<br>⚠️注意：<strong>Paxos 不是一致性算法而是共识算法，一致性和共识并不是一个概念。</strong></p>
+<h2 id="2-2-Basic-Paxos-算法"><a href="#2-2-Basic-Paxos-算法" class="headerlink" title="2.2 Basic Paxos 算法"></a>2.2 Basic Paxos 算法</h2><p>Basic Paxos 中存在 3 个重要的角色：</p>
+<ol>
+<li><strong>提议者（Proposer）</strong>：也可以叫做协调者（coordinator），提议者负责接受客户端发起的提议，然后尝试让接受者接受该提议，同时保证即使多个提议者的提议之间产生了冲突，那么算法都能进行下去；</li>
+<li><strong>接受者（Acceptor）</strong>：也可以叫做投票员（voter），负责对提议者的提议投票，同时需要记住自己的投票历史；</li>
+<li><strong>学习者（Learner）</strong>：如果有超过半数接受者就某个提议达成了共识，那么学习者就需要接受这个提议，并就该提议作出运算，然后将运算结果返回给客户端。</li>
+</ol>
+<p><img src="https://i.imgtg.com/2022/05/24/hRuiD.png" alt="hRuiD.png"></p>
+<h1 id="3-Raft-算法"><a href="#3-Raft-算法" class="headerlink" title="3 Raft 算法"></a>3 Raft 算法</h1><h2 id="3-1-拜占庭将军"><a href="#3-1-拜占庭将军" class="headerlink" title="3.1 拜占庭将军"></a>3.1 拜占庭将军</h2><p>在介绍共识算法之前，先介绍一个简化版拜占庭将军的例子来帮助理解共识算法。<br>假设多位拜占庭将军中没有叛军，信使的信息可靠但有可能被暗杀的情况下，将军们如何达成是否要进攻的一致性决定？<br>解决方案大致可以理解成：先在所有的将军中选出一个大将军，用来做出所有的决定。<br>举例如下：假如现在一共有 3 个将军 A，B 和 C，每个将军都有一个随机时间的倒计时器，倒计时一结束，这个将军就把自己当成大将军候选人，然后派信使传递选举投票的信息给将军 B 和 C，如果将军 B 和 C 还没有把自己当作候选人（自己的倒计时还没有结束），并且没有把选举票投给其他人，它们就会把票投给将军 A，信使回到将军 A 时，将军 A 知道自己收到了足够的票数，成为大将军。在有了大将军之后，是否需要进攻就由大将军 A 决定，然后再去派信使通知另外两个将军，自己已经成为了大将军。如果一段时间还没收到将军 B 和 C 的回复（信使可能会被暗杀），那就再重派一个信使，直到收到回复。</p>
+<h2 id="3-2-共识算法"><a href="#3-2-共识算法" class="headerlink" title="3.2 共识算法"></a>3.2 共识算法</h2><p>共识是可容错系统中的一个基本问题：即使面对故障，服务器也可以在共享状态上达成一致。<br>共识算法允许一组节点像一个整体一样一起工作，即使其中的一些节点出现故障也能够继续工作下去，其正确性主要是源于复制状态机的性质：一组Server的状态机计算相同状态的副本，即使有一部分的Server宕机了它们仍然能够继续运行。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653011800770-9cfd4c90-9e6c-44a2-ae5f-d71faea548d1.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=299&id=u575cb7d9&margin=%5Bobject%20Object%5D&originHeight=652&originWidth=1102&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf3a7c486-531b-42e6-8bba-99584288318&title=&width=506"><br>一般通过使用复制日志来实现复制状态机。每个Server存储着一份包括命令序列的日志文件，状态机会按顺序执行这些命令。因为每个日志包含相同的命令，并且顺序也相同，所以每个状态机处理相同的命令序列。由于状态机是确定性的，所以处理相同的状态，得到相同的输出。<br>因此<strong>共识算法的工作就是保持复制日志的一致性</strong>。服务器上的共识模块从客户端接收命令并将它们添加到日志中。它与其他服务器上的共识模块通信，以确保即使某些服务器发生故障，每个日志最终包含相同顺序的请求。一旦命令被正确地复制，它们就被称为已提交。每个服务器的状态机按照日志顺序处理已提交的命令，并将输出返回给客户端，因此，这些服务器形成了一个单一的、高度可靠的状态机。<br>适用于实际系统的共识算法通常具有以下特性：</p>
+<ul>
+<li><strong>安全</strong>。确保在非拜占庭条件（也就是上文中提到的简易版拜占庭）下的安全性，包括网络延迟、分区、包丢失、复制和重新排序。</li>
+<li><strong>高可用</strong>。只要大多数服务器都是可操作的，并且可以相互通信，也可以与客户端进行通信，那么这些服务器就可以看作完全功能可用的。因此，一个典型的由五台服务器组成的集群可以容忍任何两台服务器端故障。假设服务器因停止而发生故障；它们稍后可能会从稳定存储上的状态中恢复并重新加入集群。</li>
+<li><strong>一致性不依赖时序</strong>。错误的时钟和极端的消息延迟，在最坏的情况下也只会造成可用性问题，而不会产生一致性问题。</li>
+<li>在集群中大多数服务器响应，命令就可以完成，不会被少数运行缓慢的服务器来影响整体系统性能。<h2 id="3-3-基础"><a href="#3-3-基础" class="headerlink" title="3.3 基础"></a>3.3 基础</h2></li>
+</ul>
+<h3 id="3-3-1-节点类型"><a href="#3-3-1-节点类型" class="headerlink" title="3.3.1 节点类型"></a>3.3.1 节点类型</h3><p>一个 Raft 集群包括若干服务器，以典型的 5 服务器集群举例。在任意的时间，每个服务器一定会处于以下三个状态中的一个：</p>
+<ul>
+<li>Leader：负责发起心跳，响应客户端，创建日志，同步日志。</li>
+<li>Candidate：Leader 选举过程中的临时角色，由 Follower 转化而来，发起投票参与竞选。</li>
+<li>Follower：接受 Leader 的心跳和日志同步数据，投票给 Candidate。</li>
+</ul>
+<h3 id="3-3-2-任期"><a href="#3-3-2-任期" class="headerlink" title="3.3.2 任期"></a>3.3.2 任期</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653012346940-febbf284-c392-4c64-a61e-3ea337f9a50b.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=187&id=u923b72a5&margin=%5Bobject%20Object%5D&originHeight=236&originWidth=576&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u1e107231-1238-487d-9fc2-6172d881baf&title=&width=457"><br>如图所示，raft 算法将时间划分为任意长度的任期（term），任期用连续的数字表示，看作当前 term 号。每一个任期的开始都是一次选举，在选举开始时，一个或多个 Candidate 会尝试成为 Leader。如果一个 Candidate 赢得了选举，它就会在该任期内担任 Leader。如果没有选出 Leader，将会开启另一个任期，并立刻开始下一次选举。raft 算法保证在给定的一个任期最少要有一个 Leader。<br>每个节点都会存储当前的 term 号，当服务器之间进行通信时会交换当前的 term 号；如果有服务器发现自己的 term 号比其他人小，那么他会更新到较大的 term 值。如果一个 Candidate 或者 Leader 发现自己的 term 过期了，他会立即退回成 Follower。如果一台服务器收到的请求的 term 号是过期的，那么它会拒绝此次请求。</p>
+<h3 id="3-3-3-日志"><a href="#3-3-3-日志" class="headerlink" title="3.3.3 日志"></a>3.3.3 日志</h3><ul>
+<li>entry：每一个事件成为 entry，只有 Leader 可以创建 entry。entry 的内容为&lt;term,index,cmd&gt;其中 cmd 是可以应用到状态机的操作。</li>
+<li>log：由 entry 构成的数组，每一个 entry 都有一个表明自己在 log 中的 index。只有 Leader 才可以改变其他节点的 log。entry 总是先被 Leader 添加到自己的 log 数组中，然后再发起共识请求，获得同意后才会被 Leader 提交给状态机。Follower 只能从 Leader 获取新日志和当前的 commitIndex，然后把对应的 entry 应用到自己的状态机中。<h2 id="3-4-领导人选举"><a href="#3-4-领导人选举" class="headerlink" title="3.4 领导人选举"></a>3.4 领导人选举</h2></li>
+</ul>
+<p>raft 使用心跳机制来触发 Leader 的选举。</p>
+<h2 id="3-5-日志复制"><a href="#3-5-日志复制" class="headerlink" title="3.5 日志复制"></a>3.5 日志复制</h2><p>一旦选出了 Leader，它就开始接受客户端的请求。每一个客户端的请求都包含一条需要被复制状态机（Replicated State Mechine）执行的命令。</p>
+<h2 id="3-6-安全性"><a href="#3-6-安全性" class="headerlink" title="3.6 安全性"></a>3.6 安全性</h2><h3 id="3-6-1-选举限制"><a href="#3-6-1-选举限制" class="headerlink" title="3.6.1 选举限制"></a>3.6.1 选举限制</h3><p>Leader 需要保证自己存储全部已经提交的日志条目。这样才可以使日志条目只有一个流向：从 Leader 流向 Follower，Leader 永远不会覆盖已经存在的日志条目。</p>
+<h3 id="3-6-2-节点崩溃"><a href="#3-6-2-节点崩溃" class="headerlink" title="3.6.2 节点崩溃"></a>3.6.2 节点崩溃</h3><p>如果 Leader 崩溃，集群中的节点在 electionTimeout 时间内没有收到 Leader 的心跳信息就会触发新一轮的选主，在选主期间整个集群对外是不可用的。</p>
+<h3 id="3-6-3-时间与可用性"><a href="#3-6-3-时间与可用性" class="headerlink" title="3.6.3 时间与可用性"></a>3.6.3 时间与可用性</h3><p>raft 的要求之一就是安全性不依赖于时间：系统不能仅仅因为一些事件发生的比预想的快一些或者慢一些就产生错误。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Maple 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Maple 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Maple
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/05/24/%E7%90%86%E8%AE%BA&%E7%AE%97%E6%B3%95&%E5%8D%8F%E8%AE%AE/" title="理论&amp;算法&amp;协议">http://example.com/2022/05/24/理论&算法&协议/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="1270109244@qq.com">
+            <span class="icon">
+              <i class="fa fa-envelope"></i>
+            </span>
+
+            <span class="label">E-Mail</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/24/RPC/" rel="prev" title="RPC">
+      <i class="fa fa-chevron-left"></i> RPC
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/24/Java8%E6%96%B0%E7%89%B9%E6%80%A7%E5%AE%9E%E6%88%98/" rel="next" title="Java8新特性实战">
+      Java8新特性实战 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-CAP-amp-BASE%E7%90%86%E8%AE%BA"><span class="nav-text">1 CAP &amp; BASE理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-CAP"><span class="nav-text">1.1 CAP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-BASE-%E7%90%86%E8%AE%BA"><span class="nav-text">1.2 BASE 理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-BASE-%E7%90%86%E8%AE%BA%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="nav-text">1.2.1 BASE 理论三要素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E5%8F%AF%E7%94%A8"><span class="nav-text">1. 基本可用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%BD%AF%E7%8A%B6%E6%80%81"><span class="nav-text">2. 软状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-%E6%80%BB%E7%BB%93"><span class="nav-text">1.2.2 总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Paxos-%E7%AE%97%E6%B3%95"><span class="nav-text">2 Paxos 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%88Consistency%EF%BC%89%E4%B8%8E%E5%85%B1%E8%AF%86%EF%BC%88Consensus%EF%BC%89"><span class="nav-text">2.1 一致性（Consistency）与共识（Consensus）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Basic-Paxos-%E7%AE%97%E6%B3%95"><span class="nav-text">2.2 Basic Paxos 算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Raft-%E7%AE%97%E6%B3%95"><span class="nav-text">3 Raft 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B"><span class="nav-text">3.1 拜占庭将军</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95"><span class="nav-text">3.2 共识算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%9F%BA%E7%A1%80"><span class="nav-text">3.3 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B"><span class="nav-text">3.3.1 节点类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-%E4%BB%BB%E6%9C%9F"><span class="nav-text">3.3.2 任期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-%E6%97%A5%E5%BF%97"><span class="nav-text">3.3.3 日志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E9%A2%86%E5%AF%BC%E4%BA%BA%E9%80%89%E4%B8%BE"><span class="nav-text">3.4 领导人选举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6"><span class="nav-text">3.5 日志复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-text">3.6 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-1-%E9%80%89%E4%B8%BE%E9%99%90%E5%88%B6"><span class="nav-text">3.6.1 选举限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-2-%E8%8A%82%E7%82%B9%E5%B4%A9%E6%BA%83"><span class="nav-text">3.6.2 节点崩溃</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-3-%E6%97%B6%E9%97%B4%E4%B8%8E%E5%8F%AF%E7%94%A8%E6%80%A7"><span class="nav-text">3.6.3 时间与可用性</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Maple"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">Maple</p>
+  <div class="site-description" itemprop="description">coding super</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/MapleFv" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;MapleFv" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/1270109244@qq.com" title="E-Mail → 1270109244@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/maple05" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;maple05" rel="noopener" target="_blank"><i class="fab fa-codiepie fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/1270109244" title="QQ → 1270109244"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maple</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+  
+
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

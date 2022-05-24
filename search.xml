@@ -347,4 +347,544 @@
         <tag>OS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>理论&amp;算法&amp;协议</title>
+    <url>/2022/05/24/%E7%90%86%E8%AE%BA&amp;%E7%AE%97%E6%B3%95&amp;%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<p>🍋 🍋 🍋 🍋 🍋</p>
+<span id="more"></span>
+
+<h1 id="1-CAP-amp-BASE理论"><a href="#1-CAP-amp-BASE理论" class="headerlink" title="1 CAP &amp; BASE理论"></a>1 CAP &amp; BASE理论</h1><h2 id="1-1-CAP"><a href="#1-1-CAP" class="headerlink" title="1.1 CAP"></a>1.1 CAP</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653009549775-afd92c94-bd01-4ff6-80cf-12eeb81eacf2.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=242&id=ua48ecf63&margin=%5Bobject%20Object%5D&originHeight=366&originWidth=650&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uc049e7ac-ab71-4d94-a4c4-0642a5bf559&title=&width=429"></p>
+<ul>
+<li><strong>一致性（Consistency）</strong> : 所有节点访问同一份最新的数据副本</li>
+<li><strong>可用性（Availability）</strong>: 非故障的节点在合理的时间内返回合理的响应（不是错误或者超时的响应）。</li>
+<li><strong>分区容错性（Partition tolerance）</strong> : 分布式系统出现网络分区的时候，仍然能够对外提供服务。</li>
+</ul>
+<p><strong>什么是网络分区？</strong></p>
+<blockquote>
+<p>分布式系统中，多个节点之前的网络本来是连通的，但是因为某些故障（比如部分节点网络出了问题）某些节点之间不连通了，整个网络就分成了几块区域，这就叫网络分区。</p>
+</blockquote>
+<h2 id="1-2-BASE-理论"><a href="#1-2-BASE-理论" class="headerlink" title="1.2 BASE 理论"></a>1.2 BASE 理论</h2><p><strong>BASE</strong> 是 <strong>Basically Available（基本可用）</strong> 、<strong>Soft-state（软状态）</strong> 和 <strong>Eventually Consistent（最终一致性）</strong> 三个短语的缩写。<br><strong>BASE 理论本质上是对 CAP 的延伸和补充，更具体地说，是对 CAP 中 AP 方案的一个补充。</strong></p>
+<blockquote>
+<p>如果系统没有发生“分区”的话，节点间的网络连接通信正常的话，也就不存在 P 了。这个时候，我们就可以同时保证 C 和 A 了。因此，如果系统发生“分区”，我们要考虑选择 CP 还是 AP。如果系统没有发生“分区”的话，我们要思考如何保证 CA 。</p>
+</blockquote>
+<p>因此，AP 方案只是在系统发生分区的时候放弃一致性，而不是永远放弃一致性。在分区故障恢复后，系统应该达到最终一致性。这一点其实就是 BASE 理论延伸的地方。</p>
+<h3 id="1-2-1-BASE-理论三要素"><a href="#1-2-1-BASE-理论三要素" class="headerlink" title="1.2.1 BASE 理论三要素"></a>1.2.1 BASE 理论三要素</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653009535653-19f062a2-0699-4b91-8d0d-d37e84916ef7.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=310&id=u5cc5e081&margin=%5Bobject%20Object%5D&originHeight=461&originWidth=612&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=udbc8a978-d11e-4345-9ea9-097ad5bdf38&title=&width=411"></p>
+<h4 id="1-基本可用"><a href="#1-基本可用" class="headerlink" title="1. 基本可用"></a>1. 基本可用</h4><p>基本可用是指分布式系统在出现不可预知故障的时候，允许损失部分可用性。但是，这绝不等价于系统不可用。<br><strong>什么叫允许损失部分可用性呢？</strong></p>
+<ul>
+<li><strong>响应时间上的损失</strong>: 正常情况下，处理用户请求需要 0.5s 返回结果，但是由于系统出现故障，处理用户请求的时间变为 3 s。</li>
+<li><strong>系统功能上的损失</strong>：正常情况下，用户可以使用系统的全部功能，但是由于系统访问量突然剧增，系统的部分非核心功能无法使用。<h4 id="2-软状态"><a href="#2-软状态" class="headerlink" title="2. 软状态"></a>2. 软状态</h4>软状态指允许系统中的数据存在中间状态（<strong>CAP 理论中的数据不一致</strong>），并认为该中间状态的存在不会影响系统的整体可用性，即允许系统在不同节点的数据副本之间进行数据同步的过程存在延时。<h4 id=""><a href="#" class="headerlink" title=""></a></h4></li>
+</ul>
+<ol start="3">
+<li>最终一致性<br>最终一致性强调的是系统中所有的数据副本，在经过一段时间的同步后，最终能够达到一个一致的状态。因此，最终一致性的本质是需要系统保证最终数据能够达到一致，而不需要实时保证系统数据的强一致性。<blockquote>
+<p>分布式一致性的 3 种级别：</p>
+<ol>
+<li>强一致性 ：系统写入了什么，读出来的就是什么。</li>
+<li>弱一致性 ：不一定可以读取到最新写入的值，也不保证多少时间之后读取到的数据是最新的，只是会尽量保证某个时刻达到数据一致的状态。</li>
+<li>最终一致性 ：弱一致性的升级版，系统会保证在一定时间内达到数据一致的状态。</li>
+</ol>
+</blockquote>
+<p>业界比较推崇是最终一致性级别，但是某些对数据一致要求十分严格的场景比如银行转账还是要保证强一致性。</p>
+</li>
+</ol>
+<p>那实现最终一致性的具体方式是什么呢? </p>
+<blockquote>
+<ul>
+<li><strong>读时修复</strong> : 在读取数据时，检测数据的不一致，进行修复。比如 Cassandra 的 Read Repair 实现，具体来说，在向 Cassandra 系统查询数据的时候，如果检测到不同节点 的副本数据不一致，系统就自动修复数据。</li>
+<li><strong>写时修复</strong> : 在写入数据，检测数据的不一致时，进行修复。比如 Cassandra 的 Hinted Handoff 实现。具体来说，Cassandra 集群的节点之间远程写数据的时候，如果写失败 就将数据缓存下来，然后定时重传，修复数据的不一致性。</li>
+<li><strong>异步修复</strong> : 这个是最常用的方式，通过定时对账检测副本数据的一致性，并修复。</li>
+</ul>
+</blockquote>
+<p>比较推荐 <strong>写时修复</strong>，这种方式对性能消耗比较低。</p>
+<h3 id="1-2-2-总结"><a href="#1-2-2-总结" class="headerlink" title="1.2.2 总结"></a>1.2.2 总结</h3><p><strong>ACID 是数据库事务完整性的理论，CAP 是分布式系统设计理论，BASE 是 CAP 理论中 AP 方案的延伸。</strong></p>
+<h1 id="2-Paxos-算法"><a href="#2-Paxos-算法" class="headerlink" title="2 Paxos 算法"></a>2 Paxos 算法</h1><h2 id="2-1-一致性（Consistency）与共识（Consensus）"><a href="#2-1-一致性（Consistency）与共识（Consensus）" class="headerlink" title="2.1 一致性（Consistency）与共识（Consensus）"></a>2.1 一致性（Consistency）与共识（Consensus）</h2><p>很多人会误把 Paxos 看作是一致性算法，这其实是一个非常大的误区。<br>⚠️注意：<strong>Paxos 不是一致性算法而是共识算法，一致性和共识并不是一个概念。</strong></p>
+<h2 id="2-2-Basic-Paxos-算法"><a href="#2-2-Basic-Paxos-算法" class="headerlink" title="2.2 Basic Paxos 算法"></a>2.2 Basic Paxos 算法</h2><p>Basic Paxos 中存在 3 个重要的角色：</p>
+<ol>
+<li><strong>提议者（Proposer）</strong>：也可以叫做协调者（coordinator），提议者负责接受客户端发起的提议，然后尝试让接受者接受该提议，同时保证即使多个提议者的提议之间产生了冲突，那么算法都能进行下去；</li>
+<li><strong>接受者（Acceptor）</strong>：也可以叫做投票员（voter），负责对提议者的提议投票，同时需要记住自己的投票历史；</li>
+<li><strong>学习者（Learner）</strong>：如果有超过半数接受者就某个提议达成了共识，那么学习者就需要接受这个提议，并就该提议作出运算，然后将运算结果返回给客户端。</li>
+</ol>
+<p><img src="https://i.imgtg.com/2022/05/24/hRuiD.png" alt="hRuiD.png"></p>
+<h1 id="3-Raft-算法"><a href="#3-Raft-算法" class="headerlink" title="3 Raft 算法"></a>3 Raft 算法</h1><h2 id="3-1-拜占庭将军"><a href="#3-1-拜占庭将军" class="headerlink" title="3.1 拜占庭将军"></a>3.1 拜占庭将军</h2><p>在介绍共识算法之前，先介绍一个简化版拜占庭将军的例子来帮助理解共识算法。<br>假设多位拜占庭将军中没有叛军，信使的信息可靠但有可能被暗杀的情况下，将军们如何达成是否要进攻的一致性决定？<br>解决方案大致可以理解成：先在所有的将军中选出一个大将军，用来做出所有的决定。<br>举例如下：假如现在一共有 3 个将军 A，B 和 C，每个将军都有一个随机时间的倒计时器，倒计时一结束，这个将军就把自己当成大将军候选人，然后派信使传递选举投票的信息给将军 B 和 C，如果将军 B 和 C 还没有把自己当作候选人（自己的倒计时还没有结束），并且没有把选举票投给其他人，它们就会把票投给将军 A，信使回到将军 A 时，将军 A 知道自己收到了足够的票数，成为大将军。在有了大将军之后，是否需要进攻就由大将军 A 决定，然后再去派信使通知另外两个将军，自己已经成为了大将军。如果一段时间还没收到将军 B 和 C 的回复（信使可能会被暗杀），那就再重派一个信使，直到收到回复。</p>
+<h2 id="3-2-共识算法"><a href="#3-2-共识算法" class="headerlink" title="3.2 共识算法"></a>3.2 共识算法</h2><p>共识是可容错系统中的一个基本问题：即使面对故障，服务器也可以在共享状态上达成一致。<br>共识算法允许一组节点像一个整体一样一起工作，即使其中的一些节点出现故障也能够继续工作下去，其正确性主要是源于复制状态机的性质：一组Server的状态机计算相同状态的副本，即使有一部分的Server宕机了它们仍然能够继续运行。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653011800770-9cfd4c90-9e6c-44a2-ae5f-d71faea548d1.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=299&id=u575cb7d9&margin=%5Bobject%20Object%5D&originHeight=652&originWidth=1102&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf3a7c486-531b-42e6-8bba-99584288318&title=&width=506"><br>一般通过使用复制日志来实现复制状态机。每个Server存储着一份包括命令序列的日志文件，状态机会按顺序执行这些命令。因为每个日志包含相同的命令，并且顺序也相同，所以每个状态机处理相同的命令序列。由于状态机是确定性的，所以处理相同的状态，得到相同的输出。<br>因此<strong>共识算法的工作就是保持复制日志的一致性</strong>。服务器上的共识模块从客户端接收命令并将它们添加到日志中。它与其他服务器上的共识模块通信，以确保即使某些服务器发生故障，每个日志最终包含相同顺序的请求。一旦命令被正确地复制，它们就被称为已提交。每个服务器的状态机按照日志顺序处理已提交的命令，并将输出返回给客户端，因此，这些服务器形成了一个单一的、高度可靠的状态机。<br>适用于实际系统的共识算法通常具有以下特性：</p>
+<ul>
+<li><strong>安全</strong>。确保在非拜占庭条件（也就是上文中提到的简易版拜占庭）下的安全性，包括网络延迟、分区、包丢失、复制和重新排序。</li>
+<li><strong>高可用</strong>。只要大多数服务器都是可操作的，并且可以相互通信，也可以与客户端进行通信，那么这些服务器就可以看作完全功能可用的。因此，一个典型的由五台服务器组成的集群可以容忍任何两台服务器端故障。假设服务器因停止而发生故障；它们稍后可能会从稳定存储上的状态中恢复并重新加入集群。</li>
+<li><strong>一致性不依赖时序</strong>。错误的时钟和极端的消息延迟，在最坏的情况下也只会造成可用性问题，而不会产生一致性问题。</li>
+<li>在集群中大多数服务器响应，命令就可以完成，不会被少数运行缓慢的服务器来影响整体系统性能。<h2 id="3-3-基础"><a href="#3-3-基础" class="headerlink" title="3.3 基础"></a>3.3 基础</h2></li>
+</ul>
+<h3 id="3-3-1-节点类型"><a href="#3-3-1-节点类型" class="headerlink" title="3.3.1 节点类型"></a>3.3.1 节点类型</h3><p>一个 Raft 集群包括若干服务器，以典型的 5 服务器集群举例。在任意的时间，每个服务器一定会处于以下三个状态中的一个：</p>
+<ul>
+<li>Leader：负责发起心跳，响应客户端，创建日志，同步日志。</li>
+<li>Candidate：Leader 选举过程中的临时角色，由 Follower 转化而来，发起投票参与竞选。</li>
+<li>Follower：接受 Leader 的心跳和日志同步数据，投票给 Candidate。</li>
+</ul>
+<h3 id="3-3-2-任期"><a href="#3-3-2-任期" class="headerlink" title="3.3.2 任期"></a>3.3.2 任期</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653012346940-febbf284-c392-4c64-a61e-3ea337f9a50b.png#clientId=uc1e66153-197d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=187&id=u923b72a5&margin=%5Bobject%20Object%5D&originHeight=236&originWidth=576&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u1e107231-1238-487d-9fc2-6172d881baf&title=&width=457"><br>如图所示，raft 算法将时间划分为任意长度的任期（term），任期用连续的数字表示，看作当前 term 号。每一个任期的开始都是一次选举，在选举开始时，一个或多个 Candidate 会尝试成为 Leader。如果一个 Candidate 赢得了选举，它就会在该任期内担任 Leader。如果没有选出 Leader，将会开启另一个任期，并立刻开始下一次选举。raft 算法保证在给定的一个任期最少要有一个 Leader。<br>每个节点都会存储当前的 term 号，当服务器之间进行通信时会交换当前的 term 号；如果有服务器发现自己的 term 号比其他人小，那么他会更新到较大的 term 值。如果一个 Candidate 或者 Leader 发现自己的 term 过期了，他会立即退回成 Follower。如果一台服务器收到的请求的 term 号是过期的，那么它会拒绝此次请求。</p>
+<h3 id="3-3-3-日志"><a href="#3-3-3-日志" class="headerlink" title="3.3.3 日志"></a>3.3.3 日志</h3><ul>
+<li>entry：每一个事件成为 entry，只有 Leader 可以创建 entry。entry 的内容为&lt;term,index,cmd&gt;其中 cmd 是可以应用到状态机的操作。</li>
+<li>log：由 entry 构成的数组，每一个 entry 都有一个表明自己在 log 中的 index。只有 Leader 才可以改变其他节点的 log。entry 总是先被 Leader 添加到自己的 log 数组中，然后再发起共识请求，获得同意后才会被 Leader 提交给状态机。Follower 只能从 Leader 获取新日志和当前的 commitIndex，然后把对应的 entry 应用到自己的状态机中。<h2 id="3-4-领导人选举"><a href="#3-4-领导人选举" class="headerlink" title="3.4 领导人选举"></a>3.4 领导人选举</h2></li>
+</ul>
+<p>raft 使用心跳机制来触发 Leader 的选举。</p>
+<h2 id="3-5-日志复制"><a href="#3-5-日志复制" class="headerlink" title="3.5 日志复制"></a>3.5 日志复制</h2><p>一旦选出了 Leader，它就开始接受客户端的请求。每一个客户端的请求都包含一条需要被复制状态机（Replicated State Mechine）执行的命令。</p>
+<h2 id="3-6-安全性"><a href="#3-6-安全性" class="headerlink" title="3.6 安全性"></a>3.6 安全性</h2><h3 id="3-6-1-选举限制"><a href="#3-6-1-选举限制" class="headerlink" title="3.6.1 选举限制"></a>3.6.1 选举限制</h3><p>Leader 需要保证自己存储全部已经提交的日志条目。这样才可以使日志条目只有一个流向：从 Leader 流向 Follower，Leader 永远不会覆盖已经存在的日志条目。</p>
+<h3 id="3-6-2-节点崩溃"><a href="#3-6-2-节点崩溃" class="headerlink" title="3.6.2 节点崩溃"></a>3.6.2 节点崩溃</h3><p>如果 Leader 崩溃，集群中的节点在 electionTimeout 时间内没有收到 Leader 的心跳信息就会触发新一轮的选主，在选主期间整个集群对外是不可用的。</p>
+<h3 id="3-6-3-时间与可用性"><a href="#3-6-3-时间与可用性" class="headerlink" title="3.6.3 时间与可用性"></a>3.6.3 时间与可用性</h3><p>raft 的要求之一就是安全性不依赖于时间：系统不能仅仅因为一些事件发生的比预想的快一些或者慢一些就产生错误。</p>
+]]></content>
+      <categories>
+        <category>分布式</category>
+      </categories>
+      <tags>
+        <tag>分布式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RPC</title>
+    <url>/2022/05/24/RPC/</url>
+    <content><![CDATA[<p>🍋 🍋 🍋 🍋 🍋</p>
+<span id="more"></span>
+
+<h1 id="1-Dubbo知识点-amp-面试题总结"><a href="#1-Dubbo知识点-amp-面试题总结" class="headerlink" title="1 Dubbo知识点&amp;面试题总结"></a>1 Dubbo知识点&amp;面试题总结</h1><h2 id="1-1-RPC基础"><a href="#1-1-RPC基础" class="headerlink" title="1.1 RPC基础"></a>1.1 RPC基础</h2><h3 id="1-1-1-何为-RPC"><a href="#1-1-1-何为-RPC" class="headerlink" title="1.1.1 何为 RPC?"></a>1.1.1 何为 RPC?</h3><p><strong>RPC（Remote Procedure Call）</strong> 即远程过程调用，通过名字我们就能看出 RPC 关注的是远程调用而非本地调用。<br><strong>为什么要 RPC ？</strong> 因为，两个不同的服务器上的服务提供的方法不在一个内存空间，所以，需要通过网络编程才能传递方法调用所需要的参数。<br><strong>RPC 能帮助我们做什么呢？</strong> 简单来说，通过 RPC 可以帮助我们调用远程计算机上某个服务的方法，这个过程就像调用本地方法一样简单。</p>
+<blockquote>
+<p>举个例子：两个不同的服务 A、B 部署在两台不同的机器上，服务 A 如果想要调用服务 B 中的某个方法的话就可以通过 RPC 来做。</p>
+</blockquote>
+<h3 id="1-1-2-RPC-的原理是什么"><a href="#1-1-2-RPC-的原理是什么" class="headerlink" title="1.1.2 RPC 的原理是什么?"></a>1.1.2 RPC 的原理是什么?</h3><p>们可以将整个 RPC的 核心功能看作是下面👇 6 个部分实现的：</p>
+<ol>
+<li><strong>客户端（服务消费端）</strong> ：调用远程方法的一端。</li>
+<li><strong>客户端 Stub（桩）</strong> ： 这其实就是一代理类。代理类主要做的事情很简单，就是把你调用方法、类、方法参数等信息传递到服务端。</li>
+<li><strong>网络传输</strong> ： 网络传输就是你要把你调用的方法的信息比如说参数啊这些东西传输到服务端，然后服务端执行完之后再把返回结果通过网络传输给你传输回来。网络传输的实现方式有很多种比如最近基本的 Socket或者性能以及封装更加优秀的 Netty（推荐）。</li>
+<li><strong>服务端 Stub（桩）</strong> ：这个桩就不是代理类了。我觉得理解为桩实际不太好，大家注意一下就好。这里的服务端 Stub 实际指的就是接收到客户端执行方法的请求后，去指定对应的方法然后返回结果给客户端的类。</li>
+<li><strong>服务端（服务提供端）</strong> ：提供远程方法的一端。</li>
+</ol>
+<p>具体原理图如下<br><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22806064/1653014700392-e71bae2c-80d2-4174-8ece-02bc2563c109.jpeg#clientId=udafac82c-fce2-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=ue5509fe0&margin=%5Bobject%20Object%5D&originHeight=317&originWidth=499&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=ue8a0754f-9672-4f1e-b090-640e7534098&title="></p>
+<ol>
+<li>客户端（client）以本地调用的方式调用远程服务；</li>
+<li>客户端 Stub（client stub） 接收到调用后负责将方法、参数等组装成能够进行网络传输的消息体（序列化）：RpcRequest；</li>
+<li>客户端 Stub（client stub） 找到远程服务的地址，并将消息发送到服务提供端；</li>
+<li>服务端 Stub（桩）收到消息将消息反序列化为Java对象: RpcRequest；</li>
+<li>服务端 Stub（桩）根据RpcRequest中的类、方法、方法参数等信息调用本地的方法；</li>
+<li>服务端 Stub（桩）得到方法执行结果并将组装成能够进行网络传输的消息体：RpcResponse（序列化）发送至消费方；</li>
+<li>客户端 Stub（client stub）接收到消息并将消息反序列化为Java对象:RpcResponse ，这样也就得到了最终结果。over!</li>
+</ol>
+<h2 id="1-2-Dubbo基础"><a href="#1-2-Dubbo基础" class="headerlink" title="1.2 Dubbo基础"></a>1.2 Dubbo基础</h2><h3 id="1-2-1-什么是-Dubbo"><a href="#1-2-1-什么是-Dubbo" class="headerlink" title="1.2.1 什么是 Dubbo?"></a>1.2.1 什么是 Dubbo?</h3><p>Apache Dubbo是一款高性能、轻量级的开源 Java RPC 框架。<br>Dubbo 提供了六大核心能力</p>
+<ol>
+<li><p>面向接口代理的高性能RPC调用。</p>
+</li>
+<li><p>智能容错和负载均衡。</p>
+</li>
+<li><p>服务自动注册和发现。</p>
+</li>
+<li><p>高度可扩展能力。</p>
+</li>
+<li><p>运行期流量调度。</p>
+</li>
+<li><p>可视化的服务治理与运维。</p>
+<h3 id="1-2-2-为什么要用-Dubbo-Dubbo-帮助我们解决了什么问题呢？"><a href="#1-2-2-为什么要用-Dubbo-Dubbo-帮助我们解决了什么问题呢？" class="headerlink" title="1.2.2 为什么要用 Dubbo? Dubbo 帮助我们解决了什么问题呢？"></a>1.2.2 为什么要用 Dubbo? <strong>Dubbo 帮助我们解决了什么问题呢？</strong></h3></li>
+<li><p><strong>负载均衡</strong> ： 同一个服务部署在不同的机器时该调用哪一台机器上的服务。</p>
+</li>
+<li><p><strong>服务调用链路生成</strong> ： 随着系统的发展，服务越来越多，服务间依赖关系变得错踪复杂，甚至分不清哪个应用要在哪个应用之前启动，架构师都不能完整的描述应用的架构关系。Dubbo 可以为我们解决服务之间互相是如何调用的。</p>
+</li>
+<li><p><strong>服务访问压力以及时长统计、资源调度和治理</strong> ：基于访问压力实时管理集群容量，提高集群利用率。</p>
+<blockquote>
+<p>另外，Dubbo 除了能够应用在分布式系统中，也可以应用在现在比较火的微服务系统中。不过，由于 Spring Cloud 在微服务中应用更加广泛，所以，我觉得一般我们提 Dubbo 的话，大部分是分布式系统的情况。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="1-3-分布式基础"><a href="#1-3-分布式基础" class="headerlink" title="1.3 分布式基础"></a>1.3 分布式基础</h2><h3 id="1-3-1-什么是分布式"><a href="#1-3-1-什么是分布式" class="headerlink" title="1.3.1 什么是分布式?"></a>1.3.1 什么是分布式?</h3><p>分布式或者说 SOA 分布式重要的就是面向服务，说简单的分布式就是我们把整个系统拆分成不同的服务然后将这些服务放在不同的服务器上减轻单体服务的压力提高并发量和性能。</p>
+<h3 id="1-3-2-为什么要分布式"><a href="#1-3-2-为什么要分布式" class="headerlink" title="1.3.2 为什么要分布式?"></a>1.3.2 为什么要分布式?</h3><p>从开发角度来讲单体应用的代码都集中在一起，而分布式系统的代码根据业务被拆分。所以，每个团队可以负责一个服务的开发，这样提升了开发效率。另外，代码根据业务拆分之后更加便于维护和扩展。<br>把整个系统拆分成不同的服务&#x2F;系统，然后每个服务&#x2F;系统 单独部署在一台服务器上，很大程度上提高了系统性能</p>
+<h2 id="1-4-Dubbo-架构"><a href="#1-4-Dubbo-架构" class="headerlink" title="1.4 Dubbo 架构"></a>1.4 Dubbo 架构</h2><h3 id="1-4-1-Dubbo-架构中的核心角色有哪些？"><a href="#1-4-1-Dubbo-架构中的核心角色有哪些？" class="headerlink" title="1.4.1 Dubbo 架构中的核心角色有哪些？"></a>1.4.1 Dubbo 架构中的核心角色有哪些？</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22806064/1653015548796-d22a0cd7-74f8-476d-9bfa-6224c8f63fb5.jpeg#clientId=udafac82c-fce2-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u88489783&margin=%5Bobject%20Object%5D&originHeight=330&originWidth=500&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=ub65eb466-59f3-4fb1-8f09-e9eacbb928a&title="></p>
+<ul>
+<li><strong>Container：</strong> 服务运行容器，负责加载、运行服务提供者。必须。</li>
+<li><strong>Provider：</strong> 暴露服务的服务提供方，会向注册中心注册自己提供的服务。必须。</li>
+<li><strong>Consumer：</strong> 调用远程服务的服务消费方，会向注册中心订阅自己所需的服务。必须。</li>
+<li><strong>Registry：</strong> 服务注册与发现的注册中心。注册中心会返回服务提供者地址列表给消费者。非必须。</li>
+<li><strong>Monitor：</strong> 统计服务的调用次数和调用时间的监控中心。服务消费者和提供者会定时发送统计数据到监控中心。 非必须<h3 id="1-4-2-Dubbo-中的-Invoker-概念了解么？"><a href="#1-4-2-Dubbo-中的-Invoker-概念了解么？" class="headerlink" title="1.4.2 Dubbo 中的 Invoker 概念了解么？"></a>1.4.2 Dubbo 中的 Invoker 概念了解么？</h3></li>
+</ul>
+<p>简单来说，Invoker 就是 Dubbo 对远程调用的抽象。<br><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22806064/1653015772799-608e5020-0ddb-466b-ba69-23296d598e57.jpeg#clientId=udafac82c-fce2-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=299&id=u466dc0a0&margin=%5Bobject%20Object%5D&originHeight=402&originWidth=614&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u707d5abb-f20d-483e-b18c-a638b4eaba8&title=&width=456"><br>按照 Dubbo 官方的话来说，Invoker 分为</p>
+<ul>
+<li>服务提供 Invoker</li>
+<li>服务消费 Invoker</li>
+</ul>
+<p>当我们需要调用一个远程方法，我们需要动态代理来屏蔽远程调用的细节，我们屏蔽掉的这些细节是依赖Invoker，Invoker实现了真正的远程服务调用。</p>
+<h3 id="1-4-3-Dubbo-的工作原理了解么？"><a href="#1-4-3-Dubbo-的工作原理了解么？" class="headerlink" title="1.4.3 Dubbo 的工作原理了解么？"></a>1.4.3 Dubbo 的工作原理了解么？</h3><p>图是 Dubbo 的整体设计，从下至上分为十层，各层均为单向依赖。</p>
+<blockquote>
+<p>左边淡蓝背景的为服务消费方使用的接口，右边淡绿色背景的为服务提供方使用的接口，位于中轴线上的为双方都用到的接口。</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22806064/1653016045649-c8756765-a66e-44ec-8045-83ce53cda79d.jpeg#clientId=udafac82c-fce2-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u3b78a7a9&margin=%5Bobject%20Object%5D&originHeight=674&originWidth=900&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u177cad61-df10-42a0-82ac-75c9ed5f48e&title="></p>
+<ul>
+<li><strong>config 配置层</strong>：Dubbo相关的配置。支持代码配置，同时也支持基于 Spring 来做配置，以 ServiceConfig, ReferenceConfig 为中心</li>
+<li><strong>proxy 服务代理层</strong>：调用远程方法像调用本地的方法一样简单的一个关键，真实调用过程依赖代理类，以 ServiceProxy 为中心。</li>
+<li><strong>registry 注册中心层</strong>：封装服务地址的注册与发现。</li>
+<li><strong>cluster 路由层</strong>：封装多个提供者的路由及负载均衡，并桥接注册中心，以 Invoker 为中心。</li>
+<li><strong>monitor 监控层</strong>：RPC 调用次数和调用时间监控，以 Statistics 为中心。</li>
+<li><strong>protocol 远程调用层</strong>：封装 RPC 调用，以 Invocation, Result 为中心。</li>
+<li><strong>exchange 信息交换层</strong>：封装请求响应模式，同步转异步，以 Request, Response 为中心。</li>
+<li><strong>transport 网络传输层</strong>：抽象 mina 和 netty 为统一接口，以 Message 为中心。</li>
+<li><strong>serialize 数据序列化层</strong> ：对需要在网络传输的数据进行序列化。<h3 id="1-4-4-Dubbo-的-SPI-机制了解么？-如何扩展-Dubbo-中的默认实现？"><a href="#1-4-4-Dubbo-的-SPI-机制了解么？-如何扩展-Dubbo-中的默认实现？" class="headerlink" title="1.4.4 Dubbo 的 SPI 机制了解么？ 如何扩展 Dubbo 中的默认实现？"></a>1.4.4 Dubbo 的 SPI 机制了解么？ 如何扩展 Dubbo 中的默认实现？</h3></li>
+</ul>
+<p>SPI（Service Provider Interface） 机制被大量用在开源项目中，它可以帮助我们动态寻找服务&#x2F;功能（比如负载均衡策略）的实现。<br>SPI具体原理：我们将接口的实现类放在配置文件中，我们在程序运行过程中读取配置文件，通过反射加载实现类。这样我们可以在运行的时候，动态替换接口的实现类。和IoC的解耦思想是类似的。</p>
+<h3 id="1-4-5-Dubbo-的微内核架构了解吗？"><a href="#1-4-5-Dubbo-的微内核架构了解吗？" class="headerlink" title="1.4.5 Dubbo 的微内核架构了解吗？"></a>1.4.5 Dubbo 的微内核架构了解吗？</h3><p>Dubbo 采用 微内核（Microkernel） + 插件（Plugin） 模式，简单来说就是微内核架构。微内核只负责组装插件。<br>微内核架构包含两类组件：<strong>核心系统（core system）</strong> 和 <strong>插件模块（plug-in modules）</strong>。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653016628926-c7e09038-b309-4e4e-b207-4f62893a12e1.png#clientId=udafac82c-fce2-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u5dba7cca&margin=%5Bobject%20Object%5D&originHeight=267&originWidth=397&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=ub437bffd-98f1-4b77-ba3e-91d891ce8bf&title="><br>核心系统提供系统所需核心能力，插件模块可以扩展系统的功能。</p>
+<h3 id="1-4-6-关于Dubbo架构的一些自测小问题"><a href="#1-4-6-关于Dubbo架构的一些自测小问题" class="headerlink" title="1.4.6 关于Dubbo架构的一些自测小问题"></a>1.4.6 关于Dubbo架构的一些自测小问题</h3><h4 id="注册中心的作用了解么？"><a href="#注册中心的作用了解么？" class="headerlink" title="注册中心的作用了解么？"></a>注册中心的作用了解么？</h4><p>注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互。</p>
+<h4 id="服务提供者宕机后，注册中心会做什么？"><a href="#服务提供者宕机后，注册中心会做什么？" class="headerlink" title="服务提供者宕机后，注册中心会做什么？"></a>服务提供者宕机后，注册中心会做什么？</h4><p>注册中心会立即推送事件通知消费者</p>
+<h4 id="监控中心的作用呢？"><a href="#监控中心的作用呢？" class="headerlink" title="监控中心的作用呢？"></a>监控中心的作用呢？</h4><p>监控中心负责统计各服务调用次数，调用时间等。</p>
+<h4 id="注册中心和监控中心都宕机的话，服务都会挂掉吗？"><a href="#注册中心和监控中心都宕机的话，服务都会挂掉吗？" class="headerlink" title="注册中心和监控中心都宕机的话，服务都会挂掉吗？"></a>注册中心和监控中心都宕机的话，服务都会挂掉吗？</h4><p>不会。两者都宕机也不影响已运行的提供者和消费者，消费者在本地缓存了提供者列表。注册中心和监控中心都是可选的，服务消费者可以直连服务提供者。</p>
+<h2 id="1-5-Dubbo-的负载均衡策略"><a href="#1-5-Dubbo-的负载均衡策略" class="headerlink" title="1.5 Dubbo 的负载均衡策略"></a>1.5 Dubbo 的负载均衡策略</h2><h3 id="1-5-1-什么是负载均衡？"><a href="#1-5-1-什么是负载均衡？" class="headerlink" title="1.5.1 什么是负载均衡？"></a>1.5.1 什么是负载均衡？</h3><p>系统中某个服务访问量特别大，我们就将这个服务部署在了多台服务器上，当客户端发起请求的时候，多台服务器就可以处理这个请求，如何正确选择处理请求的服务器就很关键。负载均衡就是为了避免单个服务器响应同意请求，容易造成服务器宕机、崩溃等问题。</p>
+<h3 id="1-5-2-Dubbo-提供的负载均衡策略有哪些？"><a href="#1-5-2-Dubbo-提供的负载均衡策略有哪些？" class="headerlink" title="1.5.2 Dubbo 提供的负载均衡策略有哪些？"></a>1.5.2 Dubbo 提供的负载均衡策略有哪些？</h3><p>在 Dubbo 中，所有负载均衡实现类均继承自 AbstractLoadBalance，该类实现了 LoadBalance 接口，并封装了一些公共的逻辑。<br>AbstractLoadBalance 的实现类有下面这些：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653116253920-5376077d-e4c0-4e87-a0a3-f992a70735ed.png#clientId=ub260b10c-a61e-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=261&id=ub2965390&margin=%5Bobject%20Object%5D&originHeight=308&originWidth=611&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u458693b4-7cc0-4f90-a8b7-f311408fc81&title=&width=518"></p>
+<h4 id="RandomLoadBalance"><a href="#RandomLoadBalance" class="headerlink" title="RandomLoadBalance"></a>RandomLoadBalance</h4><p>根据权重随机选择（对加权随机算法的实现）。这是Dubbo默认采用的一种负载均衡策略。</p>
+<h4 id="LeastActiveLoadBalance-最小活跃数负载均衡"><a href="#LeastActiveLoadBalance-最小活跃数负载均衡" class="headerlink" title="LeastActiveLoadBalance  最小活跃数负载均衡"></a>LeastActiveLoadBalance  <strong>最小活跃数负载均衡</strong></h4><p>Dubbo 就认为谁的活跃数越少，谁的处理速度就越快，性能也越好，这样的话，我就优先把请求给活跃数少的服务提供者处理。<br>如果有多个服务提供者的活跃数相等就再走一遍 RandomLoadBalance</p>
+<h4 id="ConsistentHashLoadBalance-一致性Hash负载均衡策略"><a href="#ConsistentHashLoadBalance-一致性Hash负载均衡策略" class="headerlink" title="ConsistentHashLoadBalance   一致性Hash负载均衡策略"></a>ConsistentHashLoadBalance   <strong>一致性Hash负载均衡策略</strong></h4><p>ConsistentHashLoadBalance 中没有权重的概念，具体是哪个服务提供者处理请求是由你的请求的参数决定的，也就是说相同参数的请求总是发到同一个服务提供者。<br>另外，Dubbo 为了避免数据倾斜问题（节点不够分散，大量请求落到同一节点），还引入了虚拟节点的概念。通过虚拟节点可以让节点更加分散，有效均衡各个节点的请求量。</p>
+<h4 id="RoundRobinLoadBalance-加权轮询负载均衡"><a href="#RoundRobinLoadBalance-加权轮询负载均衡" class="headerlink" title="RoundRobinLoadBalance   加权轮询负载均衡"></a>RoundRobinLoadBalance   加权轮询负载均衡</h4><p>轮询就是把请求依次分配给每个服务提供者。加权轮询就是在轮询的基础上，让更多的请求落到权重更大的服务提供者上。比如假如有两个提供相同服务的服务器 S1,S2，S1的权重为7，S2的权重为3。<br>如果我们有 10 次请求，那么 7 次会被 S1处理，3次被 S2处理。</p>
+<h2 id="1-6-Dubbo序列化协议"><a href="#1-6-Dubbo序列化协议" class="headerlink" title="1.6 Dubbo序列化协议"></a>1.6 Dubbo序列化协议</h2><h3 id="1-6-1-Dubbo-支持哪些序列化方式呢？"><a href="#1-6-1-Dubbo-支持哪些序列化方式呢？" class="headerlink" title="1.6.1 Dubbo 支持哪些序列化方式呢？"></a>1.6.1 Dubbo 支持哪些序列化方式呢？</h3><p>Dubbo 支持多种序列化方式：JDK自带的序列化、hessian2、JSON、Kryo、FST、Protostuff，ProtoBuf等等。<br>Dubbo 默认使用的序列化方式是 hession2。</p>
+<h3 id="1-6-2-谈谈你对这些序列化协议了解？"><a href="#1-6-2-谈谈你对这些序列化协议了解？" class="headerlink" title="1.6.2 谈谈你对这些序列化协议了解？"></a>1.6.2 谈谈你对这些序列化协议了解？</h3><p>一般我们不会直接使用 JDK 自带的序列化方式。主要原因有两个：</p>
+<ol>
+<li><strong>不支持跨语言调用</strong> : 如果调用的是其他语言开发的服务的时候就不支持了。</li>
+<li><strong>性能差</strong> ：相比于其他序列化框架性能更低，主要原因是序列化之后的字节数组体积较大，导致传输成本加大。</li>
+</ol>
+<p>JSON 序列化由于性能问题，我们一般也不会考虑使用。</p>
+<p>像 Protostuff，ProtoBuf、hessian2这些都是跨语言的序列化方式，如果有跨语言需求的话可以考虑使用。<br>Kryo和FST这两种序列化方式是 Dubbo 后来才引入的，性能非常好。不过，这两者都是专门针对 Java 语言的。</p>
+<h1 id="2-服务之间的调用为啥不直接用-HTTP-而用-RPC？"><a href="#2-服务之间的调用为啥不直接用-HTTP-而用-RPC？" class="headerlink" title="2 服务之间的调用为啥不直接用 HTTP 而用 RPC？"></a>2 服务之间的调用为啥不直接用 HTTP 而用 RPC？</h1><h2 id="1-什么是-RPC-RPC原理是什么"><a href="#1-什么是-RPC-RPC原理是什么" class="headerlink" title="1 什么是 RPC?RPC原理是什么?"></a>1 什么是 RPC?RPC原理是什么?</h2><h3 id="什么是-RPC？"><a href="#什么是-RPC？" class="headerlink" title="什么是 RPC？"></a><strong>什么是 RPC？</strong></h3><p>RPC（Remote Procedure Call）—远程过程调用，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。比如两个不同的服务 A、B 部署在两台不同的机器上，那么服务 A 如果想要调用服务 B 中的某个方法该怎么办呢？使用 HTTP请求 当然可以，但是可能会比较慢而且一些优化做的并不好。 RPC 的出现就是为了解决这个问题。</p>
+<h3 id="RPC原理是什么？"><a href="#RPC原理是什么？" class="headerlink" title="RPC原理是什么？"></a><strong>RPC原理是什么？</strong></h3><p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/22806064/1653144618623-4c2d1b86-6741-4398-a0ee-dc0d7bf5e188.jpeg#clientId=u725b0552-5441-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=uc9df02f5&margin=%5Bobject%20Object%5D&originHeight=317&originWidth=499&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u7190347b-708c-4b32-baa7-52b8549a846&title="></p>
+<ol>
+<li><strong>客户端（服务消费端）</strong> ：调用远程方法的一端。</li>
+<li><strong>客户端 Stub（桩）</strong> ： 这其实就是一代理类。代理类主要做的事情很简单，就是把你调用方法、类、方法参数等信息传递到服务端。</li>
+<li><strong>网络传输</strong> ： 网络传输就是你要把你调用的方法的信息比如说参数啊这些东西传输到服务端，然后服务端执行完之后再把返回结果通过网络传输给你传输回来。网络传输的实现方式有很多种比如最近基本的 Socket或者性能以及封装更加优秀的 Netty（推荐）。</li>
+<li><strong>服务端 Stub（桩）</strong> ：这个桩就不是代理类了。我觉得理解为桩实际不太好，大家注意一下就好。这里的服务端 Stub 实际指的就是接收到客户端执行方法的请求后，去指定对应的方法然后返回结果给客户端的类。</li>
+<li><strong>服务端（服务提供端）</strong> ：提供远程方法的一端。<h3 id="RPC-解决了什么问题？"><a href="#RPC-解决了什么问题？" class="headerlink" title="RPC 解决了什么问题？"></a>RPC 解决了什么问题？</h3></li>
+</ol>
+<p><strong>让分布式或者微服务系统中不同服务之间的调用像本地调用一样简单。</strong></p>
+<h3 id="常见的-RPC-框架总结"><a href="#常见的-RPC-框架总结" class="headerlink" title="常见的 RPC 框架总结?"></a>常见的 RPC 框架总结?</h3><ul>
+<li><strong>Dubbo:</strong> Dubbo是 阿里巴巴公司开源的一个高性能优秀的服务框架，使得应用可通过高性能的 RPC 实现服务的输出和输入功能，可以和 Spring框架无缝集成。目前 Dubbo 已经成为 Spring Cloud Alibaba 中的官方组件。</li>
+<li><strong>gRPC</strong> ：gRPC是可以在任何环境中运行的现代开源高性能RPC框架。它可以通过可插拔的支持来有效地连接数据中心内和跨数据中心的服务，以实现负载平衡，跟踪，运行状况检查和身份验证。它也适用于分布式计算的最后一英里，以将设备，移动应用程序和浏览器连接到后端服务。</li>
+<li><strong>Hessian：</strong> Hessian是一个轻量级的remoting on http工具，使用简单的方法提供了RMI的功能。 相比WebService，Hessian更简单、快捷。采用的是二进制RPC协议，因为采用的是二进制协议，所以它很适合于发送二进制数据。</li>
+<li><strong>Thrift：</strong> Apache Thrift是Facebook开源的跨语言的RPC通信框架，目前已经捐献给Apache基金会管理，由于其跨语言特性和出色的性能，在很多互联网公司得到应用，有能力的公司甚至会基于thrift研发一套分布式服务框架，增加诸如服务注册、服务发现等功能。</li>
+</ul>
+<h2 id="2-既有-HTTP-为啥用-RPC-进行服务调用"><a href="#2-既有-HTTP-为啥用-RPC-进行服务调用" class="headerlink" title="2 既有 HTTP ,为啥用 RPC 进行服务调用?"></a>2 既有 HTTP ,为啥用 RPC 进行服务调用?</h2><p>RPC 只是一种概念、一种设计，就是为了解决 <strong>不同服务之间的调用问题</strong>, 它一般会包含有 <strong>传输协议</strong> 和 <strong>序列化协议</strong> 这两个。<br>但是，HTTP 是一种协议，RPC框架可以使用 HTTP协议作为传输协议或者直接使用TCP作为传输协议，使用不同的协议一般也是为了适应不同的场景。</p>
+<h3 id="HTTP-和-TCP"><a href="#HTTP-和-TCP" class="headerlink" title="HTTP 和 TCP"></a>HTTP 和 TCP</h3><blockquote>
+<p>HTTP 属于应用层协议，它会基于TCP&#x2F;IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。HTTP协议工作于客户端-服务端架构上。浏览器作为HTTP客户端通过 URL 向HTTP服务端即WEB服务器发送所有请求。Web服务器根据接收到的请求后，向客户端发送响应信息。HTTP协议建立在 TCP 协议之上。</p>
+</blockquote>
+<blockquote>
+<p>传输层(transport layer)的主要任务就是负责向两台主机进程之间的通信提供通用的数据传输服务。TCP是传输层协议，主要解决数据如何在网络中传输。相比于UDP,TCP 提供的是面向连接的，可靠的数据传输服务。</p>
+</blockquote>
+<h3 id="RPC框架功能更齐全"><a href="#RPC框架功能更齐全" class="headerlink" title="RPC框架功能更齐全"></a>RPC框架功能更齐全</h3><p>成熟的 RPC框架还提供好了“服务自动注册与发现”、”智能负载均衡”、“可视化的服务治理和运维”、“运行期流量调度”等等功能，这些也算是选择 RPC 进行服务注册和发现的一方面原因吧！</p>
+]]></content>
+      <categories>
+        <category>分布式</category>
+      </categories>
+      <tags>
+        <tag>RPC</tag>
+        <tag>Dubbo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分布式事务</title>
+    <url>/2022/05/24/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/</url>
+    <content><![CDATA[<p>🍋 🍋 🍋 🍋 🍋</p>
+<span id="more"></span>
+
+<h1 id="1-事务"><a href="#1-事务" class="headerlink" title="1 事务"></a>1 事务</h1><p>事务是逻辑上的一组操作，要么都执行，要么都不执行。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/738439/1632403936560-195d64aa-937e-4eab-a6de-f6a23cf5ab4a.png#crop=0&crop=0&crop=1&crop=1&from=url&id=alQox&margin=%5Bobject%20Object%5D&originHeight=156&originWidth=866&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<h1 id="2-数据库事务"><a href="#2-数据库事务" class="headerlink" title="2 数据库事务"></a>2 数据库事务</h1><p>大多数情况下，我们在谈论事务的时候，如果没有特指分布式事务，往往指的就是数据库事务。</p>
+<h2 id="2-1-数据库事务有什么作用？"><a href="#2-1-数据库事务有什么作用？" class="headerlink" title="2.1 数据库事务有什么作用？"></a>2.1 数据库事务有什么作用？</h2><p>简单来说，数据库事务可以保证多个对数据库的操作（也就是SQL语句）构成一个逻辑上的整体。构成这个逻辑上的整体的这些数据库操作遵循：<strong>要么全部执行成功，要么全部不执行</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/738439/1632403989320-b0a237c1-fd34-4874-aec2-cfcf7858f803.png?x-oss-process=image/resize,w_883,limit_0#crop=0&crop=0&crop=1&crop=1&from=url&id=OnZ3t&margin=%5Bobject%20Object%5D&originHeight=364&originWidth=883&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<p>另外，关系型数据库（MySql、SQL Server、Oracle等）事务都有ACID特性：</p>
+<ol>
+<li><strong>原子性（Atomicity）</strong>：事务是最小的执行单位，不允许分割，事务的原子性确保动作要么全部完成，要么完全不起作用；</li>
+<li><strong>一致性（Consistency）</strong>：执行事务后，数据保持一致，例如转账业务中，无论事务是否成功，转账者和收款者的总额应该是不变的；</li>
+<li><strong>隔离性（Isolation）</strong>：并发访问数据库时，一个用户的事务不被其他事物所干扰，并发事务之间数据库是独立的；</li>
+<li>**持久性(Durability)**：一个事务被提交之后，他对数据库中数据的改变是持久的，即数据库发生故障也不应该对其有任何影响、。</li>
+</ol>
+<p>这里补充一下，只有保证了事务的<strong>原子性、隔离性、持久性</strong>之后，<strong>一致性</strong>才能得到保障。也就是说AID是手段，C是目的。</p>
+<h2 id="2-2-数据库事务的实现原理"><a href="#2-2-数据库事务的实现原理" class="headerlink" title="2.2 数据库事务的实现原理"></a>2.2 数据库事务的实现原理</h2><p>我们这里以MySQL的InnoDB引擎为例来简单说一下。<br>MySQL InnoDB引擎使用<strong>redo log(重做日志)<strong>保证事务的持久性，使用</strong>undo log(回滚日志)<strong>来保证事务的原子性。MySQL InnoDB引擎通过</strong>锁机制、MVCC</strong>等手段来保证事物的隔离性（默认支持的隔离级别是REPEATABLE-READ）;</p>
+<h1 id="3-分布式事务"><a href="#3-分布式事务" class="headerlink" title="3 分布式事务"></a>3 分布式事务</h1><blockquote>
+<p>微服务架构下，一个系统被拆分为多个小的微服务。每个微服务都可能存在不同的机器上，并且每个微服务可能都有一个单独的数据库供自己使用。这种情况下，一组操作可能会涉及到多个微服务以及多个数据库。举个例子:电商系统中，你创建一个订单往往会涉及到订单服务〈订单数加一)、库存服务（库存减一）等等服务，这些服务会有供自己单独使用的数据库。</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/738439/1632404040586-f21bb96d-ef83-4294-9789-5ea005390e1d.png#crop=0&crop=0&crop=1&crop=1&from=url&height=325&id=p1gM3&margin=%5Bobject%20Object%5D&originHeight=437&originWidth=401&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=298"></p>
+<blockquote>
+<p>这个时候单单依靠数据库事务就不行了!我们就需要引入<strong>分布式事务</strong>这个概念了!<br>实际上，只要跨数据库的场景都需要用到引入分布式事务。比如说单个数据库的性能达到瓶颈或者数据量太大的时候，我们需要进行<strong>分库</strong>。分库之后，同一个数据库中的表分布在了不同的数据库中，如果单个操作涉及到多个数据库，那么数据库自带的事务就无法满足我们的要求了。</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/738439/1632404053153-5a9a2f11-c6c9-4428-b2db-6a7935716e63.png#crop=0&crop=0&crop=1&crop=1&from=url&id=OfOPW&margin=%5Bobject%20Object%5D&originHeight=191&originWidth=142&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<blockquote>
+<p>一言蔽之，<strong>分布式事务的终极目标就是保证系统中多个相关联的数据库中的数据的一致性!</strong><br>那既然分布式事务也属于事务，理论上就应该准守事物的ACID四大特性。但是，考虑到性能、可用性等各方面因素，我们往往是无法完全满足ACID的，只能选择一个比较折中的方案。<br>针对分布式事务，又诞生了一些新的理论。</p>
+</blockquote>
+<h1 id="4-分布式事务基础理论"><a href="#4-分布式事务基础理论" class="headerlink" title="4 分布式事务基础理论"></a>4 分布式事务基础理论</h1><h2 id="4-1-CAP理论和BASE理论"><a href="#4-1-CAP理论和BASE理论" class="headerlink" title="4.1 CAP理论和BASE理论"></a>4.1 CAP理论和BASE理论</h2><p>看这篇文章<a href="https://www.yuque.com/maple-chdh2/ctkseg/dgwype"><strong>理论&amp;算法&amp;协议</strong></a></p>
+<h2 id="4-2-一致性的三种级别"><a href="#4-2-一致性的三种级别" class="headerlink" title="4.2 一致性的三种级别"></a>4.2 一致性的三种级别</h2><p>对一致性（Consistency）可以分为三种级别：<br>1．强一致性︰系统写入了什么，读出来的就是什么。<br>2．弱一致性︰不一定可以读取到最新写入的值，也不保证多少时间之后读取到的数据是最新的，只是会尽量保<br>证某个时刻达到数据一致的状态。<br>3．最终一致性:弱一致性的升级版。系统会保证在一定时间内达到数据一致的状态，</p>
+<h2 id="4-3-柔性事务"><a href="#4-3-柔性事务" class="headerlink" title="4.3 柔性事务"></a>4.3 柔性事务</h2><p>互联网应用最关键的就是要保证高可用，计算式系统几秒钟之内没办法使用都有可能造成数百万的损失。在此场景下，一些大佬们在CAP理论和BASE理论的基础上，提出了<strong>柔性事务</strong>的概念。<strong>柔性事务追求的是最终一致性</strong>。<br>实际上，柔性事务就是<strong>BASE理论＋业务实践</strong>。柔性事务追求的目标是:我们根据自身业务特性，通过适当的方式来保证系统数据的最终一致性。像<strong>TCC、 Saga、MQ事务、本地消息表</strong>就属于柔性事务。</p>
+<h2 id="4-4-刚性事务"><a href="#4-4-刚性事务" class="headerlink" title="4.4 刚性事务"></a>4.4 刚性事务</h2><p>与柔性事务相对的就是<strong>刚性事务</strong>了。前面我们说了，<strong>柔性事务追求的是最终一致性</strong>。那么，与之对应，刚性事务追求的就是<strong>强一致性</strong>。像<strong>2PC、3PC</strong>就属于刚性事务。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/738439/1632404085834-e1e58d29-f035-4450-8d88-d71991db5a55.png?x-oss-process=image/resize,w_831,limit_0#crop=0&crop=0&crop=1&crop=1&from=url&height=191&id=Wq7GH&margin=%5Bobject%20Object%5D&originHeight=241&originWidth=831&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=658"></p>
+<h1 id="5-分布式事务解决方案"><a href="#5-分布式事务解决方案" class="headerlink" title="5 分布式事务解决方案"></a>5 分布式事务解决方案</h1><h2 id="5-1-2PC（两阶段提交协议）"><a href="#5-1-2PC（两阶段提交协议）" class="headerlink" title="5.1 2PC（两阶段提交协议）"></a>5.1 2PC（两阶段提交协议）</h2><h3 id="5-1-1-准备阶段（Prepare）"><a href="#5-1-1-准备阶段（Prepare）" class="headerlink" title="5.1.1 准备阶段（Prepare）"></a>5.1.1 准备阶段（Prepare）</h3><p>准备阶段的核心是“询问”事务参与者执行本地数据库事务操作是否成功。<br>1．<strong>事务协调者&#x2F;管理者</strong>向所有参与者发送消息询问:“你是否可以执行事务操作呢?”，并等待其答复。<br>2．<strong>事务参</strong>与者接收到消息之后，开始执行本地数据库事务预操作比如写redo log&#x2F;undo log日志。但是，此时<br>并不会提交事务!<br>3．<strong>事务参与者</strong>如果执行本地数据库事务操作成功，那就回复:“就绪”，否则就回复:“未就绪”。</p>
+<h3 id="5-1-2-提交阶段（Commit）"><a href="#5-1-2-提交阶段（Commit）" class="headerlink" title="5.1.2 提交阶段（Commit）"></a>5.1.2 提交阶段（Commit）</h3><p>提交阶段的核心是“询问”事务参与者提交事务是否成功。<br>当所有事务参与者都是“就绪”状态的话:<br>1．<strong>事务协调者&#x2F;管理者</strong>向所有参与者发送消息:“你们可以提交事务啦! ”(<strong>commit消息</strong>)<br>2．<strong>事务参与者</strong>接收到<strong>commit消息</strong>后执行<strong>提交本地数据库事务</strong>操作，执行完成之后释<strong>放整个事务期间所占用</strong><br><strong>的资源</strong>。<br>3．<strong>事务参与者</strong>回复:“事务已经提交”(ack 消息)。<br>4．事<strong>务协调者&#x2F;管理者</strong>收到所有<strong>事务参与者</strong>的<strong>ack消息</strong>之后，整个分布式事务过程正式结束。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/738439/1632404100842-e72c3653-24ac-4c5c-a8ca-ccc15bcb66e0.png#crop=0&crop=0&crop=1&crop=1&from=url&id=vNNgu&margin=%5Bobject%20Object%5D&originHeight=357&originWidth=391&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br>当任一事务参与者是“未就绪”状态的话:<br>1．<strong>事务协调者&#x2F;管理者</strong>向所有参与者发送消息:“你们可以执行回滚操作了! ”(<strong>rollback消息</strong>)。<br>2．<strong>事务参与者</strong>接收到** rollback消息<strong>后执行</strong>本地数据库事务回滚<strong>执行完成之后</strong>释放整个事务期间所占用的资**<br><strong>源</strong>。<br>3．<strong>事务参与者</strong>回复:“事务已经回滚”(<strong>ack 消息</strong>)。<br>4．<strong>事务协调者&#x2F;管理者</strong>收到所有<strong>事务参与者</strong>的<strong>ack消息</strong>之后，取消事务。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/738439/1632404106967-9498da38-8574-47b7-8581-72b9693f3bf3.png#crop=0&crop=0&crop=1&crop=1&from=url&height=259&id=LYY0S&margin=%5Bobject%20Object%5D&originHeight=334&originWidth=391&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=303"></p>
+<h3 id="5-1-3-总结"><a href="#5-1-3-总结" class="headerlink" title="5.1.3 总结"></a>5.1.3 总结</h3><p>简单总结一下2PC两阶段中比较重要的一些点:<br>1．<strong>准备阶段</strong>的主要目的是测试<strong>事务参与者</strong>能否执行<strong>本地数据库事务</strong>操作(!!注意:这一步并不会提交事<br>务)。<br>2．<strong>提交阶段</strong>中<strong>事务协调者&#x2F;管理者</strong>会根据<strong>准备阶段</strong>中<strong>事务参与者</strong>的消息来决定是执行事务提交还是回滚操<br>作。<br>3．<strong>提交阶段</strong>之后—定会结束当前的分布式事务<br><strong>2PC的优点:</strong></p>
+<ol>
+<li>实现起来非常简单，各大主流数据库比如MySQL、Oracle都有自己实现。</li>
+<li>针对的是数据强一致性。不过，仍然可能存在数据不一致的情况。</li>
+</ol>
+<p><strong>2PC存在的问题:</strong></p>
+<ol>
+<li><strong>同步阻塞</strong>：事务参与者会在正式提交事务之前会一直占用相关的资源。比如用户小明转账给小红，那其他事务也要操作用户小明或小红的话，就会阻塞。</li>
+<li><strong>数据不一致</strong>：由于网络问题或者事务协调者&#x2F;管理者宕机都有可能会造成数据不一致的情况。比如在第2阶段</li>
+</ol>
+<p>(提交阶段)，部分网络出现问题导致部分参与者收不到commit&#x2F;rollback消息的话，就会导致数据不一致。</p>
+<ol start="3">
+<li><strong>单点问题</strong>︰事务协调者&#x2F;管理者在其中也是一个很重要的角色，如果事务协调者&#x2F;管理者在准备(Prepare)阶段完成之后挂掉的话，事务参与者就会一直卡在提交(Commit)阶段。</li>
+</ol>
+<h2 id="5-2-3PC-三阶段提交协议"><a href="#5-2-3PC-三阶段提交协议" class="headerlink" title="5.2 3PC(三阶段提交协议)"></a>5.2 3PC(三阶段提交协议)</h2><p>3PC是人们在2PC的基础上做了一些优化得到的。3PC把2PC中的**准备阶段(Prepare)**做了进一步细化，分为2个阶段:</p>
+<ol>
+<li>询问阶段(CanCommit):这一步不会执行事务操作，只会询问事务参与者能否执行本地数据库事操作。</li>
+<li>准备阶段(PreCommit):当所有事物参与者都返回“可执行”之后，事务参与者才会执行本地数据库事务预操作比如写redo log&#x2F;undo log日志。</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/738439/1632404119777-ff64ade3-a64f-48a5-93de-54789990bdd6.png#crop=0&crop=0&crop=1&crop=1&from=url&id=adNph&margin=%5Bobject%20Object%5D&originHeight=507&originWidth=391&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br>除此之外，3PC还引入了<strong>超时机制</strong>来避免事务参与者一直阻塞占用资源。</p>
+<h2 id="5-3-TCC-补偿事务"><a href="#5-3-TCC-补偿事务" class="headerlink" title="5.3 TCC(补偿事务)"></a>5.3 TCC(补偿事务)</h2><p>简单来说，TCC是 Try、Confirm、Cancel三个词的缩写，它分为三个阶段:</p>
+<ol>
+<li><p><strong>Try(尝试)阶段</strong>：尝试执行。完成业务检查，并预留好必需的业务资源。</p>
+</li>
+<li><p><strong>Confirm(确认）阶段</strong>︰确认执行。当所有事务参与者的Try阶段执行成功就会执行Confirm ，Confirm阶段会处理Try阶段预留的业务资源。否则，就会执行Cancel。</p>
+</li>
+<li><p><strong>Cancel(取消)阶段</strong>：取消执行，释放Try 阶段预留的业务资源。</p>
+</li>
+</ol>
+<p>我们拿转账场景来说:</p>
+<ol>
+<li>Try(尝试）阶段:在转账场景下，Try要做的事情是就是检查账户余额是否充足，预留的资源就是转账资金。</li>
+<li>Confirm(确认）阶段︰如果Try阶段执行成功的话，Confirm阶段就会执行真正的扣钱操作。</li>
+<li>Cancel(取消)阶段︰释放Try阶段预留的转账资金。</li>
+</ol>
+<p>一般情况下，当我们使用 TCC模式的时候需要自己实现 try , confirm,cancel这三个方法，来达到最终—致性。也就是说，正常情况下会执行try , confirm，如下图所示：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/738439/1632404138972-0399a423-1e7c-458d-ba80-aca54e00a617.png#crop=0&crop=0&crop=1&crop=1&from=url&height=255&id=YouJX&margin=%5Bobject%20Object%5D&originHeight=441&originWidth=725&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=419"><br>出现异常会执行try、cancel，如下图所示：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/738439/1632404143698-0edd1441-7c78-4a6e-81b4-9113abb0b73f.png#crop=0&crop=0&crop=1&crop=1&from=url&height=316&id=a38ag&margin=%5Bobject%20Object%5D&originHeight=441&originWidth=725&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=520"><br>因此，<strong>TCC模式不需要依赖于底层数据资源的事务支持，但是需要我们手动实现更多的代码</strong>，属于<strong>侵入业务代码</strong>的一种分布式解决方案。<br>针对TCC的实现，业界也有一些不错的开源框架。不同的框架对于TCC的实现可能略有不同，不过大致思想都一样。</p>
+<ol>
+<li><strong>ByteTCC</strong>: ByteTCC是基于Try-Confirm-Cancel (TCC)机制的分布式事务管理器的实现。相关阅读:关于如何实现一个TCC分布式事务框架的一点思考</li>
+<li><strong>Seata</strong> :Seata是一款开源的分布式事务解决方案，致力于在微服务架构下提供高性能和简单易用的分布式事务服务。</li>
+<li>**Hmily **:金融级分布式事务解决方案。</li>
+</ol>
+<h2 id="5-4-MQ事务"><a href="#5-4-MQ事务" class="headerlink" title="5.4 MQ事务"></a>5.4 MQ事务</h2><p>RocketMQ、 Kafka、Pulsar 、QMQ都提供了事务相关的功能。事务允许事件流应用将消费，处理，生产消息整个过程定义为一个原子操作。<br>以RocketMQ为例：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/738439/1644593572900-0203f2af-9b30-4321-83ed-d4ff50666c82.png?x-oss-process=image/resize,w_1238,limit_0#crop=0&crop=0&crop=1&crop=1&from=url&id=fL4cB&margin=%5Bobject%20Object%5D&originHeight=497&originWidth=1238&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<ol>
+<li>MQ发送方（比如物流服务）在消息队列上开启一个事务，然后发送一个“半消息”给MQ Server&#x2F;Broker。事务提交之前，半消息对于MQ订阅方&#x2F;消费者（比如第三方通知服务）不可见</li>
+<li>“半消息”发送成功的话，MQ发送方就开始执行本地事务。</li>
+<li>MQ发送方的本地事务执行成功的话，“半消息”变成正常消息，可以正常被消费。MQ发送方的本地事务执行失败的话，会直接回滚。</li>
+</ol>
+<p>从上面的流程中可以看出，MQ的事务消息使用的是两阶段提交(2PC)，简单来说就是咱先发送半消息，等本地事务执行成功之后，半消息才变为正常消息。</p>
+<p><strong>如果MQ发送方提交或者回滚事务消息时失败怎么办?</strong><br>RocketMQ中的Broker会定期去MQ发送方上反查这个事务的本地事务的执行情况，并根据反查结果决定提交或者回滚这个事务。<br>事务反查机制的实现依赖于我们业务代码实现的对应的接口，比如你要查看创建物流信息的本地事务是否执行成功的话，直接在数据库中查询对应的物流信息是否存在即可。</p>
+<p><strong>如果正常消息没有被正确消费怎么办呢?</strong><br>消息消费失败的话，RocketMQ会自动进行消费重试。如果超过最大重试次数这个消息还是没有正确消费,RocketMQ就会认为这个消息有问题，然后将其放到死信队列。<br>进入死信队列的消费一般需要人工处理，手动排查问题。</p>
+<p><strong>QMQ</strong>的事务消息就没有RocketMQ 实现的那么复杂了，它借助了数据库自带的事务功能。其核心思想其实就是eBay提出的<strong>本地消息表</strong>方案，将分布式事务拆分成本地事务进行处理。<br>我们维护一个本地消息表用来存放消息发送的状态，保存消息发送情况到本地消息表的操作和业务操作要在一个事务里提交。这样的话，业务执行成功代表消息表也写入成功。<br>然后，我们再单独起一个线程定时轮询消息表，把没处理的消息发送到消息中间件。<br>消息发送成功后，更新消息状态为成功或者直接删除消息。<br>RocketMQ的事务消息方案中，如果消息队列挂掉，数据库事务就无法执行了，整个应用也就挂掉了。<br>QMQ的事务消息方案中，即使消息队列挂了也不会影响数据库事务的执行。<br>因此，QMQ实现的方案能更加适应于大多数业务。不过，这种方法同样适用于其他消息队列，只能说QMQ封装的更好，开箱即用罢了!</p>
+<h2 id="5-5-Saga"><a href="#5-5-Saga" class="headerlink" title="5.5 Saga"></a>5.5 Saga</h2><p>Saga属于长事务解决方案，其核心思想史将长事务拆分为多个本地短事务(本地短事务序列)。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/738439/1644593571944-6d40ff6f-caca-4a26-ad10-cdc958a04411.png#crop=0&crop=0&crop=1&crop=1&from=url&height=159&id=svH5f&margin=%5Bobject%20Object%5D&originHeight=211&originWidth=592&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=447"><br>长事务—&gt;T1,T2~Tn个本地短事务<br>每个短事务都有一个补偿动作—&gt; C1,C2 ~ Cn<br>如果T1,T2～Tn这些短事务都能顺利完成的话，整个事务也就顺利结束，否则，将采取恢复模式。</p>
+<p><strong>反向恢复∶</strong></p>
+<ol>
+<li>简介:如果Ti短事务提交失败，则补偿所有已完成的事务（一直执行Ci对Ti进行补偿)。</li>
+<li>执行顺序:T1，T2，…，Ti(失败)，Ci (补偿)，..，C2，C1。</li>
+</ol>
+<p><strong>正向恢复</strong>︰</p>
+<ol>
+<li>简介:如果Ti短事务提交失败，则一直对Ti进行重试，直至成功为止。</li>
+<li>执行顺序:T1，T2，…，Ti(失败)，Ti(重试) …，Ti+1，..,Tn。</li>
+</ol>
+<p><strong>优点：</strong><br>和TCC类似，Saga正向操作与补偿操作都需要业务开发者自己实现，因此也属于<strong>侵入业务代码</strong>的一种分布式解决方案。<strong>和TCC很大的一点不同是Saga没有“Try”动作，它的本地事务Ti直接被提交。因此，性能非常高!</strong></p>
+<blockquote>
+<p>理论上来说，补偿操作一定能够执行成功。不过，当网络出现问题或者服务器宕机的话，补偿操作也会执行失败。这种情况下，往往需要我们进行人工干预。并且，为了能够提高容错性(比如Saga系统本身也可能会崩溃)，保证所有的短事务都得以提交或补偿，我们还需要将这些操作通过日志记录下来(Saga log，类似于数据库的日志机制)。这样，Saga系统恢复之后，我们就知道短事务执行到哪里了或者补偿操作执行到哪里了。</p>
+</blockquote>
+<p><strong>缺点：</strong><br>因为Saga没有进行“Try”动作预留资源，所以不能保证隔离性。这也是Saga比较大的一个缺点。</p>
+<p>针对Saga的实现，业界也有一些不错的开源框架。不同的框架对于Saga的实现可能略有不同，不过大致思想都—样。</p>
+<ol>
+<li>**ServiceComb Pack **:微服务应用的数据最终—致性解决方案。<br>2.<strong>Seata</strong> :Seata是一款开源的分布式事务解决方案，致力于在微服务架构下提供高性能和简单易用的分布式事务服务</li>
+</ol>
+]]></content>
+      <categories>
+        <category>分布式</category>
+      </categories>
+      <tags>
+        <tag>分布式事务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分布式协调</title>
+    <url>/2022/05/24/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%B0%83/</url>
+    <content><![CDATA[<p>🍋 🍋 🍋 🍋 🍋</p>
+<span id="more"></span>
+
+<h1 id="1-ZooKeeper-相关概念总结-入门"><a href="#1-ZooKeeper-相关概念总结-入门" class="headerlink" title="1 ZooKeeper 相关概念总结(入门)"></a>1 ZooKeeper 相关概念总结(入门)</h1><h2 id="1-1-ZooKeeper-介绍"><a href="#1-1-ZooKeeper-介绍" class="headerlink" title="1.1 ZooKeeper 介绍"></a>1.1 ZooKeeper 介绍</h2><h3 id="1-1-1-ZooKeeper-概览"><a href="#1-1-1-ZooKeeper-概览" class="headerlink" title="1.1.1 ZooKeeper 概览"></a>1.1.1 ZooKeeper 概览</h3><p>ZooKeeper 是一个开源的<strong>分布式协调服务，</strong>它的设计目标是将那些复杂且容易出错的分布式一致性服务封装起来，构成一个高效可靠的原语集，并以一系列简单易用的接口提供给用户使用。</p>
+<p><strong>ZooKeeper 为我们提供了高可用、高性能、稳定的分布式数据一致性解决方案，通常被用于实现诸如数据发布&#x2F;订阅、负载均衡、命名服务、分布式协调&#x2F;通知、集群管理、Master 选举、分布式锁和分布式队列等功能。</strong></p>
+<p>另外，<strong>ZooKeeper 将数据保存在内存中，性能是非常棒的。 在“读”多于“写”的应用程序中尤其地高性能，因为“写”会导致所有的服务器间同步状态。（“读”多于“写”是协调服务的典型场景）。</strong></p>
+<h3 id="1-1-2-ZooKeeper-特点"><a href="#1-1-2-ZooKeeper-特点" class="headerlink" title="1.1.2 ZooKeeper 特点"></a>1.1.2 ZooKeeper 特点</h3><ul>
+<li><strong>顺序一致性：</strong> 从同一客户端发起的事务请求，最终将会严格地按照顺序被应用到 ZooKeeper 中去。</li>
+<li><strong>原子性：</strong> 所有事务请求的处理结果在整个集群中所有机器上的应用情况是一致的，也就是说，要么整个集群中所有的机器都成功应用了某一个事务，要么都没有应用。</li>
+<li><strong>单一系统映像 ：</strong> 无论客户端连到哪一个 ZooKeeper 服务器上，其看到的服务端数据模型都是一致的。</li>
+<li><strong>可靠性：</strong> 一旦一次更改请求被应用，更改的结果就会被持久化，直到被下一次更改覆盖。</li>
+<li></li>
+</ul>
+<h3 id="1-1-3-ZooKeeper-典型应用场景"><a href="#1-1-3-ZooKeeper-典型应用场景" class="headerlink" title="1.1.3 ZooKeeper 典型应用场景"></a>1.1.3 ZooKeeper 典型应用场景</h3><ol>
+<li><strong>分布式锁</strong> ： 通过创建唯一节点获得分布式锁，当获得锁的一方执行完相关代码或者是挂掉之后就释放锁。</li>
+<li><strong>命名服务</strong> ：可以通过 ZooKeeper 的顺序节点生成全局唯一 ID</li>
+<li><strong>数据发布&#x2F;订阅</strong> ：通过 <strong>Watcher 机制</strong> 可以很方便地实现数据发布&#x2F;订阅。当你将数据发布到 ZooKeeper 被监听的节点上，其他机器可通过监听 ZooKeeper 上节点的变化来实现配置的动态更新。<blockquote>
+<p>实际上，这些功能的实现基本都得益于 ZooKeeper 可以保存数据的功能，但是 ZooKeeper 不适合保存大量数据，这一点需要注意。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="1-1-4-有哪些著名的开源项目用到了-ZooKeeper"><a href="#1-1-4-有哪些著名的开源项目用到了-ZooKeeper" class="headerlink" title="1.1.4 有哪些著名的开源项目用到了 ZooKeeper?"></a>1.1.4 有哪些著名的开源项目用到了 ZooKeeper?</h3><ol>
+<li><strong>Kafka</strong> : ZooKeeper 主要为 Kafka 提供 Broker 和 Topic 的注册以及多个 Partition 的负载均衡等功能。</li>
+<li><strong>Hbase</strong> : ZooKeeper 为 Hbase 提供确保整个集群只有一个 Master 以及保存和提供 regionserver 状态信息（是否在线）等功能。</li>
+<li><strong>Hadoop</strong> : ZooKeeper 为 Namenode 提供高可用支持</li>
+</ol>
+<h2 id="1-2-ZooKeeper-重要概念解读"><a href="#1-2-ZooKeeper-重要概念解读" class="headerlink" title="1.2 ZooKeeper 重要概念解读"></a>1.2 ZooKeeper 重要概念解读</h2><h3 id="1-2-1-Data-model（数据模型）"><a href="#1-2-1-Data-model（数据模型）" class="headerlink" title="1.2.1 Data model（数据模型）"></a>1.2.1 Data model（数据模型）</h3><p>ZooKeeper 数据模型采用层次化的多叉树形结构，每个节点上都可以存储数据，这些数据可以是数字、字符串或者是二级制序列。并且。每个节点还可以拥有 N 个子节点，最上层是根节点以“&#x2F;”来代表。每个数据节点在 ZooKeeper 中被称为 <strong>znode</strong>，它是 ZooKeeper 中数据的最小单元。并且，每个 znode 都一个唯一的路径标识。</p>
+<p>强调一句：<strong>ZooKeeper 主要是用来协调服务的，而不是用来存储业务数据的，所以不要放比较大的数据在 znode 上，ZooKeeper 给出的上限是每个结点的数据大小最大是 1M。</strong></p>
+<h3 id="1-2-2-znode（数据节点）"><a href="#1-2-2-znode（数据节点）" class="headerlink" title="1.2.2 znode（数据节点）"></a>1.2.2 znode（数据节点）</h3><blockquote>
+<p>ZooKeeper 中数据的最小单元。你要存放的数据就放在上面，是你使用 ZooKeeper 过程中经常需要接触到的一个概念。</p>
+</blockquote>
+<h4 id="znode-4-种类型"><a href="#znode-4-种类型" class="headerlink" title="znode 4 种类型"></a>znode 4 种类型</h4><ul>
+<li><strong>持久（PERSISTENT）节点</strong> ：一旦创建就一直存在即使 ZooKeeper 集群宕机，直到将其删除。</li>
+<li><strong>临时（EPHEMERAL）节点</strong> ：临时节点的生命周期是与 <strong>客户端会话（session）</strong> 绑定的，<strong>会话消失则节点消失</strong> 。并且，<strong>临时节点只能做叶子节点</strong> ，不能创建子节点。</li>
+<li><strong>持久顺序（PERSISTENT_SEQUENTIAL）节点</strong> ：除了具有持久（PERSISTENT）节点的特性之外， 子节点的名称还具有顺序性。比如 &#x2F;node1&#x2F;app0000000001 、&#x2F;node1&#x2F;app0000000002 。</li>
+<li><strong>临时顺序（EPHEMERAL_SEQUENTIAL）节点</strong> ：除了具备临时（EPHEMERAL）节点的特性之外，子节点的名称还具有顺序性。</li>
+</ul>
+<h4 id="znode-数据结构"><a href="#znode-数据结构" class="headerlink" title="znode 数据结构"></a>znode 数据结构</h4><p>每个 znode 由 2 部分组成:</p>
+<ul>
+<li><strong>stat</strong> ：状态信息</li>
+<li><strong>data</strong> ： 节点存放的数据的具体内容</li>
+</ul>
+<h3 id="1-2-3-版本"><a href="#1-2-3-版本" class="headerlink" title="1.2.3 版本"></a>1.2.3 版本</h3><p>在前面我们已经提到，对应于每个 znode，ZooKeeper 都会为其维护一个叫作 <strong>Stat</strong> 的数据结构，Stat 中记录了这个 znode 的三个相关的版本：</p>
+<ul>
+<li><strong>dataVersion</strong> ：当前 znode 节点的版本号</li>
+<li><strong>cversion</strong> ： 当前 znode 子节点的版本</li>
+<li><strong>aclVersion</strong> ： 当前 znode 的 ACL 的版本。</li>
+</ul>
+<h3 id="1-2-4-ACL（权限控制）"><a href="#1-2-4-ACL（权限控制）" class="headerlink" title="1.2.4 ACL（权限控制）"></a>1.2.4 ACL（权限控制）</h3><p>ZooKeeper 采用 ACL（AccessControlLists）策略来进行权限控制，类似于 UNIX 文件系统的权限控制。<br>对于 znode 操作的权限，ZooKeeper 提供了以下 5 种：</p>
+<ul>
+<li><strong>CREATE</strong> : 能创建子节点</li>
+<li><strong>READ</strong> ：能获取节点数据和列出其子节点</li>
+<li><strong>WRITE</strong> : 能设置&#x2F;更新节点数据</li>
+<li><strong>DELETE</strong> : 能删除子节点</li>
+<li><strong>ADMIN</strong> : 能设置节点 ACL 的权限</li>
+</ul>
+<p>其中尤其需要注意的是，<strong>CREATE</strong> 和 <strong>DELETE</strong> 这两种权限都是针对 <strong>子节点</strong> 的权限控制。</p>
+<p>对于身份认证，提供了以下几种方式：</p>
+<ul>
+<li><strong>world</strong> ： 默认方式，所有用户都可无条件访问。</li>
+<li><strong>auth</strong> :不使用任何 id，代表任何已认证的用户。</li>
+<li><strong>digest</strong> :用户名:密码认证方式： <em>username:password</em> 。</li>
+<li><strong>ip</strong> : 对指定 ip 进行限制。</li>
+</ul>
+<h3 id="1-2-5-Watcher（事件监听器）"><a href="#1-2-5-Watcher（事件监听器）" class="headerlink" title="1.2.5 Watcher（事件监听器）"></a>1.2.5 Watcher（事件监听器）</h3><p>Watcher（事件监听器），是 ZooKeeper 中的一个很重要的特性。ZooKeeper 允许用户在指定节点上注册一些 Watcher，并且在一些特定事件触发的时候，ZooKeeper 服务端会将事件通知到感兴趣的客户端上去，该机制是 ZooKeeper 实现分布式协调服务的重要特性。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653357374882-cf44e5d0-2313-49a5-b1f6-b9745440c895.png#clientId=ue8bb467b-f97e-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u05cff829&margin=%5Bobject%20Object%5D&name=image.png&originHeight=317&originWidth=1082&originalType=url&ratio=1&rotation=0&showTitle=false&size=112243&status=done&style=none&taskId=uc6b0f572-1fca-457a-a232-d0d6007ce32&title=" alt="image.png"><br><em>破音：非常有用的一个特性，都拿出小本本记好了，后面用到 ZooKeeper 基本离不开 Watcher（事件监听器）机制</em></p>
+<h3 id="1-2-6-会话（Session）"><a href="#1-2-6-会话（Session）" class="headerlink" title="1.2.6 会话（Session）"></a>1.2.6 会话（Session）</h3><p>Session 可以看作是 ZooKeeper 服务器与客户端的之间的一个 TCP 长连接，通过这个连接，客户端能够通过心跳检测与服务器保持有效的会话，也能够向 ZooKeeper 服务器发送请求并接受响应，同时还能够通过该连接接收来自服务器的 Watcher 事件通知。</p>
+<p>Session 有一个属性叫做：sessionTimeout ，sessionTimeout 代表会话的超时时间。当由于服务器压力太大、网络故障或是客户端主动断开连接等各种原因导致客户端连接断开时，只要在sessionTimeout规定的时间内能够重新连接上集群中任意一台服务器，那么之前创建的会话仍然有效。</p>
+<p>另外，在为客户端创建会话之前，服务端首先会为每个客户端都分配一个 sessionID。由于 sessionID是 ZooKeeper 会话的一个重要标识，许多与会话相关的运行机制都是基于这个 sessionID 的，因此，无论是哪台服务器为客户端分配的 sessionID，都务必保证全局唯一。</p>
+<h2 id="1-3-ZooKeeper-集群"><a href="#1-3-ZooKeeper-集群" class="headerlink" title="1.3  ZooKeeper 集群"></a>1.3  ZooKeeper 集群</h2><p>为了保证高可用，最好是以集群形态来部署 ZooKeeper，这样只要集群中大部分机器是可用的（能够容忍一定的机器故障），那么 ZooKeeper 本身仍然是可用的。通常 3 台服务器就可以构成一个 ZooKeeper 集群了。ZooKeeper 官方提供的架构图就是一个 ZooKeeper 集群整体对外提供服务。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653357585078-cd5149f1-2aba-4fb7-8f11-7622253d13c0.png#clientId=ue8bb467b-f97e-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u05399f87&margin=%5Bobject%20Object%5D&name=image.png&originHeight=185&originWidth=600&originalType=url&ratio=1&rotation=0&showTitle=false&size=23616&status=done&style=none&taskId=u09efd1b3-744e-43f0-9a4e-1b1e4b01307&title=" alt="image.png"><br>上图中每一个 Server 代表一个安装 ZooKeeper 服务的服务器。组成 ZooKeeper 服务的服务器都会在内存中维护当前的服务器状态，并且每台服务器之间都互相保持着通信。集群间通过 ZAB 协议（ZooKeeper Atomic Broadcast）来保持数据的一致性。<br><strong>最典型集群模式： Master&#x2F;Slave 模式（主备模式）</strong>。在这种模式中，通常 Master 服务器作为主服务器提供写服务，其他的 Slave 服务器从服务器通过异步复制的方式获取 Master 服务器最新的数据提供读服务。</p>
+<h3 id="1-3-1-ZooKeeper-集群角色"><a href="#1-3-1-ZooKeeper-集群角色" class="headerlink" title="1.3.1 ZooKeeper 集群角色"></a>1.3.1 ZooKeeper 集群角色</h3><p>但是，在 ZooKeeper 中没有选择传统的 Master&#x2F;Slave 概念，而是引入了 Leader、Follower 和 Observer 三种角色。如下图所示<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653357686689-e2d1570d-3e66-4986-afb2-df3f5437897a.png#clientId=ue8bb467b-f97e-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u25382f7c&margin=%5Bobject%20Object%5D&name=image.png&originHeight=290&originWidth=700&originalType=url&ratio=1&rotation=0&showTitle=false&size=56048&status=done&style=none&taskId=u995726bb-dd7a-4a7d-8dfb-821884b8382&title=" alt="image.png"><br>ZooKeeper 集群中的所有机器通过一个 <strong>Leader 选举过程</strong> 来选定一台称为 “<strong>Leader</strong>” 的机器，Leader 既可以为客户端提供写服务又能提供读服务。除了 Leader 外，<strong>Follower</strong> 和 <strong>Observer</strong> 都只能提供读服务。Follower 和 Observer 唯一的区别在于 Observer 机器不参与 Leader 的选举过程，也不参与写操作的“过半写成功”策略，因此 Observer 机器可以在不影响写性能的情况下提升集群的读性能。</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Leader</td>
+<td>为客户端提供读和写的服务，负责投票的发起和决议，更新系统状态。</td>
+</tr>
+<tr>
+<td>Follower</td>
+<td>为客户端提供读服务，如果是写服务则转发给 Leader。参与选举过程中的投票。</td>
+</tr>
+<tr>
+<td>Observer</td>
+<td>为客户端提供读服务，如果是写服务则转发给 Leader。不参与选举过程中的投票，也不参与“过半写成功”策略。在不影响写性能的情况下提升集群的读性能。此角色于 ZooKeeper3.3 系列新增的角色。</td>
+</tr>
+</tbody></table>
+<p>当 Leader 服务器出现网络中断、崩溃退出与重启等异常情况时，就会进入 Leader 选举过程，这个过程会选举产生新的 Leader 服务器。<br>这个过程大致是这样的：</p>
+<ol>
+<li><strong>Leader election（选举阶段）</strong>：节点在一开始都处于选举阶段，只要有一个节点得到超半数节点的票数，它就可以当选准 leader。</li>
+<li><strong>Discovery（发现阶段）</strong> ：在这个阶段，followers 跟准 leader 进行通信，同步 followers 最近接收的事务提议。</li>
+<li><strong>Synchronization（同步阶段）</strong> :同步阶段主要是利用 leader 前一阶段获得的最新提议历史，同步集群中所有的副本。同步完成之后 准 leader 才会成为真正的 leader。</li>
+<li><strong>Broadcast（广播阶段）</strong> :到了这个阶段，ZooKeeper 集群才能正式对外提供事务服务，并且 leader 可以进行消息广播。同时如果有新的节点加入，还需要对新节点进行同步。</li>
+</ol>
+<h3 id="1-3-2-ZooKeeper-集群中的服务器状态"><a href="#1-3-2-ZooKeeper-集群中的服务器状态" class="headerlink" title="1.3.2 ZooKeeper 集群中的服务器状态"></a>1.3.2 ZooKeeper 集群中的服务器状态</h3><ul>
+<li><strong>LOOKING</strong> ：寻找 Leader。</li>
+<li><strong>LEADING</strong> ：Leader 状态，对应的节点为 Leader。</li>
+<li><strong>FOLLOWING</strong> ：Follower 状态，对应的节点为 Follower。</li>
+<li><strong>OBSERVING</strong> ：Observer 状态，对应节点为 Observer，该节点不参与 Leader 选举。<h3 id="1-3-3-ZooKeeper-选举的过半机制防止脑裂"><a href="#1-3-3-ZooKeeper-选举的过半机制防止脑裂" class="headerlink" title="1.3.3 ZooKeeper 选举的过半机制防止脑裂"></a>1.3.3 ZooKeeper 选举的过半机制防止脑裂</h3></li>
+</ul>
+<p><strong>何为集群脑裂？</strong><br>对于一个集群，通常多台机器会部署在不同机房，来提高这个集群的可用性。保证可用性的同时，会发生一种机房间网络线路故障，导致机房间网络不通，而集群被割裂成几个小集群。这时候子集群各自选主导致“脑裂”的情况。<br><strong>过半机制是如何防止脑裂现象产生的？</strong><br>ZooKeeper 的过半机制导致不可能产生 2 个 leader，因为少于等于一半是不可能产生 leader 的，这就使得不论机房的机器如何分配都不可能发生脑裂。</p>
+<h2 id="1-4-ZAB-协议和-Paxos-算法"><a href="#1-4-ZAB-协议和-Paxos-算法" class="headerlink" title="1.4 ZAB 协议和 Paxos 算法"></a>1.4 ZAB 协议和 Paxos 算法</h2><p>Paxos 算法应该可以说是 ZooKeeper 的灵魂了。但是，ZooKeeper 并没有完全采用 Paxos 算法 ，而是使用 Paxos算法的ZAB 协议作为其保证数据一致性的核心算法。另外，在 ZooKeeper 的官方文档中也指出，ZAB 协议并不像 Paxos 算法那样，是一种通用的分布式一致性算法，它是一种特别为 Zookeeper 设计的崩溃可恢复的原子消息广播算法。</p>
+<h3 id="1-4-1-ZAB-协议介绍"><a href="#1-4-1-ZAB-协议介绍" class="headerlink" title="1.4.1 ZAB 协议介绍"></a>1.4.1 ZAB 协议介绍</h3><p>ZAB（ZooKeeper Atomic Broadcast 原子广播） 协议是为<strong>分布式协调服务 ZooKeeper</strong> 专门设计的一种支持崩溃恢复的原子广播协议。 在 ZooKeeper 中，主要依赖 ZAB 协议来实现分布式数据一致性，基于该协议，ZooKeeper 实现了一种主备模式的系统架构来保持集群中各个副本之间的<strong>数据一致性</strong>。</p>
+<h3 id="1-4-2-ZAB-协议两种基本的模式：崩溃恢复和消息广播"><a href="#1-4-2-ZAB-协议两种基本的模式：崩溃恢复和消息广播" class="headerlink" title="1.4.2 ZAB 协议两种基本的模式：崩溃恢复和消息广播"></a>1.4.2 ZAB 协议两种基本的模式：崩溃恢复和消息广播</h3><ul>
+<li><strong>崩溃恢复</strong> ：当整个服务框架在启动过程中，或是当 Leader 服务器出现网络中断、崩溃退出与重启等异常情况时，ZAB 协议就会进入恢复模式并选举产生新的 Leader 服务器。当选举产生了新的 Leader 服务器，同时集群中已经有过半的机器与该 Leader 服务器完成了状态同步之后，ZAB 协议就会退出恢复模式。其中，<strong>所谓的状态同步是指数据同步，用来保证集群中存在过半的机器能够和 Leader 服务器的数据状态保持一致</strong>。</li>
+<li><strong>消息广播</strong> ：<strong>当集群中已经有过半的 Follower 服务器完成了和 Leader 服务器的状态同步，那么整个服务框架就可以进入消息广播模式了。</strong> 当一台同样遵守 ZAB 协议的服务器启动后加入到集群中时，如果此时集群中已经存在一个 Leader 服务器在负责进行消息广播，那么新加入的服务器就会自觉地进入数据恢复模式：找到 Leader 所在的服务器，并与其进行数据同步，然后一起参与到消息广播流程中去。<h2 id="1-5-总结"><a href="#1-5-总结" class="headerlink" title="1.5 总结"></a>1.5 总结</h2></li>
+</ul>
+<ol>
+<li>ZooKeeper 本身就是一个分布式程序（只要半数以上节点存活，ZooKeeper 就能正常服务）。</li>
+<li>为了保证高可用，最好是以集群形态来部署 ZooKeeper，这样只要集群中大部分机器是可用的（能够容忍一定的机器故障），那么 ZooKeeper 本身仍然是可用的。</li>
+<li>ZooKeeper 将数据保存在内存中，这也就保证了 高吞吐量和低延迟（但是内存限制了能够存储的容量不太大，此限制也是保持 znode 中存储的数据量较小的进一步原因）。</li>
+<li>ZooKeeper 是高性能的。 在“读”多于“写”的应用程序中尤其地明显，因为“写”会导致所有的服务器间同步状态。（“读”多于“写”是协调服务的典型场景。）</li>
+<li>ZooKeeper 有临时节点的概念。 当创建临时节点的客户端会话一直保持活动，瞬时节点就一直存在。而当会话终结时，瞬时节点被删除。持久节点是指一旦这个 znode 被创建了，除非主动进行 znode 的移除操作，否则这个 znode 将一直保存在 ZooKeeper 上。</li>
+<li>ZooKeeper 底层其实只提供了两个功能：① 管理（存储、读取）用户程序提交的数据；② 为用户程序提供数据节点监听服务。</li>
+</ol>
+<h1 id="2-ZooKeeper-相关概念总结-进阶"><a href="#2-ZooKeeper-相关概念总结-进阶" class="headerlink" title="2 ZooKeeper 相关概念总结(进阶)"></a>2 ZooKeeper 相关概念总结(进阶)</h1><h2 id="2-1-一致性问题"><a href="#2-1-一致性问题" class="headerlink" title="2.1 一致性问题"></a>2.1 一致性问题</h2><p>设计一个分布式系统必定会遇到一个问题—— <strong>因为分区容忍性（partition tolerance）的存在，就必定要求我们需要在系统可用性（availability）和数据一致性（consistency）中做出权衡</strong> 。这就是著名的 CAP 定理。</p>
+<h2 id="2-2-一致性协议和算法"><a href="#2-2-一致性协议和算法" class="headerlink" title="2.2 一致性协议和算法"></a>2.2 一致性协议和算法</h2><p>而为了解决数据一致性问题，在科学家和程序员的不断探索中，就出现了很多的一致性协议和算法。比如 2PC（两阶段提交），3PC（三阶段提交），Paxos算法等等。</p>
+<blockquote>
+<p>请你思考一个问题，同学之间如果采用传纸条的方式去传播消息，那么就会出现一个问题——我咋知道我的小纸条有没有传到我想要传递的那个人手中呢？万一被哪个小家伙给劫持篡改了呢，对吧？</p>
+</blockquote>
+<p>这个时候就引申出一个概念—— <strong>拜占庭将军问题</strong> 。它意指 <strong>在不可靠信道上试图通过消息传递的方式达到一致性是不可能的</strong>， 所以所有的一致性算法的 <strong>必要前提</strong> 就是安全可靠的消息通道。</p>
+<p>而为什么要去解决数据一致性的问题？你想想，如果一个秒杀系统将服务拆分成了下订单和加积分服务，这两个服务部署在不同的机器上了，万一在消息的传播过程中积分系统宕机了，总不能你这边下了订单却没加积分吧？你总得保证两边的数据需要一致吧？</p>
+<h3 id="2-2-1-2PC（两阶段提交）"><a href="#2-2-1-2PC（两阶段提交）" class="headerlink" title="2.2.1 2PC（两阶段提交）"></a>2.2.1 2PC（两阶段提交）</h3><p>两阶段提交是一种保证分布式系统数据一致性的协议，现在很多数据库都是采用的两阶段提交协议来完成 <strong>分布式事务</strong> 的处理。</p>
+<blockquote>
+<p>以秒杀系统的下单和加积分两个系统来举例，我们此时下完订单会发个消息给积分系统告诉它下面该增加积分了。如果我们仅仅是发送一个消息也不收回复，那么我们的订单系统怎么能知道积分系统的收到消息的情况呢？如果我们增加一个收回复的过程，那么当积分系统收到消息后返回给订单系统一个 Response ，但在中间出现了网络波动，那个回复消息没有发送成功，订单系统是不是以为积分系统消息接收失败了？它是不是会回滚事务？但此时积分系统是成功收到消息的，它就会去处理消息然后给用户增加积分，这个时候就会出现积分加了但是订单没下成功。</p>
+</blockquote>
+<p>所以我们所需要解决的是在分布式系统中，整个调用链中，我们所有服务的数据处理要么都成功要么都失败，即所有服务的 <strong>原子性问题</strong> 。</p>
+<p>在两阶段提交中，主要涉及到两个角色，分别是协调者和参与者。<br>第一阶段：事务发起者向协调者发起事务请求，协调者向参与者发送请求，参与者执行事务但不提交，并将undo和Redo信息记入事务日志中，向协调者返回是否准备好了；<br>第二阶段：协调者根据参与者反馈决定是进行事务的提交操作，即提交事务或者回滚事务；<br>如果第一阶段不是所有参与者都返回了消息，协调者将会给所有参与者发送 <strong>回滚事务的 rollback 请求</strong>，参与者收到之后将会 <strong>回滚它在第一阶段所做的事务处理</strong> ，然后再将处理情况返回给协调者，最终协调者收到响应后便给事务发起者返回处理失败的结果。<br>2PC 实现得还是比较鸡肋的，因为事实上它只解决了各个事务的原子性问题，随之也带来了很多的问题。</p>
+<ul>
+<li><strong>单点故障问题</strong>，如果协调者挂了那么整个系统都处于不可用的状态了。</li>
+<li><strong>阻塞问题</strong>，即当协调者发送 prepare 请求，参与者收到之后如果能处理那么它将会进行事务的处理但并不提交，这个时候会一直占用着资源不释放，如果此时协调者挂了，那么这些资源都不会再释放了，这会极大影响性能。</li>
+<li><strong>数据不一致问题</strong>，比如当第二阶段，协调者只发送了一部分的 commit 请求就挂了，那么也就意味着，收到消息的参与者会进行事务的提交，而后面没收到的则不会进行事务提交，那么这时候就会产生数据不一致性问题。</li>
+</ul>
+<h3 id="2-2-2-3PC（三阶段提交）"><a href="#2-2-2-3PC（三阶段提交）" class="headerlink" title="2.2.2 3PC（三阶段提交）"></a>2.2.2 3PC（三阶段提交）</h3><p>因为2PC存在的一系列问题，比如单点，容错机制缺陷等等，从而产生了 <strong>3PC（三阶段提交）</strong> 。那么这三阶段又分别是什么呢？</p>
+<ol>
+<li><strong>CanCommit阶段</strong>：协调者向所有参与者发送 CanCommit 请求，参与者收到请求后会根据自身情况查看是否能执行事务，如果可以则返回 YES 响应并进入预备状态，否则返回 NO 。</li>
+<li><strong>PreCommit阶段</strong>：协调者根据参与者返回的响应来决定是否可以进行下面的 PreCommit 操作。如果上面参与者返回的都是 YES，那么协调者将向所有参与者发送 PreCommit 预提交请求，<strong>参与者收到预提交请求后，会进行事务的执行操作，并将 Undo 和 Redo 信息写入事务日志中</strong> ，最后如果参与者顺利执行了事务则给协调者返回成功的响应。如果在第一阶段协调者收到了 <strong>任何一个 NO</strong> 的信息，或者 <strong>在一定时间内</strong> 并没有收到全部的参与者的响应，那么就会中断事务，它会向所有参与者发送中断请求（abort），参与者收到中断请求之后会立即中断事务，或者在一定时间内没有收到协调者的请求，它也会中断事务。</li>
+<li><strong>DoCommit阶段</strong>：这个阶段其实和 2PC 的第二阶段差不多，如果协调者收到了所有参与者在 PreCommit 阶段的 YES 响应，那么协调者将会给所有参与者发送 DoCommit 请求，<strong>参与者收到 DoCommit 请求后则会进行事务的提交工作</strong>，完成后则会给协调者返回响应，协调者收到所有参与者返回的事务提交成功的响应之后则完成事务。若协调者在 PreCommit 阶段 <strong>收到了任何一个 NO 或者在一定时间内没有收到所有参与者的响应</strong> ，那么就会进行中断请求的发送，参与者收到中断请求后则会 <strong>通过上面记录的回滚日志</strong> 来进行事务的回滚操作，并向协调者反馈回滚状况，协调者收到参与者返回的消息后，中断事务</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653363328058-0ad476e6-425d-4228-880c-5b1d7a68ee16.png#clientId=u7ffe15a1-03f4-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u18a98208&margin=%5Bobject%20Object%5D&name=image.png&originHeight=527&originWidth=841&originalType=url&ratio=1&rotation=0&showTitle=false&size=166568&status=done&style=none&taskId=u1723f658-17ed-4ad9-97cd-57dd196449d&title=" alt="image.png"><br>3PC多处采用超时中断，减少同步阻塞的时间<br>总之，3PC 通过一系列的超时机制很好的缓解了<strong>阻塞问题</strong>，但是<strong>最重要的一致性并没有得到根本的解决</strong>，比如在 PreCommit 阶段，当一个参与者收到了请求之后其他参与者和协调者挂了或者出现了网络分区，这个时候收到消息的参与者都会进行事务提交，这就会出现数据不一致性问题。</p>
+<p>所以，要解决一致性问题还需要靠 Paxos 算法⭐️ ⭐️ ⭐️ 。</p>
+<h3 id="2-2-3-Paxos-算法"><a href="#2-2-3-Paxos-算法" class="headerlink" title="2.2.3 Paxos 算法"></a>2.2.3 Paxos 算法</h3><p>Paxos 算法是基于<strong>消息传递且具有高度容错特性的一致性算法</strong>，是目前公认的解决分布式一致性问题最有效的算法之一，<strong>其解决的问题就是在分布式系统中如何就某个值（决议）达成一致</strong> 。<br>三个角色：Proposer提案者、Acceptor表决者、Learner学习者<br>两个阶段：Prepare 和 accept 阶段</p>
+<h4 id="prepare-阶段"><a href="#prepare-阶段" class="headerlink" title="prepare 阶段"></a>prepare 阶段</h4><p>提案者负责提出proposal，每个提案者在提案时都会获得一个全局唯一的递增的提案编号，然后将该编号赋予要提出的提案；<br>表决者收到提案编号后，如果提案编号大于本地最大已accept的提案编号，在批准提案时，会将以前接收过的最大编号的提案作为响应反馈给proposer；</p>
+<h4 id="accept-阶段"><a href="#accept-阶段" class="headerlink" title="accept 阶段"></a>accept 阶段</h4><p>当一个提案者收到超过一半的Acceptor的批准，提案者会给所有Accept发送真正的提案内容和提案编号（第一阶段就是试探）；<br>表决者收到提案会对比提案者发送过来的提案编号是否大于等于本地最大以及批准的最大提案编号，如果是，那就accept该提案（执行内容但不提交），随后将情况返回给proposer，否则不回应或者返回NO；<br>而如果 Proposer 如果没有收到超过半数的 accept 那么它将会将 <strong>递增</strong> 该 Proposal 的编号，然后 <strong>重新进入 Prepare 阶段</strong> 。</p>
+<h4 id="paxos-算法的死循环问题"><a href="#paxos-算法的死循环问题" class="headerlink" title="paxos 算法的死循环问题"></a>paxos 算法的死循环问题</h4><p>两个提案者先后分别发送了两个不同的提案，先者不能在第二阶段被批准了，因为后者发送了一个编号更大的提案；<br><strong>就允许一个能提案</strong> 就行了。</p>
+<h2 id="2-3-引出-ZAB"><a href="#2-3-引出-ZAB" class="headerlink" title="2.3 引出 ZAB"></a>2.3 引出 ZAB</h2><h3 id="2-3-1-Zookeeper架构"><a href="#2-3-1-Zookeeper架构" class="headerlink" title="2.3.1 Zookeeper架构"></a>2.3.1 Zookeeper架构</h3><p>作为一个优秀高效且可靠的分布式协调框架，ZooKeeper 在解决分布式数据一致性问题时并没有直接使用 Paxos ，而是专门定制了一致性协议叫做 ZAB(ZooKeeper Atomic Broadcast) 原子广播协议，该协议能够很好地支持 <strong>崩溃恢复</strong> 。</p>
+<h3 id="2-3-2-ZAB-中的三个角色"><a href="#2-3-2-ZAB-中的三个角色" class="headerlink" title="2.3.2 ZAB 中的三个角色"></a>2.3.2 ZAB 中的三个角色</h3><ul>
+<li>Leader ：集群中 <strong>唯一的写请求处理者</strong> ，能够发起投票（投票也是为了进行写请求）。</li>
+<li>Follower：能够接收客户端的请求，如果是读请求则可以自己处理，<strong>如果是写请求则要转发给 Leader</strong> 。在选举过程中会参与投票，<strong>有选举权和被选举权</strong> 。</li>
+<li>Observer ：就是没有选举权和被选举权的 Follower 。</li>
+</ul>
+<p>在 ZAB 协议中对 zkServer(即上面我们说的三个角色的总称) 还有两种模式的定义，分别是 <strong>消息广播</strong> 和 <strong>崩溃恢复</strong> 。</p>
+<h3 id="2-3-3-消息广播模式"><a href="#2-3-3-消息广播模式" class="headerlink" title="2.3.3 消息广播模式"></a>2.3.3 消息广播模式</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653376696179-8dcf1c95-7408-4a17-9e17-adb3bf187579.png#clientId=u7ffe15a1-03f4-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u38cf4bd9&margin=%5Bobject%20Object%5D&name=image.png&originHeight=489&originWidth=988&originalType=url&ratio=1&rotation=0&showTitle=false&size=187549&status=done&style=none&taskId=ud5ab2ef5-731a-4a54-b215-cc9778b5526&title=" alt="image.png"><br>顺序一致性<br>在 Leader 这端，它为每个其他的 zkServer 准备了一个 <strong>队列</strong> ，采用先进先出的方式发送消息。由于协议是 <strong>通过 TCP <strong>来进行网络通信的，保证了消息的发送顺序性，接受顺序性也得到了保证。<br>同时在ZAB中还定义了一个</strong>全局单调递增的事务ID ZXID</strong>来保证顺序性</p>
+<h3 id="2-3-4-崩溃恢复模式"><a href="#2-3-4-崩溃恢复模式" class="headerlink" title="2.3.4 崩溃恢复模式"></a>2.3.4 崩溃恢复模式</h3><p>说到崩溃恢复我们首先要提到 ZAB 中的 Leader 选举算法，当系统出现崩溃影响最大应该是 Leader 的崩溃，因为我们只有一个 Leader ，所以当 Leader 出现问题的时候我们势必需要重新选举 Leader 。</p>
+<p>Leader 选举可以分为两个不同的阶段,</p>
+<ul>
+<li>ZAB初始化选举：初始时，整个集群处于looking状态；每个服务器都会先给自己投一票，投票内容为服务器的myid和ZXID，初始化全为0；先比较ZXID，ZXID大的优先为Leader，如果相同则比较myid，myid大的优先作为Leader；整个服务器从Looking变为了正常状态。</li>
+<li>三台服务器挂了一个(Leader挂了)：剩余两台由following变为looking状态；zxid 大的优先做Leading，如果相同那么就 myid 大的优先；</li>
+</ul>
+<p><strong>崩溃恢复</strong>含义就是<strong>：当集群中有机器挂了，我们整个集群如何保证数据一致性？</strong><br>如果只是Follower挂了，只要没超过半数，在Leader中会维护队列，不用担心后面的数据没接收到导致数据不一致性；<br>如果Leader挂了，先暂停服务变为 Looking 状态然后进行 Leader 的重新选举，但这个就要分为两种情况了，分别是</p>
+<ul>
+<li><strong>确保已经被Leader提交的提案最终能够被所有的Follower提交</strong></li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653377740908-406cf8d7-5834-4215-a12e-a996c4a6a754.png#clientId=u7ffe15a1-03f4-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=ufb9f4687&margin=%5Bobject%20Object%5D&name=image.png&originHeight=417&originWidth=908&originalType=url&ratio=1&rotation=0&showTitle=false&size=169317&status=done&style=none&taskId=u86b0bc86-31de-427d-b852-09bdad1b1f5&title=" alt="image.png"></p>
+<ul>
+<li><strong>跳过那些已经被丢弃的提案</strong></li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653377756815-c1e01bcf-c0cd-426b-a862-d4194b8d5322.png#clientId=u7ffe15a1-03f4-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u2bd313e9&margin=%5Bobject%20Object%5D&name=image.png&originHeight=409&originWidth=1331&originalType=url&ratio=1&rotation=0&showTitle=false&size=298677&status=done&style=none&taskId=ud9f851a6-9d58-4945-bd1d-0c10a053649&title=" alt="image.png"></p>
+<h2 id="2-4-Zookeeper的几个理论知识"><a href="#2-4-Zookeeper的几个理论知识" class="headerlink" title="2.4 Zookeeper的几个理论知识"></a>2.4 Zookeeper的几个理论知识</h2><p>数据模型、回话、ACL、Watcher机制（见1.2 Zookeeper重要概念解读）</p>
+<h2 id="2-5-Zookeeper的几个典型应用场景"><a href="#2-5-Zookeeper的几个典型应用场景" class="headerlink" title="2.5 Zookeeper的几个典型应用场景"></a>2.5 Zookeeper的几个典型应用场景</h2><h3 id="2-5-1-选主"><a href="#2-5-1-选主" class="headerlink" title="2.5.1 选主"></a>2.5.1 选主</h3><p><strong>临时节点</strong>：因为 Zookeeper 的强一致性，能够很好地在保证 <strong>在高并发的情况下保证节点创建的全局唯一性</strong> (即无法重复创建同样的节点)。</p>
+<p>利用这个特性，我们可以 <strong>让多个客户端创建一个指定的节点</strong> ，创建成功的就是 master。</p>
+<p>master挂了怎么办？（<strong>利用临时节点状态和watcher</strong>）<br>我们是不是可以 <strong>让其他不是 master 的节点监听节点的状态</strong> ，比如说我们监听这个临时节点的父节点，如果子节点个数变了就代表 master 挂了，这个时候我们 <strong>触发回调函数进行重新选举</strong> ，或者我们直接监听节点的状态，我们可以通过节点是否已经失去连接来判断 master 是否挂了等等。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653378426766-f9ea2554-5807-4df5-9737-97f0790e5503.png#clientId=u7ffe15a1-03f4-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u74719e0c&margin=%5Bobject%20Object%5D&name=image.png&originHeight=565&originWidth=1123&originalType=url&ratio=1&rotation=0&showTitle=false&size=178409&status=done&style=none&taskId=u60d3a220-600f-42f6-8169-0e07de21779&title=" alt="image.png"></p>
+<h3 id="2-5-2-分布式锁"><a href="#2-5-2-分布式锁" class="headerlink" title="2.5.2 分布式锁"></a>2.5.2 分布式锁</h3><p> <strong>zk在高并发的情况下保证节点创建的全局唯一性</strong><br>利用临时节点的创建来实现<br>让多个客户端同时创建一个临时节点，<strong>创建成功的就说明获取到了锁</strong>。然后没有获取到锁的客户端也像上面选主的非主节点创建一个 watcher 进行节点状态的监听，如果这个互斥锁被释放了（可能获取锁的客户端宕机了，或者那个客户端主动释放了锁）可以调用回调函数重新获得锁。</p>
+<h4 id="使用-zookeeper-同时实现-共享锁和独占锁-（数据模型中的临时顺序节点）"><a href="#使用-zookeeper-同时实现-共享锁和独占锁-（数据模型中的临时顺序节点）" class="headerlink" title="使用 zookeeper 同时实现 共享锁和独占锁 （数据模型中的临时顺序节点）"></a>使用 zookeeper 同时实现 共享锁和独占锁 （数据模型中的临时顺序节点）</h4><p>规定所有创建节点必须有序，当你是读请求（要获取共享锁）的话，如果 <strong>没有比自己更小的节点，或比自己小的节点都是读请求</strong> ，则可以获取到读锁，然后就可以开始读了。<strong>若比自己小的节点中有写请求</strong> ，则当前客户端无法获取到读锁，只能等待前面的写请求完成。<br>如果你是写请求（获取独占锁），若 <strong>没有比自己更小的节点</strong> ，则表示当前客户端可以直接获取到写锁，对数据进行修改。若发现 <strong>有比自己更小的节点，无论是读操作还是写操作，当前客户端都无法获取到写锁</strong> ，等待所有前面的操作完成。</p>
+<p>优化（比如当一个锁得到释放它会通知所有等待的客户端从而造成 <strong>羊群效应</strong>）<br><strong>读请求监听比自己小的最后一个写请求节点</strong><br><strong>写请求只监听比自己小的最后一个节点</strong></p>
+<h3 id="2-5-3-命名服务"><a href="#2-5-3-命名服务" class="headerlink" title="2.5.3 命名服务"></a>2.5.3 命名服务</h3><p>zookeeper 是通过 <strong>树形结构</strong> 来存储数据节点的，那也就是说，对于每个节点的 <strong>全路径</strong>，它必定是唯一的，我们可以使用节点的全路径作为命名方式了。而且更重要的是，路径是我们可以自己定义的，这对于我们对有些有语意的对象的ID设置可以更加便于理解。</p>
+<h3 id="2-5-4-集群管理和注册中心"><a href="#2-5-4-集群管理和注册中心" class="headerlink" title="2.5.4 集群管理和注册中心"></a>2.5.4 集群管理和注册中心</h3><p>集群管理：<br>zookeeper 天然支持的 watcher 和 临时节点能很好的实现这些需求。我们可以为每条机器创建临时节点，并监控其父节点，如果子节点列表有变动（我们可能创建删除了临时节点），那么我们可以使用在其父节点绑定的 watcher 进行状态监控和回调。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653379112281-77b8f409-3e0b-432e-8260-4b3eda0a2160.png#clientId=u7ffe15a1-03f4-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u5bc010db&margin=%5Bobject%20Object%5D&name=image.png&originHeight=588&originWidth=1082&originalType=url&ratio=1&rotation=0&showTitle=false&size=188410&status=done&style=none&taskId=u10a7409d-1af4-4018-a7cd-078b0474acd&title=" alt="image.png"></p>
+<p>注册中心：<br><strong>服务提供者</strong> 在 zookeeper 中创建一个临时节点并且将自己的 ip、port、调用方式 写入节点，当 <strong>服务消费者</strong> 需要进行调用的时候会 <strong>通过注册中心找到相应的服务的地址列表(IP端口什么的)</strong> ，并缓存到本地(方便以后调用)，当消费者调用服务时，不会再去请求注册中心，而是直接通过负载均衡算法从地址列表中取一个服务提供者的服务器调用服务。<br>当服务提供者的某台服务器宕机或下线时，相应的地址会从服务提供者地址列表中移除。同时，注册中心会将新的服务地址列表发送给服务消费者的机器并缓存在消费者本机（当然你可以让消费者进行节点监听，我记得 Eureka 会先试错，然后再更新）。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22806064/1653379202571-3e7eb26a-c0e1-4d88-967e-137160898125.png#clientId=u7ffe15a1-03f4-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u889a926a&margin=%5Bobject%20Object%5D&name=image.png&originHeight=590&originWidth=1204&originalType=url&ratio=1&rotation=0&showTitle=false&size=253759&status=done&style=none&taskId=u5fc59100-ede2-4fc3-aa25-041e7eeebe0&title=" alt="image.png"></p>
+<h2 id="2-6-总结"><a href="#2-6-总结" class="headerlink" title="2.6 总结"></a>2.6 总结</h2><ul>
+<li>分布式与集群的区别</li>
+<li>2PC 、3PC 以及 paxos 算法这些一致性框架的原理和实现。</li>
+<li>zookeeper 专门的一致性算法 ZAB 原子广播协议的内容（Leader 选举、崩溃恢复、消息广播）。</li>
+<li>zookeeper 中的一些基本概念，比如 ACL，数据节点，会话，watcher机制等等。</li>
+<li>zookeeper 的典型应用场景，比如选主，注册中心等等。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>分布式</category>
+      </categories>
+      <tags>
+        <tag>Zookeeper</tag>
+      </tags>
+  </entry>
 </search>
