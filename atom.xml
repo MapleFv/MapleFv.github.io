@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-05-24T09:11:00.047Z</updated>
+  <updated>2022-05-25T03:00:38.727Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>正确解决typora+PicGo+GitHub图床配置问题</title>
+    <link href="http://example.com/2022/05/25/%E6%AD%A3%E7%A1%AE%E8%A7%A3%E5%86%B3typora+PicGo+GitHub%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/"/>
+    <id>http://example.com/2022/05/25/%E6%AD%A3%E7%A1%AE%E8%A7%A3%E5%86%B3typora+PicGo+GitHub%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/</id>
+    <published>2022-05-25T02:58:06.000Z</published>
+    <updated>2022-05-25T03:00:38.727Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;🏇 🏇 🏇 🏇 🏇&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="博客" scheme="http://example.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="GitHub" scheme="http://example.com/tags/GitHub/"/>
+    
+    <category term="PicGo" scheme="http://example.com/tags/PicGo/"/>
+    
+    <category term="Typora" scheme="http://example.com/tags/Typora/"/>
+    
+  </entry>
+  
+  <entry>
     <title>分布式事务</title>
     <link href="http://example.com/2022/05/24/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/"/>
     <id>http://example.com/2022/05/24/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/</id>
     <published>2022-05-24T01:14:06.000Z</published>
-    <updated>2022-05-24T09:11:00.047Z</updated>
+    <updated>2022-05-25T03:03:36.092Z</updated>
     
     
     <summary type="html">&lt;p&gt;🍋 🍋 🍋 🍋 🍋&lt;/p&gt;</summary>
@@ -99,7 +122,7 @@
     <link href="http://example.com/2022/05/24/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%B0%83/"/>
     <id>http://example.com/2022/05/24/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%B0%83/</id>
     <published>2022-05-24T01:13:06.000Z</published>
-    <updated>2022-05-24T09:07:55.725Z</updated>
+    <updated>2022-05-25T02:24:20.793Z</updated>
     
     
     <summary type="html">&lt;p&gt;🍋 🍋 🍋 🍋 🍋&lt;/p&gt;</summary>
