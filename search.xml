@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Java8新特性实战</title>
+    <url>/2022/05/24/Java8%E6%96%B0%E7%89%B9%E6%80%A7%E5%AE%9E%E6%88%98/</url>
+    <content><![CDATA[<p>🤳  🤳  🤳  🤳  🤳</p>
+<span id="more"></span>
+
+<h1 id="1-interface"><a href="#1-interface" class="headerlink" title="1. interface"></a>1. interface</h1><h2 id="在-Java-8-，接口和抽象类有什么区别的？"><a href="#在-Java-8-，接口和抽象类有什么区别的？" class="headerlink" title="在 Java 8 ，接口和抽象类有什么区别的？"></a>在 Java 8 ，接口和抽象类有什么区别的？</h2><p>接口多继承，类单继承<br>接口的方法是public abstract修饰，变量是public static final修饰。abstract class可以用其他修饰符</p>
+<h1 id="2-Lambda表达式"><a href="#2-Lambda表达式" class="headerlink" title="2. Lambda表达式"></a>2. Lambda表达式</h1><h4 id="替代匿名内部类-parameters-gt-statements"><a href="#替代匿名内部类-parameters-gt-statements" class="headerlink" title="替代匿名内部类 (parameters) -&gt;{ statements; }"></a>替代匿名内部类 (parameters) -&gt;{ statements; }</h4><p><strong>集合迭代  forEach</strong></p>
+<blockquote>
+<p>strings.forEach(System.out::println);<br>上述代码的含义把你遍历出来的每一个对象都用来去调用System.out（也就是PrintStream类的一个实例）的println方法。</p>
+</blockquote>
+<p><strong>方法的引用 ::</strong></p>
+<h4 id="访问变量"><a href="#访问变量" class="headerlink" title="访问变量"></a>访问变量</h4><h1 id="3-Stream"><a href="#3-Stream" class="headerlink" title="3. Stream"></a>3. Stream</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//按照类别分组</span></span><br><span class="line">Map&lt;String, List&lt;Product&gt;&gt; map1 = prodList.stream().collect(Collectors.groupingBy(Product::getCategory));</span><br></pre></td></tr></table></figure>
+<p>Stream的特点:</p>
+<ol>
+<li>通过简单的链式编程，使得它可以方便地对遍历处理后的数据进行再处理。</li>
+<li>方法参数都是函数式接口类型；</li>
+<li>一个Stream只能操作一次，操作完就关闭了，继续使用这个stream会报错；</li>
+<li>stream不保存数据，不改变数据源；</li>
+</ol>
+<h1 id="4-Optional"><a href="#4-Optional" class="headerlink" title="4. Optional"></a>4. Optional</h1><p>使用Oprional解决NPE(java.lang.NullPointerException)问题，丫就是为NPE而生的，其中可以包含空值或非空值。</p>
+<h1 id="5-Date-Time-API"><a href="#5-Date-Time-API" class="headerlink" title="5. Date-Time API"></a>5. Date-Time API</h1><p>这是对java.util.Date强有力的补充，解决了Date类的大部分痛点：</p>
+<ol>
+<li>非线程安全</li>
+<li>时区处理麻烦</li>
+<li>各种格式化、和时间计算繁琐</li>
+<li>设计有缺陷，Date类同时包含日期和时间；还有一个java.sql.Date，容易混淆</li>
+</ol>
+]]></content>
+      <categories>
+        <category>JDK</category>
+      </categories>
+      <tags>
+        <tag>JDK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JVM垃圾回收详解</title>
     <url>/2022/05/22/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<p>👇👇👇👇👇</p>
@@ -82,39 +118,299 @@
       </tags>
   </entry>
   <entry>
-    <title>Java8新特性实战</title>
-    <url>/2022/05/24/Java8%E6%96%B0%E7%89%B9%E6%80%A7%E5%AE%9E%E6%88%98/</url>
-    <content><![CDATA[<p>🤳  🤳  🤳  🤳  🤳</p>
+    <title>Linux安装Docker，并部署Redis和RabbitMQ</title>
+    <url>/2022/08/24/Linux%E5%AE%89%E8%A3%85Docker%EF%BC%8C%E5%B9%B6%E9%83%A8%E7%BD%B2Redis%E5%92%8CRabbitMQ/</url>
+    <content><![CDATA[<p>🍋 🍋 🍋 🍋 🍋</p>
 <span id="more"></span>
 
-<h1 id="1-interface"><a href="#1-interface" class="headerlink" title="1. interface"></a>1. interface</h1><h2 id="在-Java-8-，接口和抽象类有什么区别的？"><a href="#在-Java-8-，接口和抽象类有什么区别的？" class="headerlink" title="在 Java 8 ，接口和抽象类有什么区别的？"></a>在 Java 8 ，接口和抽象类有什么区别的？</h2><p>接口多继承，类单继承<br>接口的方法是public abstract修饰，变量是public static final修饰。abstract class可以用其他修饰符</p>
-<h1 id="2-Lambda表达式"><a href="#2-Lambda表达式" class="headerlink" title="2. Lambda表达式"></a>2. Lambda表达式</h1><h4 id="替代匿名内部类-parameters-gt-statements"><a href="#替代匿名内部类-parameters-gt-statements" class="headerlink" title="替代匿名内部类 (parameters) -&gt;{ statements; }"></a>替代匿名内部类 (parameters) -&gt;{ statements; }</h4><p><strong>集合迭代  forEach</strong></p>
-<blockquote>
-<p>strings.forEach(System.out::println);<br>上述代码的含义把你遍历出来的每一个对象都用来去调用System.out（也就是PrintStream类的一个实例）的println方法。</p>
+
+
+<h1 id="linux-安装docker，并部署RabbitMQ"><a href="#linux-安装docker，并部署RabbitMQ" class="headerlink" title="linux 安装docker，并部署RabbitMQ"></a>linux 安装docker，并部署RabbitMQ</h1><blockquote>
+<p><strong>安装环境：CentOS7.x</strong></p>
 </blockquote>
-<p><strong>方法的引用 ::</strong></p>
-<h4 id="访问变量"><a href="#访问变量" class="headerlink" title="访问变量"></a>访问变量</h4><h1 id="3-Stream"><a href="#3-Stream" class="headerlink" title="3. Stream"></a>3. Stream</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//按照类别分组</span></span><br><span class="line">Map&lt;String, List&lt;Product&gt;&gt; map1 = prodList.stream().collect(Collectors.groupingBy(Product::getCategory));</span><br></pre></td></tr></table></figure>
-<p>Stream的特点:</p>
-<ol>
-<li>通过简单的链式编程，使得它可以方便地对遍历处理后的数据进行再处理。</li>
-<li>方法参数都是函数式接口类型；</li>
-<li>一个Stream只能操作一次，操作完就关闭了，继续使用这个stream会报错；</li>
-<li>stream不保存数据，不改变数据源；</li>
-</ol>
-<h1 id="4-Optional"><a href="#4-Optional" class="headerlink" title="4. Optional"></a>4. Optional</h1><p>使用Oprional解决NPE(java.lang.NullPointerException)问题，丫就是为NPE而生的，其中可以包含空值或非空值。</p>
-<h1 id="5-Date-Time-API"><a href="#5-Date-Time-API" class="headerlink" title="5. Date-Time API"></a>5. Date-Time API</h1><p>这是对java.util.Date强有力的补充，解决了Date类的大部分痛点：</p>
-<ol>
-<li>非线程安全</li>
-<li>时区处理麻烦</li>
-<li>各种格式化、和时间计算繁琐</li>
-<li>设计有缺陷，Date类同时包含日期和时间；还有一个java.sql.Date，容易混淆</li>
-</ol>
+<h2 id="1-安装docker"><a href="#1-安装docker" class="headerlink" title="1 安装docker"></a>1 安装docker</h2><p>（1）yum包更新到最新</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo yum update</span><br></pre></td></tr></table></figure>
+
+<p>（2）安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
+
+<p>（3）设置yum源为阿里云</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+
+<p>（4）安装docker</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo yum install docker-ce</span><br></pre></td></tr></table></figure>
+
+<p>（5）安装后查看docker版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker -v</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-设置ustc的镜像"><a href="#2-设置ustc的镜像" class="headerlink" title="2 设置ustc的镜像"></a>2 设置ustc的镜像</h2><p>ustc是老牌的linux镜像服务提供者了，还在遥远的ubuntu 5.04版本的时候就在用。ustc的docker镜像加速器速度很快。ustc docker mirror的优势之一就是不需要注册，是真正的公共服务。</p>
+<p>编辑该文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/docker/daemon.json  </span><br></pre></td></tr></table></figure>
+
+<p>在该文件中输入如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Docker的启动与停止"><a href="#3-Docker的启动与停止" class="headerlink" title="3 Docker的启动与停止"></a>3 Docker的启动与停止</h2><p>systemctl命令是系统服务管理器指令<br>启动docker：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<p>查看docker状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl status docker</span><br></pre></td></tr></table></figure>
+
+<p>停止docker：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl stop docker</span><br></pre></td></tr></table></figure>
+
+<p>重启docker：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p>开机启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+
+<p>查看docker概要信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<p>查看docker帮助文档</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker --help</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-常用命令"><a href="#4-常用命令" class="headerlink" title="4 常用命令"></a>4 常用命令</h2><h3 id="4-1-镜像相关"><a href="#4-1-镜像相关" class="headerlink" title="4.1 镜像相关"></a>4.1 镜像相关</h3><p><strong>查看镜像</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p>REPOSITORY：镜像名称</p>
+<p>TAG：镜像标签</p>
+<p>IMAGE ID：镜像ID</p>
+<p>CREATED：镜像的创建日期（不是获取该镜像的日期）</p>
+<p>SIZE：镜像大小</p>
+<p>这些镜像都是存储在Docker宿主机的&#x2F;var&#x2F;lib&#x2F;docker目录下</p>
+<p><strong>搜索镜像</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker search 镜像名称</span><br></pre></td></tr></table></figure>
+
+<p>NAME：仓库名称<br>DESCRIPTION：镜像描述<br>STARS：用户评价，反应一个镜像的受欢迎程度<br>OFFICIAL：是否官方<br>AUTOMATED：自动构建，表示该镜像由Docker Hub自动构建流程创建的</p>
+<p><strong>拉取镜像</strong></p>
+<p>拉取镜像就是从中央仓库中下载镜像到本地</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull 镜像名称</span><br></pre></td></tr></table></figure>
+
+<p>例如，我要下载centos7镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull centos:7</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除镜像</strong></p>
+<p>按镜像ID删除镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi 镜像ID</span><br></pre></td></tr></table></figure>
+
+<p>删除所有镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi `docker images -q`</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-容器相关"><a href="#4-2-容器相关" class="headerlink" title="4.2 容器相关"></a>4.2 容器相关</h3><h4 id="4-2-1-查看容器"><a href="#4-2-1-查看容器" class="headerlink" title="4.2.1 查看容器"></a>4.2.1 查看容器</h4><p>查看正在运行的容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p>查看所有容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps –a</span><br></pre></td></tr></table></figure>
+
+<p>查看最后一次运行的容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps –l</span><br></pre></td></tr></table></figure>
+
+<p>查看停止的容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps -f status=exited</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-2-创建与启动容器"><a href="#4-2-2-创建与启动容器" class="headerlink" title="4.2.2 创建与启动容器"></a>4.2.2 创建与启动容器</h4><p>创建容器常用参数说明：</p>
+<p>（1）创建容器命令：docker run</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-i：表示运行容器</span><br><span class="line">-t：表示容器启动后会进入其命令行。加入这两个参数后，容器创建就能登录进去。即分配一个伪终端。</span><br><span class="line">--name :为创建的容器命名。</span><br><span class="line">-v：表示目录映射关系（前者是宿主机目录，后者是映射到宿主机上的目录），可以使用多个－v做多个目录或文</span><br><span class="line">件映射。注意：最好做目录映射，在宿主机上做修改，然后共享到容器上。</span><br><span class="line">-d：在run后面加上-d参数,则会创建一个守护式容器在后台运行（这样创建容器后不会自动登录容器，如果只加-i -t</span><br><span class="line">两个参数，创建后就会自动进去容器）。</span><br><span class="line">-p：表示端口映射，前者是宿主机端口，后者是容器内的映射端口。可以使用多个-p做多个端口映射</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（2）退出当前容器：exit</p>
+<p>（3）守护式方式创建容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -di --name=容器名称 镜像名称:标签</span><br></pre></td></tr></table></figure>
+
+<p>登录守护式容器方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 容器名称 (或者容器ID)  /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-3-停止与启动容器"><a href="#4-2-3-停止与启动容器" class="headerlink" title="4.2.3 停止与启动容器"></a>4.2.3 停止与启动容器</h4><p>停止容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop 容器名称（或者容器ID）</span><br></pre></td></tr></table></figure>
+
+<p>启动容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker start 容器名称（或者容器ID）</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-4-文件拷贝"><a href="#4-2-4-文件拷贝" class="headerlink" title="4.2.4 文件拷贝"></a>4.2.4 文件拷贝</h4><p>如果我们需要将文件拷贝到容器内可以使用cp命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 需要拷贝的文件或目录 容器名称:容器目录 </span><br></pre></td></tr></table></figure>
+
+<p>也可以将文件从容器内拷贝出来</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 容器名称:容器目录 需要拷贝的文件或目录 </span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-5-目录挂载"><a href="#4-2-5-目录挂载" class="headerlink" title="4.2.5 目录挂载"></a>4.2.5 目录挂载</h4><p>我们可以在创建容器的时候，将宿主机的目录与容器内的目录进行映射，这样我们就可以通过修改宿主机某个目录的文件从而去影响容器。 创建容器 添加-v参数 后边为 宿主机目录:容器目录，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -di -v /usr/local/myhtml:/usr/local/myhtml --name=mycentos3 centos:7</span><br></pre></td></tr></table></figure>
+
+<p>如果你共享的是多级的目录，可能会出现权限不足的提示。<br>这是因为CentOS7中的安全模块selinux把权限禁掉了，我们需要添加参数 –privileged&#x3D;true 来解决挂载的目录没<br>有权限的问题</p>
+<h4 id="4-2-6-查看容器IP地址"><a href="#4-2-6-查看容器IP地址" class="headerlink" title="4.2.6 查看容器IP地址"></a>4.2.6 查看容器IP地址</h4><p>我们可以通过以下命令查看容器运行的各种数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker inspect 容器名称（容器ID） </span><br></pre></td></tr></table></figure>
+
+<p>也可以直接执行下面的命令直接输出IP地址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker inspect --format=&#x27;&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;&#x27; 容器名称（容器ID）</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-7-删除容器"><a href="#4-2-7-删除容器" class="headerlink" title="4.2.7 删除容器"></a>4.2.7 删除容器</h4><p>删除指定容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rm 容器名称（容器ID）</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-Dockerfile"><a href="#5-Dockerfile" class="headerlink" title="5 Dockerfile"></a>5 Dockerfile</h2><h3 id="5-1-什么是Dockerfile"><a href="#5-1-什么是Dockerfile" class="headerlink" title="5.1 什么是Dockerfile"></a>5.1 什么是Dockerfile</h3><p>Dockerfile是由一系列命令和参数构成的脚本，这些命令应用于基础镜像并最终创建一个新的镜像。</p>
+<p>1、对于开发人员：可以为开发团队提供一个完全一致的开发环境； 2、对于测试人员：可以直接拿开发时所构建的镜像或者通过Dockerfile文件构建一个新的镜像开始工作了； 3、对于运维人员：在部署时，可以实现应用的无缝移植。</p>
+<h3 id="5-2-常用命令"><a href="#5-2-常用命令" class="headerlink" title="5.2 常用命令"></a>5.2 常用命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM image_name:tag</td>
+<td>定义了使用哪个基础镜像启动构建流程</td>
+</tr>
+<tr>
+<td>MAINTAINER user_name</td>
+<td>声明镜像的创建者</td>
+</tr>
+<tr>
+<td>ENV key value</td>
+<td>设置环境变量 (可以写多条)</td>
+</tr>
+<tr>
+<td>RUN command</td>
+<td>是Dockerfile的核心部分(可以写多条)</td>
+</tr>
+<tr>
+<td>ADD source_dir&#x2F;file<br/>dest_dir&#x2F;file</td>
+<td>将宿主机的文件复制到容器内，如果是一个压缩文件，将会在复制后自动解压</td>
+</tr>
+<tr>
+<td>COPY source_dir&#x2F;file<br/>dest_dir&#x2F;file</td>
+<td>和ADD相似，但是如果有压缩文件并不能解压</td>
+</tr>
+<tr>
+<td>WORKDIR path_dir</td>
+<td>设置工作目录</td>
+</tr>
+</tbody></table>
+<h3 id="5-3-使用脚本创建镜像"><a href="#5-3-使用脚本创建镜像" class="headerlink" title="5.3 使用脚本创建镜像"></a>5.3 使用脚本创建镜像</h3><p>步骤：<br>（1）创建目录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir –p /usr/local/dockerjdk8 </span><br></pre></td></tr></table></figure>
+
+<p>（2）下载jdk-8u171-linux-x64.tar.gz并上传到服务器（虚拟机）中的&#x2F;usr&#x2F;local&#x2F;dockerjdk8目录<br>（3）创建文件Dockerfile </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi Dockerfile</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">依赖镜像名称和ID</span> </span><br><span class="line"></span><br><span class="line">FROM centos:7 </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">指定镜像创建者信息</span> </span><br><span class="line"></span><br><span class="line">MAINTAINER ITCAST </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">切换工作目录</span> </span><br><span class="line"></span><br><span class="line">WORKDIR /usr </span><br><span class="line"></span><br><span class="line">RUN mkdir  /usr/local/java </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">ADD 是相对路径jar,把java添加到容器中</span> </span><br><span class="line"></span><br><span class="line">ADD jdk-8u171-linux-x64.tar.gz /usr/local/java/ </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">配置java环境变量</span> </span><br><span class="line">ENV JAVA_HOME /usr/local/java/jdk1.8.0_171 </span><br><span class="line">ENV JRE_HOME $JAVA_HOME/jre </span><br><span class="line">ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATH </span><br><span class="line">ENV PATH $JAVA_HOME/bin:$PATH </span><br></pre></td></tr></table></figure>
+
+<p>（4）执行命令构建镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker build -t=&#x27;jdk1.8&#x27; . </span><br></pre></td></tr></table></figure>
+
+<p>注意后边的空格和点，不要省略</p>
+<p>（5）查看镜像是否建立完成</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-Docker创建Redis容器"><a href="#6-Docker创建Redis容器" class="headerlink" title="6 Docker创建Redis容器"></a>6 Docker创建Redis容器</h2><h3 id="6-1-在宿主机-x2F-usr-x2F-local目录下，创建一个docker-redis目录"><a href="#6-1-在宿主机-x2F-usr-x2F-local目录下，创建一个docker-redis目录" class="headerlink" title="6.1 在宿主机&#x2F;usr&#x2F;local目录下，创建一个docker_redis目录"></a>6.1 在宿主机&#x2F;usr&#x2F;local目录下，创建一个docker_redis目录</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@bogon local]# mkdir docker_redis</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-在redis官网下载最新版本http-www-redis-cn-download-html，主要拿到包里的配置文件redis-conf"><a href="#6-2-在redis官网下载最新版本http-www-redis-cn-download-html，主要拿到包里的配置文件redis-conf" class="headerlink" title="6.2 在redis官网下载最新版本http://www.redis.cn/download.html，主要拿到包里的配置文件redis.conf"></a>6.2 在redis官网下载最新版本<a href="http://www.redis.cn/download.html%EF%BC%8C%E4%B8%BB%E8%A6%81%E6%8B%BF%E5%88%B0%E5%8C%85%E9%87%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6redis.conf">http://www.redis.cn/download.html，主要拿到包里的配置文件redis.conf</a></h3><p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208240251961.png" alt="image-20220824025148759"></p>
+<h3 id="6-3-修改redis-conf配置文件"><a href="#6-3-修改redis-conf配置文件" class="headerlink" title="6.3 修改redis.conf配置文件"></a>6.3 修改redis.conf配置文件</h3><p><strong>bind 127.0.0.1 #注释掉这部分，使redis可以外部访问</strong></p>
+<p><strong>daemonize no#用守护线程的方式启动</strong></p>
+<p><strong>&#x3D;&#x3D;requirepass 你的密码#给redis设置密码&#x3D;&#x3D;</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirepass 123456</span><br></pre></td></tr></table></figure>
+
+<p><strong>appendonly yes  #redis持久化　　默认是no</strong></p>
+<p><strong>tcp-keepalive 300 #防止出现远程主机强迫关闭了一个现有的连接的错误 默认是300</strong></p>
+<h3 id="6-4-将redis-conf放在-x2F-usr-x2F-local-x2F-docker-redis-x2F-文件下"><a href="#6-4-将redis-conf放在-x2F-usr-x2F-local-x2F-docker-redis-x2F-文件下" class="headerlink" title="6.4 将redis.conf放在&#x2F;usr&#x2F;local&#x2F;docker_redis&#x2F;文件下"></a>6.4 将redis.conf放在&#x2F;usr&#x2F;local&#x2F;docker_redis&#x2F;文件下</h3><h3 id="6-5-启动redis容器"><a href="#6-5-启动redis容器" class="headerlink" title="6.5 启动redis容器"></a>6.5 启动redis容器</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@bogon docker_redis]# docker run \</span><br><span class="line">&gt; -p 6379:6379 \</span><br><span class="line">&gt; --name redis -v /usr/local/docker_redis/redis.conf:/etc/redis/redis.conf \</span><br><span class="line">&gt; -v /usr/local/docker_redis/data:/data \</span><br><span class="line">&gt; -d redis:6.0.6 redis-server /etc/redis/redis.conf --appendonly yes</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;<strong>这里注意，redis-server &#x2F;etc&#x2F;redis&#x2F;redis.conf  是以容器内文件运行redis,而不是宿主机文件</strong>&#x3D;&#x3D;</p>
+<p>参考：<a href="https://copyfuture.com/blogs-details/202204150247524873">https://copyfuture.com/blogs-details/202204150247524873</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208240252703.png" alt="image-20220824025240585"></p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">–name redis</td>
+<td align="left">启动容器的名字</td>
+</tr>
+<tr>
+<td align="left">-d</td>
+<td align="left">后台运行</td>
+</tr>
+<tr>
+<td align="left">-p 6379:6379</td>
+<td align="left">将容器的 6379(后面那个) 端口映射到主机的 6379(前面那个) 端口</td>
+</tr>
+<tr>
+<td align="left">–restart unless-stopped</td>
+<td align="left">容器重启策略</td>
+</tr>
+<tr>
+<td align="left">-v &#x2F;home&#x2F;redis&#x2F;data:&#x2F;data</td>
+<td align="left">将Redis储存文件夹挂在到主机</td>
+</tr>
+<tr>
+<td align="left">-v &#x2F;home&#x2F;redis&#x2F;conf&#x2F;redis.conf:&#x2F;etc&#x2F;redis&#x2F;redis.conf</td>
+<td align="left">将配置文件夹挂在到主机</td>
+</tr>
+<tr>
+<td align="left">-d redis:bullseye</td>
+<td align="left">启动哪个版本的 Redis (本地镜像的版本)</td>
+</tr>
+<tr>
+<td align="left">redis-server &#x2F;etc&#x2F;redis&#x2F;redis.conf</td>
+<td align="left">Redis 容器中设置 redis-server 每次启动读取 &#x2F;etc&#x2F;redis&#x2F;redis.conf 这个配置为准</td>
+</tr>
+<tr>
+<td align="left">–appendonly yes</td>
+<td align="left">在Redis容器启动redis-server服务器并打开Redis持久化配置</td>
+</tr>
+<tr>
+<td align="left">\</td>
+<td align="left">shell 命令换行</td>
+</tr>
+</tbody></table>
+<p> 注意 : 命令中所有 冒号 前面的是主机配置 , 冒号 后面的是redis容器配置 。<br>–restart unless-stopped : 在docker重启时重启当前容器。但不包含docker重启时已停止的容器。</p>
+<h3 id="6-6-如果创建时未指定-–restart-x3D-always-可通过update-命令设置"><a href="#6-6-如果创建时未指定-–restart-x3D-always-可通过update-命令设置" class="headerlink" title="6.6 如果创建时未指定 –restart&#x3D;always ,可通过update 命令设置"></a>6.6 如果创建时未指定 –restart&#x3D;always ,可通过update 命令设置</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker update --restart=always 容器名称</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-7-尝试使用RedisDesktopManager远程链接redis容器"><a href="#6-7-尝试使用RedisDesktopManager远程链接redis容器" class="headerlink" title="6.7 尝试使用RedisDesktopManager远程链接redis容器"></a>6.7 尝试使用RedisDesktopManager远程链接redis容器</h3><p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208240253138.png" alt="image-20220824025330003"></p>
+<p>在命令行验证密码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208240253718.png" alt="image-20220824025307596"></p>
+<h2 id="7-Docker中的RabbitMQ安装"><a href="#7-Docker中的RabbitMQ安装" class="headerlink" title="7 Docker中的RabbitMQ安装"></a>7 Docker中的RabbitMQ安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">方式一：默认guest 用户，密码也是 guest</span></span><br><span class="line">docker run -d --hostname my-rabbit --name rabbit -p 15672:15672 -p 5672:5672 rabbitmq:management</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">方式二：设置用户名root，密码123456</span></span><br><span class="line">docker run -d --hostname my-rabbit --name rabbit -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=123456 -p 15672:15672 -p 5672:5672 rabbitmq:management</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-1-在官网选择合适镜像"><a href="#7-1-在官网选择合适镜像" class="headerlink" title="7.1 在官网选择合适镜像"></a>7.1 在官网选择合适镜像</h3><p><a href="https://hub.docker.com/_/rabbitmq/tags">https://hub.docker.com/_/rabbitmq/tags</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208240251838.png" alt="image-20220824025107677"></p>
+<h3 id="7-2-拉取最新镜像"><a href="#7-2-拉取最新镜像" class="headerlink" title="7.2 拉取最新镜像"></a>7.2 拉取最新镜像</h3><p>注意：如果 <code>docker pull rabbitmq</code> 后面不带<code>management</code>，启动 RabbitMQ 后是无法打开管理界面的，所以我们要下载带 management 插件的 RabbitMQ。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull rabbitmq:latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-3-创建一个文件夹，用于挂载rabbitmq容器数据"><a href="#7-3-创建一个文件夹，用于挂载rabbitmq容器数据" class="headerlink" title="7.3 创建一个文件夹，用于挂载rabbitmq容器数据"></a>7.3 创建一个文件夹，用于挂载rabbitmq容器数据</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /usr/local/docker_rabbitmq</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-4-启动容器"><a href="#7-4-启动容器" class="headerlink" title="7.4 启动容器"></a>7.4 启动容器</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name rabbit --hostname myRabbit -p 5672:5672 -p 15672:15672 -v /usr/local/docker_rabbitmq:/var/lib/rabbitmq  rabbitmq</span><br></pre></td></tr></table></figure>
+
+<p>第一个-p ：用于页面访问使用<br>第二个-p ：用于生产和消费端使用（也就是再代码里使用）</p>
+<h3 id="7-5-进入容器，执行下面命令"><a href="#7-5-进入容器，执行下面命令" class="headerlink" title="7.5 进入容器，执行下面命令"></a>7.5 进入容器，执行下面命令</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it b19950aae8d0 /bin/bash</span><br><span class="line"></span><br><span class="line">rabbitmq-plugins enable rabbitmq_management</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-6-退出容器，访问一下rabbitmq-web界面，登录用户名和密码默认都是guest，安装完成"><a href="#7-6-退出容器，访问一下rabbitmq-web界面，登录用户名和密码默认都是guest，安装完成" class="headerlink" title="7.6 退出容器，访问一下rabbitmq web界面，登录用户名和密码默认都是guest，安装完成"></a>7.6 退出容器，访问一下rabbitmq web界面，登录用户名和密码默认都是guest，安装完成</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://宿主机IP:15672</span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x3D;&#x3D;通过本地去访问镜像记得关闭虚拟机的防火墙&#x3D;&#x3D;</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208240254885.png" alt="image-20220824025425765"></p>
 ]]></content>
       <categories>
-        <category>JDK</category>
+        <category>tools</category>
       </categories>
       <tags>
-        <tag>JDK</tag>
+        <tag>Linux</tag>
+        <tag>Docker</tag>
+        <tag>Redis</tag>
+        <tag>RabbitMQ</tag>
       </tags>
   </entry>
   <entry>

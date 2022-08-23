@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-05-25T03:00:38.727Z</updated>
+  <updated>2022-08-23T18:54:48.402Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux安装Docker，并部署Redis和RabbitMQ</title>
+    <link href="http://example.com/2022/08/24/Linux%E5%AE%89%E8%A3%85Docker%EF%BC%8C%E5%B9%B6%E9%83%A8%E7%BD%B2Redis%E5%92%8CRabbitMQ/"/>
+    <id>http://example.com/2022/08/24/Linux%E5%AE%89%E8%A3%85Docker%EF%BC%8C%E5%B9%B6%E9%83%A8%E7%BD%B2Redis%E5%92%8CRabbitMQ/</id>
+    <published>2022-08-23T18:42:56.000Z</published>
+    <updated>2022-08-23T18:54:48.402Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;🍋 🍋 🍋 🍋 🍋&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="tools" scheme="http://example.com/categories/tools/"/>
+    
+    
+    <category term="Linux" scheme="http://example.com/tags/Linux/"/>
+    
+    <category term="Docker" scheme="http://example.com/tags/Docker/"/>
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+    <category term="RabbitMQ" scheme="http://example.com/tags/RabbitMQ/"/>
+    
+  </entry>
   
   <entry>
     <title>正确解决typora+PicGo+GitHub图床配置问题</title>
