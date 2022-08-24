@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker解决logs日志时间不同步问题</title>
+    <url>/2022/08/25/Docker%E8%A7%A3%E5%86%B3logs%E6%97%A5%E5%BF%97%E6%97%B6%E9%97%B4%E4%B8%8D%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>🍋 🍋 🍋 🍋 🍋</p>
+<span id="more"></span>
+
+
+
+<h1 id="Docker解决logs日志时间不同步问题"><a href="#Docker解决logs日志时间不同步问题" class="headerlink" title="Docker解决logs日志时间不同步问题"></a>Docker解决logs日志时间不同步问题</h1><p><strong>第一种方法：启动时进行映射</strong></p>
+<p>运行 docker run 添加 -v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime 选项，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:80 -v /etc/localtime:/etc/localtime nginx</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二种：复制时区信息到容器</strong></p>
+<p>（1）如果本机时区正确直接：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /etc/localtime nginx:/etc/localtime</span><br></pre></td></tr></table></figure>
+
+<p>可能报错：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208250505195.png" alt="image-20220825050520111"></p>
+<p><strong>解决办法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /usr/share/zoneinfo/Asia/Shanghai redis:/etc/localtime</span><br></pre></td></tr></table></figure>
+
+<p>重启容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker restart redis</span><br></pre></td></tr></table></figure>
+
+<p>进入容器进行验证</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it redis bash</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208250507918.png" alt="image-20220825050704814"></p>
+<p>（2）如果本机时区不正确：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /usr/share/zoneinfo/Asia/Shanghai nginx:/etc/localtim</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Docker</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JVM垃圾回收详解</title>
     <url>/2022/05/22/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<p>👇👇👇👇👇</p>
@@ -79,47 +120,6 @@
       </categories>
       <tags>
         <tag>GC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker解决logs日志时间不同步问题</title>
-    <url>/2022/08/25/Docker%E8%A7%A3%E5%86%B3logs%E6%97%A5%E5%BF%97%E6%97%B6%E9%97%B4%E4%B8%8D%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>🍋 🍋 🍋 🍋 🍋</p>
-<span id="more"></span>
-
-
-
-<h1 id="Docker解决logs日志时间不同步问题"><a href="#Docker解决logs日志时间不同步问题" class="headerlink" title="Docker解决logs日志时间不同步问题"></a>Docker解决logs日志时间不同步问题</h1><p><strong>第一种方法：启动时进行映射</strong></p>
-<p>运行 docker run 添加 -v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime 选项，如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:80 -v /etc/localtime:/etc/localtime nginx</span><br></pre></td></tr></table></figure>
-
-<p><strong>第二种：复制时区信息到容器</strong></p>
-<p>（1）如果本机时区正确直接：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /etc/localtime nginx:/etc/localtime</span><br></pre></td></tr></table></figure>
-
-<p>可能报错：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208250505195.png" alt="image-20220825050520111"></p>
-<p><strong>解决办法：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /usr/share/zoneinfo/Asia/Shanghai redis:/etc/localtime</span><br></pre></td></tr></table></figure>
-
-<p>重启容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker restart redis</span><br></pre></td></tr></table></figure>
-
-<p>进入容器进行验证</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it redis bash</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208250507918.png" alt="image-20220825050704814"></p>
-<p>（2）如果本机时区不正确：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /usr/share/zoneinfo/Asia/Shanghai nginx:/etc/localtim</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Docker</tag>
-        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
