@@ -82,6 +82,47 @@
       </tags>
   </entry>
   <entry>
+    <title>Docker解决logs日志时间不同步问题</title>
+    <url>/2022/08/25/Docker%E8%A7%A3%E5%86%B3logs%E6%97%A5%E5%BF%97%E6%97%B6%E9%97%B4%E4%B8%8D%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>🍋 🍋 🍋 🍋 🍋</p>
+<span id="more"></span>
+
+
+
+<h1 id="Docker解决logs日志时间不同步问题"><a href="#Docker解决logs日志时间不同步问题" class="headerlink" title="Docker解决logs日志时间不同步问题"></a>Docker解决logs日志时间不同步问题</h1><p><strong>第一种方法：启动时进行映射</strong></p>
+<p>运行 docker run 添加 -v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime 选项，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:80 -v /etc/localtime:/etc/localtime nginx</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二种：复制时区信息到容器</strong></p>
+<p>（1）如果本机时区正确直接：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /etc/localtime nginx:/etc/localtime</span><br></pre></td></tr></table></figure>
+
+<p>可能报错：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208250505195.png" alt="image-20220825050520111"></p>
+<p><strong>解决办法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /usr/share/zoneinfo/Asia/Shanghai redis:/etc/localtime</span><br></pre></td></tr></table></figure>
+
+<p>重启容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker restart redis</span><br></pre></td></tr></table></figure>
+
+<p>进入容器进行验证</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it redis bash</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208250507918.png" alt="image-20220825050704814"></p>
+<p>（2）如果本机时区不正确：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp /usr/share/zoneinfo/Asia/Shanghai nginx:/etc/localtim</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Docker</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java8新特性实战</title>
     <url>/2022/05/24/Java8%E6%96%B0%E7%89%B9%E6%80%A7%E5%AE%9E%E6%88%98/</url>
     <content><![CDATA[<p>🤳  🤳  🤳  🤳  🤳</p>
@@ -312,14 +353,13 @@
 <h2 id="6-Docker创建Redis容器"><a href="#6-Docker创建Redis容器" class="headerlink" title="6 Docker创建Redis容器"></a>6 Docker创建Redis容器</h2><h3 id="6-1-在宿主机-x2F-usr-x2F-local目录下，创建一个docker-redis目录"><a href="#6-1-在宿主机-x2F-usr-x2F-local目录下，创建一个docker-redis目录" class="headerlink" title="6.1 在宿主机&#x2F;usr&#x2F;local目录下，创建一个docker_redis目录"></a>6.1 在宿主机&#x2F;usr&#x2F;local目录下，创建一个docker_redis目录</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@bogon local]# mkdir docker_redis</span><br></pre></td></tr></table></figure>
 
 <h3 id="6-2-在redis官网下载最新版本http-www-redis-cn-download-html，主要拿到包里的配置文件redis-conf"><a href="#6-2-在redis官网下载最新版本http-www-redis-cn-download-html，主要拿到包里的配置文件redis-conf" class="headerlink" title="6.2 在redis官网下载最新版本http://www.redis.cn/download.html，主要拿到包里的配置文件redis.conf"></a>6.2 在redis官网下载最新版本<a href="http://www.redis.cn/download.html%EF%BC%8C%E4%B8%BB%E8%A6%81%E6%8B%BF%E5%88%B0%E5%8C%85%E9%87%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6redis.conf">http://www.redis.cn/download.html，主要拿到包里的配置文件redis.conf</a></h3><p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208240251961.png" alt="image-20220824025148759"></p>
-<h3 id="6-3-修改redis-conf配置文件"><a href="#6-3-修改redis-conf配置文件" class="headerlink" title="6.3 修改redis.conf配置文件"></a>6.3 修改redis.conf配置文件</h3><p><strong>bind 127.0.0.1 #注释掉这部分，使redis可以外部访问</strong></p>
-<p><strong>daemonize no#用守护线程的方式启动</strong></p>
-<p><strong>&#x3D;&#x3D;requirepass 你的密码#给redis设置密码&#x3D;&#x3D;</strong></p>
+<h3 id="6-3-修改redis-conf配置文件"><a href="#6-3-修改redis-conf配置文件" class="headerlink" title="6.3 修改redis.conf配置文件"></a>6.3 修改redis.conf配置文件</h3><p><strong>（1）bind 127.0.0.1 #注释掉这部分，使redis可以外部访问</strong></p>
+<p><strong>（2）daemonize no#用守护线程的方式启动</strong></p>
+<p><strong>&#x3D;&#x3D;（3）requirepass 你的密码#给redis设置密码&#x3D;&#x3D;</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirepass 123456</span><br></pre></td></tr></table></figure>
 
-<p><strong>appendonly yes  #redis持久化　　默认是no</strong></p>
-<p><strong>tcp-keepalive 300 #防止出现远程主机强迫关闭了一个现有的连接的错误 默认是300</strong></p>
-<h3 id="6-4-将redis-conf放在-x2F-usr-x2F-local-x2F-docker-redis-x2F-文件下"><a href="#6-4-将redis-conf放在-x2F-usr-x2F-local-x2F-docker-redis-x2F-文件下" class="headerlink" title="6.4 将redis.conf放在&#x2F;usr&#x2F;local&#x2F;docker_redis&#x2F;文件下"></a>6.4 将redis.conf放在&#x2F;usr&#x2F;local&#x2F;docker_redis&#x2F;文件下</h3><h3 id="6-5-启动redis容器"><a href="#6-5-启动redis容器" class="headerlink" title="6.5 启动redis容器"></a>6.5 启动redis容器</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@bogon docker_redis]# docker run \</span><br><span class="line">&gt; -p 6379:6379 \</span><br><span class="line">&gt; --name redis -v /usr/local/docker_redis/redis.conf:/etc/redis/redis.conf \</span><br><span class="line">&gt; -v /usr/local/docker_redis/data:/data \</span><br><span class="line">&gt; -d redis:6.0.6 redis-server /etc/redis/redis.conf --appendonly yes</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>（4）appendonly yes  #redis持久化　　默认是no</strong></p>
+<h3 id="6-4-将redis-conf放在-x2F-usr-x2F-local-x2F-docker-redis-x2F-文件下"><a href="#6-4-将redis-conf放在-x2F-usr-x2F-local-x2F-docker-redis-x2F-文件下" class="headerlink" title="6.4 将redis.conf放在&#x2F;usr&#x2F;local&#x2F;docker_redis&#x2F;文件下"></a>6.4 将redis.conf放在&#x2F;usr&#x2F;local&#x2F;docker_redis&#x2F;文件下</h3><h3 id="6-5-启动redis容器"><a href="#6-5-启动redis容器" class="headerlink" title="6.5 启动redis容器"></a>6.5 启动redis容器</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@bogon docker_redis]# docker run --restart=always -p 6379:6379 --name redis \</span><br><span class="line">&gt; -v /usr/local/docker_redis/redis.conf:/etc/redis/redis.conf \</span><br><span class="line">&gt; -v /usr/local/docker_redis/data:/data \</span><br><span class="line">&gt; -v /etc/localtime:/etc/localtime \</span><br><span class="line">&gt; -d redis:6.0.6 redis-server /etc/redis/redis.conf --appendonly yes</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>&#x3D;&#x3D;<strong>这里注意，redis-server &#x2F;etc&#x2F;redis&#x2F;redis.conf  是以容器内文件运行redis,而不是宿主机文件</strong>&#x3D;&#x3D;</p>
 <p>参考：<a href="https://copyfuture.com/blogs-details/202204150247524873">https://copyfuture.com/blogs-details/202204150247524873</a></p>
@@ -356,6 +396,10 @@
 <td align="left">将配置文件夹挂在到主机</td>
 </tr>
 <tr>
+<td align="left">-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime</td>
+<td align="left">本地时间同步容器时间  方便以后日志时间同步本地时间</td>
+</tr>
+<tr>
 <td align="left">-d redis:bullseye</td>
 <td align="left">启动哪个版本的 Redis (本地镜像的版本)</td>
 </tr>
@@ -373,6 +417,18 @@
 </tr>
 </tbody></table>
 <p> 注意 : 命令中所有 冒号 前面的是主机配置 , 冒号 后面的是redis容器配置 。<br>–restart unless-stopped : 在docker重启时重启当前容器。但不包含docker重启时已停止的容器。</p>
+<p>安装完后的一些可选择性操作：</p>
+<p>查看最近30分钟reids容器日志</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker logs --since=30m redis</span><br></pre></td></tr></table></figure>
+
+<p>尝试进入redis服务器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it myredis redis-cli</span><br></pre></td></tr></table></figure>
+
+<p>在服务器里验证密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">auth 123456</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="6-6-如果创建时未指定-–restart-x3D-always-可通过update-命令设置"><a href="#6-6-如果创建时未指定-–restart-x3D-always-可通过update-命令设置" class="headerlink" title="6.6 如果创建时未指定 –restart&#x3D;always ,可通过update 命令设置"></a>6.6 如果创建时未指定 –restart&#x3D;always ,可通过update 命令设置</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker update --restart=always 容器名称</span><br></pre></td></tr></table></figure>
 
 
@@ -380,6 +436,12 @@
 <h3 id="6-7-尝试使用RedisDesktopManager远程链接redis容器"><a href="#6-7-尝试使用RedisDesktopManager远程链接redis容器" class="headerlink" title="6.7 尝试使用RedisDesktopManager远程链接redis容器"></a>6.7 尝试使用RedisDesktopManager远程链接redis容器</h3><p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208240253138.png" alt="image-20220824025330003"></p>
 <p>在命令行验证密码</p>
 <p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202208240253718.png" alt="image-20220824025307596"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-----------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">--------------------------------------20228.25更新---------------------------------------</span><br><span class="line"></span><br><span class="line">隐藏bug：使用RedisDesktopManager一直无法远程redis，报错：访问拒绝，或者是</span><br><span class="line"></span><br><span class="line">Connection: Connection error: The proxy type is invalid for this operation</span><br><span class="line"></span><br><span class="line">降低版本</span><br><span class="line"></span><br><span class="line">由0.9降到了0.8.8</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h2 id="7-Docker中的RabbitMQ安装"><a href="#7-Docker中的RabbitMQ安装" class="headerlink" title="7 Docker中的RabbitMQ安装"></a>7 Docker中的RabbitMQ安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">方式一：默认guest 用户，密码也是 guest</span></span><br><span class="line">docker run -d --hostname my-rabbit --name rabbit -p 15672:15672 -p 5672:5672 rabbitmq:management</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">方式二：设置用户名root，密码123456</span></span><br><span class="line">docker run -d --hostname my-rabbit --name rabbit -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=123456 -p 15672:15672 -p 5672:5672 rabbitmq:management</span><br></pre></td></tr></table></figure>
 
 
