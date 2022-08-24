@@ -1,42 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Java8新特性实战</title>
-    <url>/2022/05/24/Java8%E6%96%B0%E7%89%B9%E6%80%A7%E5%AE%9E%E6%88%98/</url>
-    <content><![CDATA[<p>🤳  🤳  🤳  🤳  🤳</p>
-<span id="more"></span>
-
-<h1 id="1-interface"><a href="#1-interface" class="headerlink" title="1. interface"></a>1. interface</h1><h2 id="在-Java-8-，接口和抽象类有什么区别的？"><a href="#在-Java-8-，接口和抽象类有什么区别的？" class="headerlink" title="在 Java 8 ，接口和抽象类有什么区别的？"></a>在 Java 8 ，接口和抽象类有什么区别的？</h2><p>接口多继承，类单继承<br>接口的方法是public abstract修饰，变量是public static final修饰。abstract class可以用其他修饰符</p>
-<h1 id="2-Lambda表达式"><a href="#2-Lambda表达式" class="headerlink" title="2. Lambda表达式"></a>2. Lambda表达式</h1><h4 id="替代匿名内部类-parameters-gt-statements"><a href="#替代匿名内部类-parameters-gt-statements" class="headerlink" title="替代匿名内部类 (parameters) -&gt;{ statements; }"></a>替代匿名内部类 (parameters) -&gt;{ statements; }</h4><p><strong>集合迭代  forEach</strong></p>
-<blockquote>
-<p>strings.forEach(System.out::println);<br>上述代码的含义把你遍历出来的每一个对象都用来去调用System.out（也就是PrintStream类的一个实例）的println方法。</p>
-</blockquote>
-<p><strong>方法的引用 ::</strong></p>
-<h4 id="访问变量"><a href="#访问变量" class="headerlink" title="访问变量"></a>访问变量</h4><h1 id="3-Stream"><a href="#3-Stream" class="headerlink" title="3. Stream"></a>3. Stream</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//按照类别分组</span></span><br><span class="line">Map&lt;String, List&lt;Product&gt;&gt; map1 = prodList.stream().collect(Collectors.groupingBy(Product::getCategory));</span><br></pre></td></tr></table></figure>
-<p>Stream的特点:</p>
-<ol>
-<li>通过简单的链式编程，使得它可以方便地对遍历处理后的数据进行再处理。</li>
-<li>方法参数都是函数式接口类型；</li>
-<li>一个Stream只能操作一次，操作完就关闭了，继续使用这个stream会报错；</li>
-<li>stream不保存数据，不改变数据源；</li>
-</ol>
-<h1 id="4-Optional"><a href="#4-Optional" class="headerlink" title="4. Optional"></a>4. Optional</h1><p>使用Oprional解决NPE(java.lang.NullPointerException)问题，丫就是为NPE而生的，其中可以包含空值或非空值。</p>
-<h1 id="5-Date-Time-API"><a href="#5-Date-Time-API" class="headerlink" title="5. Date-Time API"></a>5. Date-Time API</h1><p>这是对java.util.Date强有力的补充，解决了Date类的大部分痛点：</p>
-<ol>
-<li>非线程安全</li>
-<li>时区处理麻烦</li>
-<li>各种格式化、和时间计算繁琐</li>
-<li>设计有缺陷，Date类同时包含日期和时间；还有一个java.sql.Date，容易混淆</li>
-</ol>
-]]></content>
-      <categories>
-        <category>JDK</category>
-      </categories>
-      <tags>
-        <tag>JDK</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JVM垃圾回收详解</title>
     <url>/2022/05/22/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<p>👇👇👇👇👇</p>
@@ -118,6 +82,42 @@
       </tags>
   </entry>
   <entry>
+    <title>Java8新特性实战</title>
+    <url>/2022/05/24/Java8%E6%96%B0%E7%89%B9%E6%80%A7%E5%AE%9E%E6%88%98/</url>
+    <content><![CDATA[<p>🤳  🤳  🤳  🤳  🤳</p>
+<span id="more"></span>
+
+<h1 id="1-interface"><a href="#1-interface" class="headerlink" title="1. interface"></a>1. interface</h1><h2 id="在-Java-8-，接口和抽象类有什么区别的？"><a href="#在-Java-8-，接口和抽象类有什么区别的？" class="headerlink" title="在 Java 8 ，接口和抽象类有什么区别的？"></a>在 Java 8 ，接口和抽象类有什么区别的？</h2><p>接口多继承，类单继承<br>接口的方法是public abstract修饰，变量是public static final修饰。abstract class可以用其他修饰符</p>
+<h1 id="2-Lambda表达式"><a href="#2-Lambda表达式" class="headerlink" title="2. Lambda表达式"></a>2. Lambda表达式</h1><h4 id="替代匿名内部类-parameters-gt-statements"><a href="#替代匿名内部类-parameters-gt-statements" class="headerlink" title="替代匿名内部类 (parameters) -&gt;{ statements; }"></a>替代匿名内部类 (parameters) -&gt;{ statements; }</h4><p><strong>集合迭代  forEach</strong></p>
+<blockquote>
+<p>strings.forEach(System.out::println);<br>上述代码的含义把你遍历出来的每一个对象都用来去调用System.out（也就是PrintStream类的一个实例）的println方法。</p>
+</blockquote>
+<p><strong>方法的引用 ::</strong></p>
+<h4 id="访问变量"><a href="#访问变量" class="headerlink" title="访问变量"></a>访问变量</h4><h1 id="3-Stream"><a href="#3-Stream" class="headerlink" title="3. Stream"></a>3. Stream</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//按照类别分组</span></span><br><span class="line">Map&lt;String, List&lt;Product&gt;&gt; map1 = prodList.stream().collect(Collectors.groupingBy(Product::getCategory));</span><br></pre></td></tr></table></figure>
+<p>Stream的特点:</p>
+<ol>
+<li>通过简单的链式编程，使得它可以方便地对遍历处理后的数据进行再处理。</li>
+<li>方法参数都是函数式接口类型；</li>
+<li>一个Stream只能操作一次，操作完就关闭了，继续使用这个stream会报错；</li>
+<li>stream不保存数据，不改变数据源；</li>
+</ol>
+<h1 id="4-Optional"><a href="#4-Optional" class="headerlink" title="4. Optional"></a>4. Optional</h1><p>使用Oprional解决NPE(java.lang.NullPointerException)问题，丫就是为NPE而生的，其中可以包含空值或非空值。</p>
+<h1 id="5-Date-Time-API"><a href="#5-Date-Time-API" class="headerlink" title="5. Date-Time API"></a>5. Date-Time API</h1><p>这是对java.util.Date强有力的补充，解决了Date类的大部分痛点：</p>
+<ol>
+<li>非线程安全</li>
+<li>时区处理麻烦</li>
+<li>各种格式化、和时间计算繁琐</li>
+<li>设计有缺陷，Date类同时包含日期和时间；还有一个java.sql.Date，容易混淆</li>
+</ol>
+]]></content>
+      <categories>
+        <category>JDK</category>
+      </categories>
+      <tags>
+        <tag>JDK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux安装Docker，并部署Redis和RabbitMQ</title>
     <url>/2022/08/24/Linux%E5%AE%89%E8%A3%85Docker%EF%BC%8C%E5%B9%B6%E9%83%A8%E7%BD%B2Redis%E5%92%8CRabbitMQ/</url>
     <content><![CDATA[<p>🍋 🍋 🍋 🍋 🍋</p>
@@ -125,7 +125,7 @@
 
 
 
-<h1 id="linux-安装docker，并部署RabbitMQ"><a href="#linux-安装docker，并部署RabbitMQ" class="headerlink" title="linux 安装docker，并部署RabbitMQ"></a>linux 安装docker，并部署RabbitMQ</h1><blockquote>
+<h1 id="linux-安装docker，并部署Redis及RabbitMQ"><a href="#linux-安装docker，并部署Redis及RabbitMQ" class="headerlink" title="linux 安装docker，并部署Redis及RabbitMQ"></a>linux 安装docker，并部署Redis及RabbitMQ</h1><blockquote>
 <p><strong>安装环境：CentOS7.x</strong></p>
 </blockquote>
 <h2 id="1-安装docker"><a href="#1-安装docker" class="headerlink" title="1 安装docker"></a>1 安装docker</h2><p>（1）yum包更新到最新</p>
