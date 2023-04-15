@@ -627,6 +627,144 @@
       </tags>
   </entry>
   <entry>
+    <title>小白推荐|使用git建立自己的代码仓库</title>
+    <url>/2023/04/15/%E5%B0%8F%E7%99%BD%E6%8E%A8%E8%8D%90-%E4%BD%BF%E7%94%A8git%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93/</url>
+    <content><![CDATA[<p>👇👇👇👇👇</p>
+<span id="more"></span>
+
+<h1 id="1-git"><a href="#1-git" class="headerlink" title="1 git"></a>1 git</h1><h2 id="1-1-什么是git"><a href="#1-1-什么是git" class="headerlink" title="1.1 什么是git"></a>1.1 什么是git</h2><p>版本控制工具，用于团队协作与项目管理</p>
+<h2 id="1-2-git-安装教程"><a href="#1-2-git-安装教程" class="headerlink" title="1.2 git 安装教程"></a>1.2 git 安装教程</h2><p>step1：进入git下载官网<a href="https://gitforwindows.org/">https://gitforwindows.org/</a></p>
+<p>step2：点击Download</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151314104.png" alt="img"></p>
+<p>step3：打开下载好的文件，按照下面图片一步一步安装</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151314714.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311554.png" alt="img"></p>
+<p>剩下的一直点Next就完事了！！！看到下面这个界面，点击Finsh,完成安装</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311578.png" alt="img"></p>
+<p>step4：检查电脑是否安装成功</p>
+<p>Win+R快捷键启动运行，输入cmd，回车打开命令提示符</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151315786.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311594.png" alt="img"></p>
+<p>输入git –version，出现版本号，即为安装成功！！！（注意git与–version中间有一个空格）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311374.png" alt="img"></p>
+<h1 id="2-GitHub"><a href="#2-GitHub" class="headerlink" title="2 GitHub"></a>2 GitHub</h1><h2 id="2-1-什么是GitHub"><a href="#2-1-什么是GitHub" class="headerlink" title="2.1 什么是GitHub"></a>2.1 什么是GitHub</h2><p>GitHub是一个使用Git进行软件开发和版本控制的互联网托管服务。</p>
+<h2 id="2-2-注册GitHub"><a href="#2-2-注册GitHub" class="headerlink" title="2.2 注册GitHub"></a>2.2 注册GitHub</h2><p>进入GitHub官网（需要打开VPN，翻墙），点Sign up，开始注册</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311811.png" alt="img"></p>
+<p>1 输入邮箱</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151315526.png" alt="img"></p>
+<p>2 输入密码</p>
+<p>提示 password may be compromised(翻译一下就是密码可能泄漏，原因就是密码设置太简单，改一下)</p>
+<p>出现下面页面就表示密码可以使用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151315083.png" alt="img"></p>
+<p>3 输入一个用户名</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311981.png" alt="img"></p>
+<p>4 输入“n”表示不同意接收订阅消息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311134.png" alt="img"></p>
+<p>5 点击continue，完成验证，点击创建账号（create account）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311028.png" alt="img"></p>
+<p>6 打开你的邮箱，找到GitHub发的邮件，把邮件里的验证码输入到下面框里</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311039.png" alt="img"></p>
+<p>7 剩下的就是填一些无关紧要的内容，拉到最下面，直接跳过</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311474.png" alt="img"></p>
+<p>8 进入下面这个页面，你就成功开始GitHub之旅了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311947.png" alt="img"></p>
+<h2 id="2-3-创建自己第一个代码仓库"><a href="#2-3-创建自己第一个代码仓库" class="headerlink" title="2.3 创建自己第一个代码仓库"></a>2.3 创建自己第一个代码仓库</h2><p>1 Create repository</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311060.png" alt="img"></p>
+<p>2 填写仓库信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311216.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151316602.png" alt="img"></p>
+<p>3 完成创建，进入仓库页面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311054.png" alt="img"></p>
+<p>有了仓库，下面我们就学习怎么往仓库里上传文件吧！！！</p>
+<h2 id="2-4-配合git上传本地文件到自己的GitHub仓库里"><a href="#2-4-配合git上传本地文件到自己的GitHub仓库里" class="headerlink" title="2.4 配合git上传本地文件到自己的GitHub仓库里"></a>2.4 配合git上传本地文件到自己的GitHub仓库里</h2><h3 id="2-4-1-git绑定GitHub账号"><a href="#2-4-1-git绑定GitHub账号" class="headerlink" title="2.4.1 git绑定GitHub账号"></a>2.4.1 git绑定GitHub账号</h3><p>假如我要上传的文件是存放在F:\test下面的note.md文件</p>
+<p>在test文件夹下面，右键Git Bash Here</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311402.png" alt="img"></p>
+<p>弹出命令框，分别输入下面命令，回车，绑定GitHub的用户名和邮箱</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;你的github用户名&quot;</span></span><br><span class="line"></span><br><span class="line">git config --global user.email <span class="string">&quot;你的github邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-2-绑定SSH"><a href="#2-4-2-绑定SSH" class="headerlink" title="2.4.2 绑定SSH"></a>2.4.2 绑定SSH</h3><p><strong>step1：</strong>同样是在test文件夹下，右键git bash here</p>
+<p><strong>step2：</strong>弹出命令框，输入下面命令，生成SSH</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;这里填登录GitHub的邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>一直回车，大概按三次，出现下面这个情况就说明成功了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311033.png" alt="img"></p>
+<p>生成的SSH文件会自动放在电脑的C&#x2F;users&#x2F;你的电脑用户名&#x2F;.ssh文件目录下。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151317389.png" alt="img"></p>
+<p><strong>step3：</strong>右键以记事本形式打开“id_rsa.pub”，ctrl+A全选，然后ctrl+C复制全部内容</p>
+<p><strong>step4：</strong>回到GitHub，鼠标放在头像上，点击settings</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311071.png" alt="img"></p>
+<p>接着点</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311692.png" alt="img"></p>
+<p>接着点</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311074.png" alt="img"></p>
+<p><strong>step5：</strong>完成之后，回到git bash ,输入下面指令进行测试</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+
+
+<p>出现下面结果表示绑定成功！！！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151317222.png" alt="img"></p>
+<h3 id="2-4-3-上传文件"><a href="#2-4-3-上传文件" class="headerlink" title="2.4.3 上传文件"></a>2.4.3 上传文件</h3><p>上面我们利用git绑定了自己GitHub的账号名、邮箱以及SSH秘钥(不然每次bash上传就需要输入账号密码，并且绑定SSH有加密功能)，下面介绍如何借助git上传本地文件到自己的GitHub仓库。</p>
+<p>以我们创建的第一个代码仓库为例</p>
+<p><strong>step1：创建本地存放仓库的文件</strong></p>
+<p>在本地先创建一个文件夹，用来存放GitHub上的远程仓库，我这里是F:\test</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311343.png" alt="img"></p>
+<p><strong>step2：复制你代码仓库的SSH地址</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311693.png" alt="img"></p>
+<p><strong>step3：克隆</strong></p>
+<p>回到本地的test文件夹，右键空白处，点git bash here，输入命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> SSH地址</span><br></pre></td></tr></table></figure>
+
+<p>出现下面结果就说明已经将GitHub的远程仓库克隆到了你的本地文件夹！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311268.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311228.png" alt="img"></p>
+<p>进入是下面的内容</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311269.png" alt="img"></p>
+<p>假如我想上传的文件夹是note.txt文件，把这个文件放入远程仓库文件夹（first）下，这里我直接在first文件夹下新建个txt文件，进行演示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311542.png" alt="img"></p>
+<p><strong>step4：查看git链接情况，确定远程链接名称+分支名</strong></p>
+<p>进入 first文件，空白处右键git bash here</p>
+<p>首先，我们要确定远程链接（GitHub仓库的链接）名称以及你要提交到GitHub仓库哪个分支</p>
+<p>在first文件下，右键git bash here ，输入指令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311813.png" alt="img"></p>
+<p>这里的origin就是远程链接名称</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311174.png" alt="img"></p>
+<p>这个就是你要提交的仓库分支</p>
+<p>确定远程链接与远程提交分支，我们就可以开始提交文件了（要提交的文件如步骤3描述，note.txt）</p>
+<p><strong>step5：将改动先提交到缓冲区</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>step6：提交，并添加补充说明</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;补充说明&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311749.png" alt="img"></p>
+<p><strong>step7：推到远程仓库</strong></p>
+<p>首先，远程连接名和远程仓库名我们已经确定，本地仓库名就是你指令界面的蓝色字体部分</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311210.png" alt="img"></p>
+<p>使用push 指令提交修改</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push 远程链接名 远程仓库分支名：本地仓库分支名</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311281.png" alt="img"></p>
+<p><strong>step8：检查是否上传成功</strong></p>
+<p>回到GitHub，我们可以看到新添加的note.txt文件已经在自己GitHub仓库里了！！！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MapleFv/BolgImgs/202304151311217.png" alt="img"></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>GitHub</tag>
+        <tag>cmd</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何将部署在GitHub的博客绑定指定域名</title>
     <url>/2022/05/22/%E5%A6%82%E4%BD%95%E5%B0%86%E9%83%A8%E7%BD%B2%E5%9C%A8GitHub%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BB%91%E5%AE%9A%E6%8C%87%E5%AE%9A%E5%9F%9F%E5%90%8D/</url>
     <content><![CDATA[<p>🔔 🔔 🔔 🔔 🔔</p>
